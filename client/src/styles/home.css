@@ -1,0 +1,66 @@
+hr {
+    border: 1px solid var(--purple-light) !important;
+    opacity: 1 !important;
+    margin: 0.75rem 0 !important;
+}
+
+.ganancias-totales-home {
+    text-align: center;
+}
+
+.sumary-row > .col-3 {
+    text-align: end !important;
+    padding-right: 1% !important;
+    /*padding-top: 1% !important;*/
+}
+
+.custom-chart-tooltip .ag-chart-tooltip-content {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: 2px solid var(--purple-light)
+}
+
+.ag-chart-tooltip::after {
+    border-top-color: rgb(0, 0, 0);
+}
+
+
+/* Big Screen */
+@media screen and (min-width: 1900px) {
+
+    .sumary-row {
+        padding: 1.25% 0;
+    }
+
+    .home-row-chart {
+        padding: 30% 0;
+    }
+
+}
+
+/* Small Sreen */
+@media screen and (max-width: 1900px) {
+
+    .sumary-row {
+        padding: 0.25% 0;
+    }
+
+   /* .sumary-row > .col-3 {
+        padding: 1%;
+        padding-right: 10% !important;
+        padding-left: 2% !important;
+    }*/
+
+    .sumary-row > .col-3 {
+        padding-top: 1% !important;
+    }
+
+    .main-common-container > .container > .row > .home-chart-col{
+        padding-right: 2% !important;
+    }
+
+    .home-row-chart {
+        padding: 50% 0;
+    }
+
+}

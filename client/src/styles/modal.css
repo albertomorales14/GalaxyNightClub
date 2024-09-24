@@ -1,0 +1,86 @@
+.modal-backdrop.show {
+    background-color: blueviolet !important;
+}
+  
+.modal-backdrop {
+    background-color: blueviolet !important;
+}
+
+.modal-header, .modal-title, .modal-body, .modal-footer {
+    color: white;
+    text-align: center !important;
+}
+
+.modal-title h4 {
+    text-align: center !important;
+}
+
+.modal-body, .modal-footer {
+    background-color: black !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.modal-header {
+    background-color: #251032 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+}
+
+.custom-alert {
+    color: white !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.modal-content {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+    width: 30% !important;
+}
+
+.modal-footer {
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 0 !important;
+    flex-wrap: nowrap !important;
+}
+
+.modal-footer > button {
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+    text-align: center !important;
+  }
+
+/* Big Screen */
+@media screen and (min-width: 1900px) {
+
+    .modal-content {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        position: fixed !important;
+        width: 30% !important;
+    }
+
+}
+
+/* Small Screen */
+@media screen and (max-width: 1900px) {
+
+    .modal-body {
+        padding: 0 !important;
+    }
+
+    .modal-content {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        position: fixed !important;
+        width: 40% !important;
+    }
+
+}

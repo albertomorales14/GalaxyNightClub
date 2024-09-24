@@ -1,0 +1,45 @@
+.promo-club-btn {
+    background-color: transparent !important;
+    border: 3px solid var(--purple-light) !important;
+    padding: 1% 10%;
+}
+
+/* Boton centrado */
+.btn-promo-container {
+    text-align: center;
+}
+
+.club-sumary-row > .col-3 {
+    text-align: end !important;
+    padding-right: 1% !important;
+    /*padding-top: 1% !important;*/
+}
+
+/* Big Screen */
+@media screen and (min-width: 1900px) {
+    
+    .club-sumary-row {
+        padding: 0.85% 0;
+    }
+
+    .line-chart-container > div {
+        height: 25vh;
+    }
+
+}
+
+/* Small Screen */
+@media screen and (max-width: 1900px) {
+    
+    .club-sumary-row {
+        padding: 0.25% 0;
+    }
+
+    .club-sumary-row > .col-3 {
+        padding-top: 1% !important;
+    }
+
+    .line-chart-container > div {
+        height: 34vh;
+    }
+}

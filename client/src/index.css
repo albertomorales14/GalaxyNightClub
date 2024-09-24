@@ -1,0 +1,338 @@
+:root {
+    --purple-light: #9479A6;
+    --purple-dark: #533274;
+    --full-height: -webkit-fill-available;
+    --gtav-cursor: url('/src/styles/cursor.cur');
+}
+
+#root {
+    /*height: 90vh;*/
+    margin: 0 10%;
+    padding-bottom: 10%;
+    color: white !important;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lexend' !important;/*, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    padding: 0 2.5%;
+    margin: 0 1% 0 1%;
+    /*height: 100vh;*/
+    background-image: url("/public/img/background/bg13.jpg") !important;
+    background-size: 100% 100%;
+    background-size: cover;
+
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100% 1fr;
+    min-height: 0;
+    gap: 8px;
+
+    scrollbar-width: none;
+}
+
+.bodyApp {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    /*background-color: rgb(63, 62, 62);*/
+}
+
+.container {
+    margin: 0 !important;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+::selection {
+    background-color: var(--purple-light);
+    color: white;
+}
+
+/* Cabecera: Inicio de sesion y foto */
+.header {
+    background-color: transparent;
+    color: white;
+    padding: 1% 0;
+    text-align: right;
+    align-content: center;
+    display: flex;
+}
+
+.header p {
+    margin: 0;
+    padding: 0px;
+}
+
+/* Info: PROPIETARIO y UBICACIÓN */
+.homeLayout {
+    margin: 8px 8px 4px 8px;
+}
+
+.homeImg {
+    width: 100%;
+    margin-bottom: 8px;
+    /*margin-right: 8px;*/
+}
+
+.homeInfo {
+    background-color: #251032;
+    color: white;
+
+    font-size: 1.2em;
+    padding: 3%;
+}
+
+.homeInfo p {
+    margin: 0;
+}
+
+.homeInfo-color-primary {
+    color: var(--purple-dark);
+}
+
+.homeInfo-color-secondary {
+    color: var(--purple-light);
+}
+
+/* Navegacion lateral izquierda */
+aside {
+    position: sticky;
+    top: 8px;
+    /*margin: 4px;*/
+}
+
+.aside-menu {
+    margin: 4px;
+    padding-right: 8px
+}
+
+.aside-menu a {
+    width: 100%;
+}
+
+button.p-2 {
+    width: 100%;
+    margin: 8px 0 !important;
+}
+
+.btn-primary {
+    background-color: #251032 !important;
+    border: 3px solid #251032 !important;
+    color: white !important;
+    border-radius: 0 !important;
+    margin: 4px !important;
+    text-align: left !important;
+}
+
+.btn-primary:hover {
+    background-color: #461E5C !important;
+    border: 3px solid #865EAB !important;
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+.btn.active {
+    color: white !important;
+    border-radius: 0 !important;
+    margin: 4px !important;
+    text-align: left !important;
+    background-color: #461E5C !important;
+    border: 3px solid #865EAB !important;
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+/* Fama del club */
+.fameBar-Container {
+    background-color: rgba(70, 30, 92, 0.6) !important;
+    color: white;
+    padding: 1%;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Progress Bar */
+progress {
+    width: 66%;
+    margin: 0 0 0 8%;
+    border-radius: 0 !important;
+    height: 1em !important;
+}
+
+progress::-webkit-progress-bar {
+    background-color: black;
+}
+
+progress::-webkit-progress-value {
+    background-color: white;
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Encuadre del layout responsive */
+
+/* Big Screen */
+@media screen and (min-width: 1900px) {
+    
+    .main-common-container {
+        height: 75vh;
+    }
+
+    html, body {
+        overflow: hidden;
+    }
+
+    .header-img {
+        height: 9vh;
+        object-fit: cover;
+    }
+
+    .header-img:hover {
+        cursor: var(--gtav-cursor), auto;
+    }
+    
+}
+
+/* Small Screen */
+@media screen and (max-width: 1900px) {
+    
+    .main-common-container {
+        height: 100vh;
+    }
+
+    .header-img {
+        height: 12vh;
+        object-fit: cover;
+    }
+
+    .header-img:hover {
+        cursor: var(--gtav-cursor), auto;
+    }
+
+}
+
+/* Slider home */
+figure {
+    margin: 0 !important;
+}
+
+div#slider {
+    overflow: hidden;
+}
+
+/* las imágenes no van a salir del márgen de la pantalla*/
+div#slider figure img {
+    width: 20%;
+    float: left;
+}
+
+div#slider figure {
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 10s slidy infinite;
+    /*el movimiento se va a mantener de forma indefinida -infinito-*/
+}
+
+
+/*esta parte del código define el movimiento de las imágenes a la izquierda*/
+@keyframes slidy {
+    0% {left: 0%;}
+    10% { left: 0%;}
+    15% {left: 0%;}
+    20% {left: 0%;}
+    25% {left: -100%;}
+    30% {left: -100%;}
+    35% {left: -100%;}
+    40% {left: -100%;}
+    45% {left: -100%;}
+    50% {left: -100%;}
+    55% {left: -100%;}
+    60% {left: -100%;}
+    65% {left: -100%;}
+    70% {left: 0%;}
+    75% {left: 0%;}
+    80% {left: 0%;}
+    85% {left: 0%;}
+    90% {left: 0%;}
+    95% {left: 0%;}
+    100% {left: 0%;}
+}
+
+.error-404 {
+    margin: 3%;
+    margin-top: 10%;
+}
+
+.error-404:hover {
+    background-color: #461E5C !important;
+    border: 3px solid #865EAB !important;
+}
+
+.a:hover {
+    background-color: #461E5C !important;
+    border: 3px solid #865EAB !important;
+}
+
+a {
+    border: 2px solid var(--purple-light);
+    cursor: var(--gtav-cursor), auto;
+    color: white !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    padding: 3%;
+}
+
+/* Pantalla de settings */
+.setting-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--purple-light);
+    padding: 1%;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    right: 12%;
+    width: 15%;
+    display: inline-grid;
+
+    transform: translateY(-20px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.setting-container.slide-down {
+    opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+.main-common-container {
+    /*border: 1px solid red;*/
+    height: var(--full-height);
+}
+
+/*
+.row {
+  border: 1px solid yellow;
+}
+
+.col-3 {
+  border: 1px solid red;
+}*/

@@ -1,0 +1,124 @@
+.mejoras-grid-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1.5%;
+}
+  
+.mejoras-grid-container > div {
+    text-align: start;
+    overflow: hidden;
+}
+
+.mejoras-item-container {
+    display: flex;
+}
+
+.mejoras-grid-container > .row {
+    border: 1px solid var(--purple-light);
+}
+
+.col-3 {
+    padding: 0 !important;
+}
+
+.mejoras-img:hover, .col-3-mejoras:hover {
+    cursor: var(--gtav-cursor), auto;
+}
+
+/* Check Icon ***********************/
+.mejoras-img-box-content {
+    position: relative;
+}
+
+.mejoras-icon-content {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    margin: 5%;
+    border-radius: 50% !important;
+    overflow: hidden;
+}
+
+.mejoras-icon-content > * {
+    fill: var(--purple-dark);
+    stroke: var(--purple-dark);
+    /*stroke-width: 3%;*/
+    background-color: white;
+    height: 2em !important;
+    width: 2em !important;
+}
+/************************************/
+
+.txt-mejoras {
+    font-size: var(--bs-nav-link-font-size) !important; 
+    font-weight: var(--bs-nav-link-font-weight) !important;
+    margin-bottom: 5%;
+}
+
+.title-mejoras {
+    font-size: 1.25em;
+    padding-top: 1%;
+}
+
+p.txt-mejoras {
+    /*padding: 0;*/
+}
+
+.mejoras-col-9:hover, .mejoras-grid-container > .row:hover {
+    background-color: var(--purple-dark);
+    cursor: var(--gtav-cursor), auto;
+}
+
+
+/* Big Screen */
+@media screen and (min-width: 1900px) {
+
+    .mejoras-grid-container > div > .col-9 {
+        height: 24vh;
+    }
+
+    .mejoras-grid-container > div > .col-3 {
+        height: 24vh;
+    }
+
+    
+
+    .mejoras-grid-container img {
+        width: 100%;
+        height: 24vh;
+        object-fit: cover;
+    }
+
+}
+
+/* Small Screen */
+@media screen and (max-width: 1900px) {
+
+    .mejoras-grid-container > div > .col-9 {
+        height: 32vh;
+    }
+
+    .mejoras-grid-container > div > .col-3 {
+        height: 32vh;
+    }
+
+    .col-9 {
+        padding: 1%;
+        padding-right: 10% !important;
+        padding-left: 2% !important;
+    }
+
+    .mejoras-grid-container img {
+        width: 100%;
+        height: 35vh;
+        object-fit: cover;
+    }
+
+    .mejoras-icon-content {
+        position: absolute;
+        right: 0%;
+        bottom: 10%;
+        margin: 5%;
+    }
+
+}

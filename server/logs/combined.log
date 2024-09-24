@@ -1,0 +1,68 @@
+2024-09-24T14:26:14.467Z [info]: El servidor se está ejecutando en el puerto
+2024-09-24T14:26:39.300Z [info]: [INFO] El servidor se está ejecutando en el puerto
+2024-09-24T14:30:19.595Z [info]: [INFO] El servidor se está ejecutando en el puerto
+2024-09-24T14:30:31.039Z [info]: El servidor se está ejecutando en el puerto
+2024-09-24T14:38:31.051Z [info]: El servidor se está ejecutando en el puerto
+2024-09-24T14:39:35.707Z [info]: El servidor se está ejecutando en el puerto5050
+2024-09-24T14:39:44.163Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:40:46.738Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:40:47.408Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T14:41:08.488Z [error]: login (usuarioController.js): Contraseña incorrecta
+2024-09-24T14:43:35.697Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:43:36.485Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T14:43:46.294Z [warn]: Contraseña incorrecta [LOGIN] [usuarioController.js]
+2024-09-24T14:46:34.658Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:46:35.433Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T14:46:46.719Z [warn]: Contraseña incorrecta [LOGIN] [usuarioController.js]
+2024-09-24T14:46:59.502Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T14:46:59.502Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T14:48:10.875Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:48:16.203Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T14:56:27.380Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T14:56:28.040Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T15:06:02.269Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T15:06:02.920Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T15:07:29.188Z [warn]: Error login
+2024-09-24T15:08:21.578Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:10:46.364Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T15:10:47.300Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T15:10:53.178Z [warn]: {"type":"field","msg":"El nombre de usuario es obligatorio","path":"username","location":"body"}
+2024-09-24T15:10:53.189Z [warn]: {"type":"field","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:11:21.505Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:11:21.506Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:14:06.054Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T15:14:06.931Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T15:22:42.779Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:22:42.784Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:22:55.207Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:23:50.388Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:25:24.702Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:26:38.611Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T15:26:39.505Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-09-24T15:26:51.712Z [warn]: {"type":"field","value":"12","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:27:26.365Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
+2024-09-24T15:31:07.506Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:31:07.508Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:31:07.522Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-09-24T15:31:07.524Z [info]: "Cutiti007"
+2024-09-24T15:37:39.963Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:37:39.966Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:37:39.969Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:37:39.969Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:37:39.979Z [info]: {}
+2024-09-24T15:37:39.982Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-09-24T15:37:39.984Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:37:40.004Z [info]: {}
+2024-09-24T15:37:40.059Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-09-24T15:37:40.062Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:37:42.691Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:37:42.692Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:37:42.702Z [info]: {}
+2024-09-24T15:37:42.703Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-09-24T15:37:42.706Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:47:59.685Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-09-24T15:47:59.686Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T15:47:59.697Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-09-24T15:47:59.699Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
+2024-09-24T16:02:18.349Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-09-24T16:02:19.060Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
