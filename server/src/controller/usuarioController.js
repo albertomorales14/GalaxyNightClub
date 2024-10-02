@@ -26,8 +26,11 @@ usuarioController.getUsuario = [
     async (request, response) => {
         const usuario = await Usuario.findById(request.params.id)
         if (!usuario) {
+            logger.warn('getUsuario (usuarioController.js) Usuario no encontrado')
             return response.status(404).json({ message: 'Usuario no encontrado' });
         }
+        logger.info('getUsuario (usuarioController.js) Usuario encontrado: ')
+        logger.info(JSON.stringify(usuario))
         response.json(usuario);
     }
 ];
@@ -54,6 +57,38 @@ const comparePassword = async (password, hash) => {
     }
 };
 
+usuarioController.updateUsuario = async (request, response) => {
+    try {
+        const { id } = request.params;
+        const { password, ...rest } = request.body; // Separar password del resto de datos
+
+        if (password) {
+            const hashedPassword = await hashPassword(password); // Cifrar la nueva contraseña
+            rest.password = hashedPassword;  // Agregar la contraseña cifrada al resto de los datos
+          }
+
+        await Usuario.findByIdAndUpdate(id, {
+            $set: rest
+        })
+        response.json({
+            message: 'Usuario actualizado'
+        })
+        /*
+        const usuario = await Usuario.findById(request.params.id)
+        if (!usuario) {
+            logger.warn('getUsuario (usuarioController.js) Usuario no encontrado')
+            return response.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        logger.info('getUsuario (usuarioController.js) Usuario encontrado: ')
+        logger.info(JSON.stringify(usuario))
+        response.json(usuario);
+        */
+    } catch (error) {
+        logger.error('Error al actualizar usuario: ' + error)
+        throw new Error('Error al actualizar usuario: ' + error)
+    }
+}
+
 usuarioController.login = [
     validateFields, // Agregar la validación de campos
     async (request, response) => {
@@ -63,27 +98,27 @@ usuarioController.login = [
                 .then(user => {
                     if (user) {
                         comparePassword(body.password, user.password)
-                        .then (isPasswordMatch => {
-                            if (isPasswordMatch) {
-                                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-                                    expiresIn: '1h',
-                                });
-                        
-                                // Establecer la cookie
-                                response.cookie('token', token, {
-                                    httpOnly: true,
-                                    secure: process.env.NODE_ENV === 'production', // Usar true en producción
-                                    sameSite: 'Strict',
-                                    maxAge: 3600000, // 1 hora
-                                });
-                                logger.info('Acesso login correcto [LOGIN] [usuarioController.js]');
-                                logger.info('Usuario conectado: ' + JSON.stringify(user));
-                                response.json(user)
-                            } else {
-                                logger.warn("Contraseña incorrecta [LOGIN] [usuarioController.js]");
-                                response.json("Contraseña incorrecta")
-                            }
-                        });
+                            .then(isPasswordMatch => {
+                                if (isPasswordMatch) {
+                                    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+                                        expiresIn: '1h',
+                                    });
+
+                                    // Establecer la cookie
+                                    response.cookie('token', token, {
+                                        httpOnly: true,
+                                        secure: process.env.NODE_ENV === 'production', // Usar true en producción
+                                        sameSite: 'Strict',
+                                        maxAge: 3600000, // 1 hora
+                                    });
+                                    logger.info('Acesso login correcto [LOGIN] [usuarioController.js]');
+                                    logger.info('Usuario conectado: ' + JSON.stringify(user));
+                                    response.json(user)
+                                } else {
+                                    logger.warn("Contraseña incorrecta [LOGIN] [usuarioController.js]");
+                                    response.json("Contraseña incorrecta")
+                                }
+                            });
                     } else {
                         logger.warn("No existe el usuario [LOGIN] [usuarioController.js]");
                         response.json("No existe este usuario")
@@ -105,6 +140,24 @@ router.post('/logout', (req, res) => {
 });
 
 */
+
+usuarioController.logout = (request, response) => {
+    try {
+
+        response.cookie('token', '', {
+            httpOnly: true,
+            expires: new Date(0), // Expira inmediatamente
+            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
+        });
+
+        logger.info("Logout exitoso en usuarioController.js");
+        response.json({ message: 'Logout exitoso' });
+    } catch (error) {
+        logger.error("Error de logout en usuarioController.js: " + error);
+        throw new Error('Error en logout: ' + error)
+    }
+}
 
 /*
 // Registro

@@ -1,68 +1,338 @@
-2024-09-24T14:26:14.467Z [info]: El servidor se está ejecutando en el puerto
-2024-09-24T14:26:39.300Z [info]: [INFO] El servidor se está ejecutando en el puerto
-2024-09-24T14:30:19.595Z [info]: [INFO] El servidor se está ejecutando en el puerto
-2024-09-24T14:30:31.039Z [info]: El servidor se está ejecutando en el puerto
-2024-09-24T14:38:31.051Z [info]: El servidor se está ejecutando en el puerto
-2024-09-24T14:39:35.707Z [info]: El servidor se está ejecutando en el puerto5050
-2024-09-24T14:39:44.163Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:40:46.738Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:40:47.408Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T14:41:08.488Z [error]: login (usuarioController.js): Contraseña incorrecta
-2024-09-24T14:43:35.697Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:43:36.485Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T14:43:46.294Z [warn]: Contraseña incorrecta [LOGIN] [usuarioController.js]
-2024-09-24T14:46:34.658Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:46:35.433Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T14:46:46.719Z [warn]: Contraseña incorrecta [LOGIN] [usuarioController.js]
-2024-09-24T14:46:59.502Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T14:46:59.502Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T14:48:10.875Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:48:16.203Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T14:56:27.380Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T14:56:28.040Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T15:06:02.269Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T15:06:02.920Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T15:07:29.188Z [warn]: Error login
-2024-09-24T15:08:21.578Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:10:46.364Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T15:10:47.300Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T15:10:53.178Z [warn]: {"type":"field","msg":"El nombre de usuario es obligatorio","path":"username","location":"body"}
-2024-09-24T15:10:53.189Z [warn]: {"type":"field","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:11:21.505Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:11:21.506Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:14:06.054Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T15:14:06.931Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T15:22:42.779Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:22:42.784Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:22:55.207Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:23:50.388Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:25:24.702Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:26:38.611Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T15:26:39.505Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
-2024-09-24T15:26:51.712Z [warn]: {"type":"field","value":"12","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:27:26.365Z [warn]: {"type":"field","value":"a","msg":"La contraseña debe tener al menos 3 caracteres","path":"password","location":"body"}
-2024-09-24T15:31:07.506Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:31:07.508Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:31:07.522Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
-2024-09-24T15:31:07.524Z [info]: "Cutiti007"
-2024-09-24T15:37:39.963Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:37:39.966Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:37:39.969Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:37:39.969Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:37:39.979Z [info]: {}
-2024-09-24T15:37:39.982Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
-2024-09-24T15:37:39.984Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:37:40.004Z [info]: {}
-2024-09-24T15:37:40.059Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
-2024-09-24T15:37:40.062Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:37:42.691Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:37:42.692Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:37:42.702Z [info]: {}
-2024-09-24T15:37:42.703Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
-2024-09-24T15:37:42.706Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:47:59.685Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
-2024-09-24T15:47:59.686Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T15:47:59.697Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
-2024-09-24T15:47:59.699Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$ZGqRB06DxF7qfI8keMANvg$kmG9iS09lGDfKONrevxkqRiWnv/QXX4NNVPVT5fz568","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59"}
-2024-09-24T16:02:18.349Z [info]: El servidor se está ejecutando en el puerto 5050
-2024-09-24T16:02:19.060Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-10-02T12:17:07.686Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:17:07.764Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:17:52.683Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:17:52.787Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:17:52.794Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T12:19:47.750Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:19:47.833Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:19:47.841Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T12:30:36.225Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:30:36.287Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:30:45.294Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T12:30:45.295Z [info]: {"fama":"100%"}
+2024-10-02T12:32:46.194Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T12:32:46.197Z [info]: fama al 100%
+2024-10-02T12:34:07.541Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:34:07.566Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:34:09.953Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:34:09.959Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T12:34:28.913Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:36.068Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:36.075Z [info]: [PUT] Llamada a la API: Actualizar Mejora (MejorasModal.js)
+2024-10-02T12:34:36.076Z [info]: {"name":"Equipo","comprada":false}
+2024-10-02T12:34:36.111Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:40.664Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:40.711Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:42.548Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:42.591Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:44.987Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:45.033Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T12:34:47.255Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T12:34:47.259Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T18:46:12.712Z [info]: El servidor se está ejecutando en el puerto 5050
+2024-10-02T18:46:13.446Z [info]: La base de datos MongoDB Atlas ha sido conectada: mongodb+srv://albertmorser:hjzwzrkDEO4BGEwe@clustermdb.4fi43.mongodb.net/galaxy_club?retryWrites=true&w=majority&appName=ClusterMDB
+2024-10-02T18:47:32.199Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T18:50:56.800Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-10-02T18:50:56.801Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T18:50:57.739Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-10-02T18:50:57.742Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T18:51:00.841Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T18:51:00.845Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T18:51:29.284Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T18:51:29.312Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T19:10:36.899Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T19:10:43.288Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-10-02T19:10:43.288Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:10:43.297Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-10-02T19:10:43.299Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:10:43.363Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T19:10:43.562Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T19:10:47.696Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:10:47.700Z [info]: fama al 25%
+2024-10-02T19:10:49.494Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:10:49.497Z [info]: fama al 50%
+2024-10-02T19:10:51.031Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:10:51.033Z [info]: fama al 75%
+2024-10-02T19:15:41.802Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T19:15:46.887Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-10-02T19:15:46.887Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:15:46.896Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-10-02T19:15:46.898Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:24:06.938Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T19:24:22.921Z [info]: [GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)
+2024-10-02T19:24:32.048Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T19:24:32.129Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T19:24:48.076Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:24:48.078Z [info]: fama al 25%
+2024-10-02T19:24:50.797Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:24:50.799Z [info]: fama al 50%
+2024-10-02T19:24:55.984Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:24:55.985Z [info]: fama al 75%
+2024-10-02T19:25:02.243Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:25:02.245Z [info]: fama al 100%
+2024-10-02T19:37:17.068Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:18.083Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:19.107Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:20.086Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:21.081Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:22.084Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:37:22.160Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:37:31.818Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:37:31.819Z [info]: fama al 25%
+2024-10-02T19:37:33.792Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:37:33.794Z [info]: fama al 50%
+2024-10-02T19:37:35.315Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:37:35.316Z [info]: fama al 75%
+2024-10-02T19:38:49.968Z [info]: [GET] Llamada a la API: Lista de Club (Layout.js)
+2024-10-02T19:38:59.506Z [info]: Acesso login correcto [LOGIN] [usuarioController.js]
+2024-10-02T19:38:59.506Z [info]: Usuario conectado: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:38:59.517Z [info]: SUCCESS [LOGIN] [AuthProvider.js]
+2024-10-02T19:38:59.518Z [info]: {"_id":"66e3419e9c1f8a854b1b6470","password":"$argon2id$v=19$m=65536,t=3,p=4$2358vhb51KLAlDjz07kLBg$vhpgBhHeledfhlgCJvbH92uZuZM0kRYuutTfKFKEKtg","username":"Cutiti007","club":"66e49d559bdb5e631a4fde59","updatedAt":"2024-09-26T12:02:39.714Z","imagen":"/img/profile-default.png"}
+2024-10-02T19:38:59.712Z [info]: [GET] Llamada a la API: Lista de Club (HomePage.js)
+2024-10-02T19:38:59.730Z [info]: [GET] Llamada a la API: Lista de Productos (HomePage.js)
+2024-10-02T19:39:05.623Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:06.746Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:07.624Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:08.624Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:09.645Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:10.642Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:10.691Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:39:26.678Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:27.686Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:28.702Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:29.725Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:30.704Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:31.807Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:31.890Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:39:47.834Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:48.807Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:49.806Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:50.834Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:51.786Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:52.803Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:39:52.848Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:40:08.844Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:09.845Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:10.859Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:11.894Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:12.879Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:13.868Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:13.911Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:40:29.918Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:30.913Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:31.915Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:32.919Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:33.991Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:34.902Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:34.947Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:40:50.947Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:51.955Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:52.982Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:53.946Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:54.964Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:55.981Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:40:56.020Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:41:12.009Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:13.038Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:14.020Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:15.012Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:16.053Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:17.049Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:17.093Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:41:33.110Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:34.076Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:35.146Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:36.081Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:37.075Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:38.106Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:41:38.145Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:41:52.108Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:41:52.110Z [info]: fama al 25%
+2024-10-02T19:41:53.426Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:41:53.427Z [info]: fama al 50%
+2024-10-02T19:41:54.649Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:41:54.650Z [info]: fama al 75%
+2024-10-02T19:41:56.068Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:41:56.070Z [info]: fama al 100%
+2024-10-02T19:42:00.528Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:42:00.529Z [info]: fama al 0%
+2024-10-02T19:42:21.615Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:42:21.616Z [info]: fama al NaN%
+2024-10-02T19:42:42.068Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:42:42.070Z [info]: fama al 25%
+2024-10-02T19:42:42.914Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:42:42.916Z [info]: fama al 50%
+2024-10-02T19:42:43.684Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:42:43.686Z [info]: fama al 75%
+2024-10-02T19:42:46.606Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:47.507Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:48.362Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:49.348Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:50.332Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:51.333Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:42:51.375Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:42:51.378Z [info]: fama al 1%
+2024-10-02T19:43:07.410Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:08.432Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:09.418Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:10.410Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:11.426Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:12.427Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:43:12.466Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:43:12.467Z [info]: fama al 50%
+2024-10-02T19:43:33.491Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:43:33.493Z [info]: fama al 0%
+2024-10-02T19:43:54.573Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:43:54.575Z [info]: fama al 0%
+2024-10-02T19:44:13.492Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:44:14.532Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:44:16.769Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:44:16.791Z [info]: fama al 0%
+2024-10-02T19:44:19.399Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:44:19.400Z [info]: fama al 25%
+2024-10-02T19:44:20.696Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:44:20.707Z [info]: fama al 50%
+2024-10-02T19:44:21.900Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:44:21.901Z [info]: fama al 75%
+2024-10-02T19:44:23.579Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:44:23.580Z [info]: fama al 100%
+2024-10-02T19:44:37.796Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:44:37.797Z [info]: fama al 0%
+2024-10-02T19:44:58.691Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:44:58.695Z [info]: fama al 0%
+2024-10-02T19:45:15.259Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:15.414Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:45:15.416Z [info]: fama al 25%
+2024-10-02T19:45:16.253Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:45:16.256Z [info]: fama al 50%
+2024-10-02T19:45:16.294Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:17.021Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:45:17.023Z [info]: fama al 75%
+2024-10-02T19:45:17.293Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:17.698Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:45:17.699Z [info]: fama al 100%
+2024-10-02T19:45:18.264Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:19.300Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:20.293Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:20.332Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:45:20.333Z [info]: fama al 75%
+2024-10-02T19:45:36.457Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:37.323Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:38.339Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:39.334Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:40.350Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:41.425Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:41.471Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:45:41.473Z [info]: fama al 50%
+2024-10-02T19:45:57.389Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:58.404Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:45:59.412Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:00.398Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:01.415Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:02.419Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:02.461Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:46:02.463Z [info]: fama al 25%
+2024-10-02T19:46:18.477Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:19.472Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:20.468Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:21.495Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:22.500Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:23.486Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:23.524Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:46:23.525Z [info]: fama al 0%
+2024-10-02T19:46:39.565Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:40.565Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:41.567Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:42.563Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:43.594Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:44.582Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:46:44.879Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:46:44.881Z [info]: fama al 0%
+2024-10-02T19:47:00.662Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:01.667Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:02.648Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:03.651Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:04.694Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:05.680Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:05.721Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:47:05.723Z [info]: fama al 0%
+2024-10-02T19:47:21.710Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:22.729Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:23.731Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:24.729Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:25.721Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:26.757Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:26.795Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:47:26.796Z [info]: fama al 0%
+2024-10-02T19:47:42.827Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:43.802Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:44.825Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:46.047Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:46.817Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:47.815Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:47:47.869Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:47:47.872Z [info]: fama al 0%
+2024-10-02T19:48:03.901Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:04.888Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:05.900Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:06.905Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:07.941Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:08.922Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:08.960Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:48:08.962Z [info]: fama al 0%
+2024-10-02T19:48:15.198Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:48:15.208Z [info]: fama al 25%
+2024-10-02T19:48:15.985Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:48:15.988Z [info]: fama al 50%
+2024-10-02T19:48:16.729Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:48:16.731Z [info]: fama al 75%
+2024-10-02T19:48:17.912Z [info]: [PUT] Actualizar Club: Aumentar Fama (FameModal.js)
+2024-10-02T19:48:17.913Z [info]: fama al 100%
+2024-10-02T19:48:29.298Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:30.308Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:30.347Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:48:30.349Z [info]: fama al 75%
+2024-10-02T19:48:50.365Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:51.328Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:48:51.370Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:48:51.374Z [info]: fama al 50%
+2024-10-02T19:49:11.421Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:12.414Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:12.453Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:49:12.456Z [info]: fama al 25%
+2024-10-02T19:49:32.568Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:33.572Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:33.613Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:49:33.614Z [info]: fama al 0%
+2024-10-02T19:49:53.597Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:54.605Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:49:54.658Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:49:54.660Z [info]: fama al 0%
+2024-10-02T19:50:14.639Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:15.648Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:15.689Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:50:15.692Z [info]: fama al 0%
+2024-10-02T19:50:35.701Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:36.765Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:36.806Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:50:36.808Z [info]: fama al 0%
+2024-10-02T19:50:56.787Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:57.796Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:50:57.837Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:50:57.839Z [info]: fama al 0%
+2024-10-02T19:51:17.854Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:51:18.844Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:51:18.892Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:51:18.894Z [info]: fama al 0%
+2024-10-02T19:51:38.903Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:51:39.902Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:51:39.944Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:51:39.947Z [info]: fama al 0%
+2024-10-02T19:52:00.189Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:52:00.978Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:52:01.034Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:52:01.036Z [info]: fama al 0%
+2024-10-02T19:52:20.462Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:52:21.301Z [info]: [GET] Llamada a la API: Lista de Club (Header.js)
+2024-10-02T19:52:21.344Z [info]: [PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)
+2024-10-02T19:52:21.345Z [info]: fama al 0%

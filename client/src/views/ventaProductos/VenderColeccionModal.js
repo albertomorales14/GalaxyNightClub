@@ -1,64 +1,99 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
 import formatCurrency from '../../Utils/formatCurrency';
 import useAuth from '../../auth/useAuth';
+import logService from '../../Utils/logService';
 
-export default function VenderColeccionModal({ isOpen, close, grupo, coleccion, precioColeccion, productos, club }) {
+function VenderColeccionModal(props) {
 
     const { user } = useAuth();
 
     const getExistencias = (numero) => {
-        return productos[numero]?.existencias > Math.round(productos[numero]?.existencias - (productos[numero]?.existencias * numero / 100)) ? Math.round(productos[numero]?.existencias - (productos[numero]?.existencias * numero / 100)) : productos[numero]?.existencias
+        return props.productos[numero]?.existencias > Math.round(props.productos[numero]?.existencias - (props.productos[numero]?.existencias * numero / 100)) ? Math.round(props.productos[numero]?.existencias - (props.productos[numero]?.existencias * numero / 100)) : props.productos[numero]?.existencias
     }
 
-    var existenciasTotales = grupo?.reduce((acc, curr) => acc + getExistencias(curr), 0);
+    // Sumar productos vendidos al club
+    var existenciasTotales = props.grupo?.reduce((acc, curr) => acc + getExistencias(curr), 0);
+
+    // Comprobar si la colección está completa para vender
+    const isCompleta = (grupo) => {
+        let no_completa = [];
+        grupo.map((numero) => (
+            (props.productos[numero]?.existencias > Math.round(props.productos[numero]?.existencias - (props.productos[numero]?.existencias * numero / 100)) ? Math.round(props.productos[numero]?.existencias - (props.productos[numero]?.existencias * numero / 100)) : props.productos[numero]?.existencias) < (Math.round(props.productos[numero]?.capacidadMax - (props.productos[numero]?.capacidadMax * numero / 100)))
+                ? no_completa.push(true) : no_completa.push(false)
+        ))
+        if (no_completa.includes(true)) {
+            return false; // No se abre la Modal
+        } else {
+            return true; // Se abre la Modal
+        }
+    }
 
     const venderProductos = () => {
-        grupo.map((numero, idx) => (
-            fetch(`http://localhost:5050/api/Productos/${productos[numero]._id}`, {
+        props.grupo.map((numero) => (
+            fetch(`http://localhost:5050/api/Productos/${props.productos[numero]._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
-                    existencias: productos[numero].existencias - getExistencias(numero),
-                    diferencia: productos[numero].capacidadMax - (productos[numero].existencias - getExistencias(numero))
+                    existencias: props.productos[numero].existencias - getExistencias(numero),
+                    diferencia: props.productos[numero].capacidadMax - (props.productos[numero].existencias - getExistencias(numero))
                 }),
                 headers: { "Content-type": "application/json; charset=UTF-8", },
-            }).then(response => response.json())
-                .catch((error) => console.log(error))
+            })
+                .then(response => {
+                    response.json();
+                    console.log('[Actualizar Producto] PUT llamada a API...');
+                    logService.sendLog('info', '[PUT] Llamada a la API: Venta de Producto (VenderColeccionModal.js)');
+                    logService.sendLog('info', 'Producto vendido: ' + props.productos[numero].name + ', existencias: ' + props.productos[numero].existencias - getExistencias(numero));
+                })
+                .catch(error => {
+                    console.log('A problem occurred with your fetch operation: ' + error);
+                    logService.sendLog('error', '[PUT] Llamada a la API: Venta de Producto (VenderColeccionModal.js): ' + error);
+                })
         ))
 
         fetch(`http://localhost:5050/api/Club/${user.club}`, {
             method: 'PUT',
             body: JSON.stringify({
-                ganancias_almacen: (club?.ganancias_almacen + precioColeccion),
-                ganancias_totales: club?.ganancias_club + (club?.ganancias_almacen + precioColeccion),
-                ventas_almacen: club?.ventas_almacen + 1,
-                productos_vendidos: club?.productos_vendidos + existenciasTotales
+                ganancias_almacen: (props.club?.ganancias_almacen + props.precioColeccion),
+                ganancias_totales: props.club?.ganancias_club + (props.club?.ganancias_almacen + props.precioColeccion),
+                ventas_almacen: props.club?.ventas_almacen + 1,
+                productos_vendidos: props.club?.productos_vendidos + existenciasTotales
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        })
+            .then(response => {
+                response.json();
+                console.log('[Actualizar Club] PUT llamada a API...');
+                logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club (VenderColeccionModal.js)');
+            })
+            .catch(error => {
+                console.log('A problem occurred with your fetch operation: ' + error);
+                logService.sendLog('error', '[PUT] Llamada a la API: Actualizar Club (VenderColeccionModal.js): ' + error);
+            })
     }
 
     return (
-        <Modal show={isOpen} onHide={close} animation={false}>
+        <Modal show={props.isOpen && isCompleta(props.grupo)} onHide={props.close} animation={false}>
             <Modal.Header>
-                <Modal.Title>Venta para {coleccion}</Modal.Title>
+                <Modal.Title>Venta para {props.coleccion}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Alert className='custom-alert'>
-                    ¿Estás seguro de que deseas vender todas las existencias de esta colección a <span className='venta-all-price'>{coleccion}</span> por
+                    ¿Estás seguro de que deseas vender todas las existencias de esta colección a <span className='venta-all-price'>{props.coleccion}</span> por
                     <span className='venta-all-price'>
-                    &nbsp;${formatCurrency(precioColeccion)}
+                        &nbsp;${formatCurrency(props.precioColeccion)}
                     </span>?
                 </Alert>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={close} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={props.close} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
-                <Button onClick={() => { venderProductos(); close() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={() => { venderProductos(); props.close() }} style={{ width: '50%', textAlign: 'center !important' }}>
                     Vender todo
                 </Button>
             </Modal.Footer>
         </Modal>
     )
 }
+
+export default VenderColeccionModal;

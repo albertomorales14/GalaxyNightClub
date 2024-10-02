@@ -4,13 +4,18 @@ import { useEffect, useState, useRef } from 'react';
 import LoginPage from '../../views/LoginPage';
 import useAuth from '../../auth/useAuth';
 import Settings from './settings/Settings';
+import logService from '../../Utils/logService';
 
 export default function Layout({ children }) {
 
     const [lista, setLista] = useState([]);
     const { isLogged, user } = useAuth();
     const [isVisible, setIsVisible] = useState(false);
-    const layoutRef = useRef(null); // Referencia para el layout
+    const clickSettingsButton = () => setIsVisible(false);
+    const layoutSettingsRef = useRef(null); // Referencia para el layout Settings
+    const layoutHeaderRef = useRef(null); // Referencia para el layout Header
+    const layoutPssWdRef = useRef(null); // Referencia para el layout Password
+    const layoutImgRef = useRef(null); // Referencia para el layout Imagen
 
     // Backend
     useEffect(() => {
@@ -19,22 +24,29 @@ export default function Layout({ children }) {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the fetched data here
-                    setLista(data)
+                    setLista(data);
+                    console.log('[Lista de Club] GET llamada a API...');
+                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (Layout.js)');
                 })
                 .catch(error => {
                     // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error)
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[GET] Llamada a la API: Lista de Club (Layout.js): ' + error);
                 });
         }
         getClub(); //llamada
-    }, [lista]) // dependencia variable de estado lista
+    }, []) // sin dependencia variable de estado lista
 
     // useEffect para manejar clics fuera del layout
     useEffect(() => {
         // Función que se llama en cada clic
         const handleClickOutside = (event) => {
             // Si el clic ocurrió fuera del layout y está visible, oculta el layout
-            if (layoutRef.current && !layoutRef.current.contains(event.target)) {
+            if ((layoutSettingsRef.current && layoutHeaderRef.current) &&
+                (
+                    !layoutSettingsRef.current.contains(event.target) &&
+                    !layoutHeaderRef.current.contains(event.target)
+                )) {
                 setIsVisible(false);
             }
         };
@@ -63,8 +75,8 @@ export default function Layout({ children }) {
     return (
         isLogged() ? (
             <>
-                <Header showSettings={showSettings} />
-                <Settings isVisible={isVisible} layoutRef={layoutRef} />
+                <Header showSettings={showSettings} layoutRef={layoutHeaderRef} />
+                <Settings isVisible={isVisible} layoutRef={layoutSettingsRef} layoutPssWdRef={layoutPssWdRef} layoutImgRef={layoutImgRef} clickSettingsButton={clickSettingsButton} />
                 <div className='bodyApp'>
                     <div style={{ display: 'flex' }}>
                         <div style={{ flex: 3 }}>

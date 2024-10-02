@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import routes from '../Utils/routes';
 import Home from './Home';
 
-export default function Navigation({ propietario, ubicacion }) {
+function Navigation(props) {
 
     return (
         <div className='aside'>
-            <Home propietario={propietario} ubicacion={ubicacion} />
+            <Home propietario={props.propietario} ubicacion={props.ubicacion} />
             <div className='aside-menu'>
                 <Button className="p-2" as={NavLink} to={routes.home}>
                     Inicio
@@ -31,3 +31,5 @@ export default function Navigation({ propietario, ubicacion }) {
         </div>
     )
 }
+
+export default Navigation;

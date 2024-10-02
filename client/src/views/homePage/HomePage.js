@@ -1,11 +1,12 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import FameBar from '../../components/layouts/FameBar'
-import HomeSummary from './HomeSummary'
-import HomeChart from './HomeChart'
 import { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import FameBar from '../../components/layouts/FameBar';
+import HomeSummary from './HomeSummary';
+import HomeChart from './HomeChart';
 import formatCurrency from '../../Utils/formatCurrency';
+import logService from '../../Utils/logService';
 
-export default function HomePage({ fama }) {
+function HomePage({ fama }) {
 
     const [lista, setLista] = useState([]);
     const [listaExistencias, setListaExistencias] = useState([]);
@@ -17,14 +18,17 @@ export default function HomePage({ fama }) {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the fetched data here
-                    setLista(data)
+                    setLista(data);
+                    console.log('[Lista de Club] GET llamada a API...');
+                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (HomePage.js)');
                 })
                 .catch(error => {
                     // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error)
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[GET] Llamada a la API (HomePage.js): ' + error);
                 });
         }
-        getClub(); //llamada
+        getClub(); //llamada a los datos del club
 
         const getProductos = async () => {
             await fetch('http://localhost:5050/api/Productos', {
@@ -33,15 +37,18 @@ export default function HomePage({ fama }) {
                 .then((response) => { return response.json() })
                 .then((data) => {
                     // Handle the fetched data here
-                    setListaExistencias(data)
+                    setListaExistencias(data);
+                    console.log('[Lista de Productos] GET llamada a API...');
+                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Productos (HomePage.js)');
                 })
                 .catch((error) => {
                     // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error)
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[GET] Llamada a la API (HomePage.js): ' + error);
                 });
         }
-        getProductos(); //llamada
-    }, [lista]) // dependencia variable de estado lista
+        getProductos(); //llamada a los daos de los productos
+    }, []) // [] solo se recarga cada vez que accede a la vista en pantalla
 
     var trabajosClub = lista[0]?.trabajos;
     var gananciasClub = lista[0]?.ganancias_club;
@@ -54,8 +61,7 @@ export default function HomePage({ fama }) {
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
             <FameBar fama={fama} />
-            <HomeSummary trabajosClub={trabajosClub} gananciasClub={gananciasClub} ventasAlmacen={ventasAlmacen}
-                gananciasAlmacen={gananciasAlmacen} gananciasTotales={gananciasTotales} />
+            <HomeSummary trabajosClub={trabajosClub} gananciasClub={gananciasClub} ventasAlmacen={ventasAlmacen} gananciasAlmacen={gananciasAlmacen} gananciasTotales={gananciasTotales} />
             <Container>
                 <Row>
                     <Col xs={9} className='home-chart-col'>
@@ -70,7 +76,8 @@ export default function HomePage({ fama }) {
                     </Col>
                 </Row>
             </Container>
-
         </div>
     )
 }
+
+export default HomePage;

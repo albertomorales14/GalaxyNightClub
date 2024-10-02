@@ -1,26 +1,52 @@
 import { Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import routes from '../../../Utils/routes';
+import useAuth from '../../../auth/useAuth';
+import { useState, useEffect } from 'react';
+import CambiarPassword from './CambiarPassword';
+import CambiarImagenPerfil from './CambiarImagenPerfil';
+import logService from '../../../Utils/logService';
 
-export default function Settings({ isVisible, layoutRef }) {
+export default function Settings({ isVisible, layoutRef, layoutPssWdRef, layoutImgRef, clickSettingsButton }) {
+
+    const { logout } = useAuth();
+
+// Modal password
+const [isOpenPssWdPage, setIsOpenPssWdPage] = useState(false);
+const openPssWdPage = () => setIsOpenPssWdPage(true);
+const closePssWdPage = () => setIsOpenPssWdPage(false);
+// Modal img
+const [isOpenImgPage, setIsOpenImgPage] = useState(false);
+const openImgPage = () => setIsOpenImgPage(true);
+const closeImgPage = () => setIsOpenImgPage(false);
+
+
+
+
 
     return (
-        <>{
-            isVisible ? (
-                <div className={`setting-container ${isVisible ? 'slide-down' : ''}`} ref={layoutRef}>
-                    <h1>Settings</h1>
-                    <Button className="p-2" as={NavLink} to={routes.cambiarPassword}>
-                        Cambiar contraseña
-                    </Button>
-                    <Button className="p-2" as={NavLink} to={routes.cambiarImgProfile}>
-                        Cambiar imagen de perfil
-                    </Button>
-                    <Button className="p-2" as={NavLink} to={routes.logout}>
-                        Cerrar sesión
-                    </Button>
-                </div>
-            ) : (<></>)
-        }</>
+        <>
+        <CambiarPassword isOpen={isOpenPssWdPage} close={closePssWdPage}/>
+        <CambiarImagenPerfil isOpen={isOpenImgPage} close={closeImgPage}/>
+
+            {
+                isVisible ? (
+                    <div className={`setting-container ${isVisible ? 'slide-down' : ''}`} ref={layoutRef}>
+                        <h3>Opciones</h3>
+                        <Button onClick={() => { openPssWdPage(); }}>
+                                Cambiar contraseña
+                        </Button>
+                        
+                        <Button onClick={() => { openImgPage(); }}>
+                                Cambiar imagen de perfil
+                            </Button>
+
+                        <Button onClick={() => { clickSettingsButton(); logout() }}>
+                            Cerrar sesión
+                        </Button>
+                    </div>
+                ) : (<></>)
+            }</>
 
     )
 }

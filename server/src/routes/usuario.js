@@ -3,7 +3,7 @@ const { body, param } = require('express-validator'); // Importar los métodos p
 //const auth = require('../Middleware/auth');
 const router = Router()
 
-const { getUsuarios, getUsuario, login } = require('../controller/usuarioController');
+const { getUsuarios, getUsuario, updateUsuario, login, logout } = require('../controller/usuarioController');
 
 router.route('/')
 
@@ -14,7 +14,8 @@ router.route('/:id')
     .get(
         param('id').isMongoId().withMessage('El ID debe ser un ID de Mongo válido'), // Validar que el ID sea válido
         getUsuario
-    );
+    )
+    .put(updateUsuario);
 
 router.route('/login')
 
@@ -23,5 +24,9 @@ router.route('/login')
         body('password').isLength({ min: 3 }).withMessage('La contraseña debe tener al menos 3 caracteres'), // Validar el campo 'password'
         login
     );
+
+router.route('/logout')
+
+    .post(logout)
 
 module.exports = router;

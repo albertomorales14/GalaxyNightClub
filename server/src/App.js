@@ -1,4 +1,5 @@
 const express = require('express')
+const uploadRoutes = require('./routes/upload')
 const cors = require('cors')
 const cookieParser = require('cookie-parser'); // cookies
 const logger = require('./utils/logger'); // winston log
@@ -6,6 +7,7 @@ const App = express();
 
 // Configuracion
 App.set('port', process.env.PORT || 4000)
+
 
 // Middlewares
 
@@ -32,7 +34,19 @@ App.use(
 App.get('/', (request, response) => {
     response.send('Welcome to GALAXY NIGHTCLUB API REST FULL');
     logger.info('Ruta Home (/) - Welcome to GALAXY NIGHTCLUB API REST FULL');
-})
+});
+
+// Manejo de errores
+App.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+// Archvos
+// Endpoint para subir archivos
+App.use('/api', uploadRoutes);
+// Carpeta estática para servir imágenes subidas
+App.use('/uploads', express.static('src/uploads'));
 
 App.use('/api/Mejoras', require('./routes/mejora'));
 App.post('/api/Mejoras/:id', require('./routes/mejora'));
@@ -56,6 +70,8 @@ App.post('/api/Productos/:id', require('./routes/producto'));
 
 // Login
 App.post('/login', require('./routes/usuario'));
+// Logout
+App.post('/logout', require('./routes/usuario'));
 
 // Log Service
 App.post('/log', (request, response) => {

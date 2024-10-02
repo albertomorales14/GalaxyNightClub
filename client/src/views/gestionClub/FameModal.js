@@ -1,32 +1,42 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
+import logService from '../../Utils/logService';
 
-export default function FameModal({ isOpen, close, club }) {
+function FameModal(props) {
 
     const aumentarFama = async () => {
 
-        let fame = club.fama + 25
+        let fame = (props.club?.fama + 25) >= 100 ? 100 : props.club?.fama + 25;
 
-        fetch(`http://localhost:5050/api/Club/${club._id}`, {
+        fetch(`http://localhost:5050/api/Club/${props.club._id}`, {
             method: 'PUT',
             body: JSON.stringify({
-                fama: fame >= 100 ? 100 : fame,
-                trabajos: club.trabajos + 1,
-                publico: club?.fama >= 95 ? 'Hasta los topes' 
-                        : club?.fama >= 80 ? 'Abarrotado' 
-                        : club?.fama >= 70 ? 'Lleno' 
-                        : club?.fama >= 30 ? 'Poca gente' : 'Vacío',
-                ingresos_hoy: club?.fama >= 95 ? 30000 
-                        : club?.fama >= 80 ? 25000 
-                        : club?.fama >= 70 ? 15000 
-                        : club?.fama >= 30 ? 10000 : 0
+                fama: fame,
+                trabajos: props.club.trabajos + 1,
+                publico: fame >= 95 ? 'Hasta los topes'
+                       : fame >= 80 ? 'Abarrotado'
+                       : fame >= 70 ? 'Lleno'
+                       : fame >= 25 ? 'Poca gente' : 'Vacío',
+                ingresos_hoy: fame >= 95 ? 30000
+                            : fame >= 80 ? 25000
+                            : fame >= 70 ? 15000
+                            : fame >= 25 ? 10000 : 0
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        })
+            .then(response => {
+                response.json();
+                console.log('[Aumentar Fama del Club] PUT llamada a API...');
+                logService.sendLog('info', '[PUT] Actualizar Club: Aumentar Fama (FameModal.js)');
+                logService.sendLog('info', 'fama al ' + fame + '%');
+            })
+            .catch(error => {
+                console.log('A problem occurred with your fetch operation: ' + error);
+                logService.sendLog('error', '[PUT] Llamada a la API (FameModal.js): ' + error);
+            })
     }
 
     return (
-        <Modal show={isOpen} onHide={close} animation={false}>
+        <Modal show={props.isOpen} onHide={props.close} animation={false}>
             <Modal.Header>
                 <Modal.Title>Gestión del club</Modal.Title>
             </Modal.Header>
@@ -37,13 +47,15 @@ export default function FameModal({ isOpen, close, club }) {
                 </Alert>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={close} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={props.close} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
-                <Button onClick={() => {aumentarFama(); close()}} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={() => { aumentarFama(); props.close() }} style={{ width: '50%', textAlign: 'center !important' }}>
                     Confirmar
                 </Button>
             </Modal.Footer>
         </Modal>
     )
 }
+
+export default FameModal;

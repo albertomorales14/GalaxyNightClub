@@ -1,14 +1,13 @@
 import { createContext, useState } from 'react';
-import roles from '../Utils/roles';
 import { useNavigate } from "react-router-dom";
+import roles from '../Utils/roles';
 import logService from '../Utils/logService';
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
-export default function AuthProvider({ children }) {
+function AuthProvider({ children }) {
 
     const history = useNavigate(); // Hook
-
     const [user, setUser] = useState(null);
 
     const loginAdminTest = () => {
@@ -18,7 +17,10 @@ export default function AuthProvider({ children }) {
         });
     }
 
+    // Errores de credenciales
     const [error, setError] = useState(null);
+
+    // Iniciar sesión
     const login = (e, user, psswd, fromLocation) => {
         e.preventDefault()
 
@@ -59,7 +61,7 @@ export default function AuthProvider({ children }) {
                         logService.sendLog('info', 'SUCCESS [LOGIN] [AuthProvider.js]')
                         logService.sendLog('info', JSON.stringify(data))
                         setUser(data);
-                        setError(null);
+                        setError(null); // Sin errores en login
                     }
                 }
             })
@@ -70,10 +72,55 @@ export default function AuthProvider({ children }) {
             });
     }
 
-    const logout = () => setUser(null);
+    // Cerrar sesión
+    const logout = async () => {
+        try {
+            fetch('http://localhost:5050/logout', {
+                method: 'POST',
+                credentials: "include", // Incluir cookies en la solicitud
+                headers: {
+                    Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
+                }
+            })
+            setUser(null); // Limpiar el estado del usuario
+            logService.sendLog('info', 'SUCCESS [LOGOUT] [AuthProvider.js]')
+        } catch (error) {
+            logService.sendLog('error', ' [LOGOUT] [AuthProvider] A problem occurred with your fetch operation: ', error)
+            console.error('Error en el logout:', error);
+        }
+    };
 
     const isLogged = () => !!user; // doble negacion retorna true
     const hasRole = (role) => user?.role === role;
+
+    const changePassword = (e, password) => {
+        
+
+        alert('metodo changePasssword id: ' + user._id)
+        e.preventDefault()
+        fetch(`http://localhost:5050/api/Usuarios/${user._id}`, {
+            method: 'PUT',
+                body: JSON.stringify({
+                    password: password,
+                }),
+                headers: { "Content-type": "application/json; charset=UTF-8", },
+        }).then(response => response.json())
+            .catch((error) => console.log(error))
+    }
+
+    const updateUser = (data) => {
+        if (user) {
+            fetch(`http://localhost:5050/api/Usuarios/${user._id}`, {
+                method: 'PUT',
+                    body: JSON.stringify({
+                        ...data
+                    }),
+                    headers: { "Content-type": "application/json; charset=UTF-8", },
+            }).then(response => response.json())
+                .catch((error) => console.log(error))
+        }
+
+    }
 
     // se envian las varibles al contextValue para poder consumirlas
     const contextValue = {
@@ -84,7 +131,9 @@ export default function AuthProvider({ children }) {
         logout,
         error,
         setError,
-        loginAdminTest
+        loginAdminTest,
+        changePassword,
+        updateUser
     };
 
     return (
@@ -93,3 +142,5 @@ export default function AuthProvider({ children }) {
         </AuthContext.Provider>
     )
 }
+
+export default AuthProvider;

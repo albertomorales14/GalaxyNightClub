@@ -3,15 +3,20 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaRegCircleCheck } from "react-icons/fa6";  // Check Icon
 import MejorasModal from './MejorasModal';
 import formatCurrency from '../../Utils/formatCurrency';
+import logService from '../../Utils/logService';
 
-export default function MejorasNegocioPage() {
+function MejorasNegocioPage() {
 
     const [lista, setLista] = useState([]);
+    const [actualizarLista, setActualizarLista] = useState(false);
 
     // Modal
     const [isOpenMejorasModal, setIsOpenMejorasModal] = useState(false);
     const openMejorasModal = () => setIsOpenMejorasModal(true);
-    const closeMejorasModal = () => setIsOpenMejorasModal(false);
+    const closeMejorasModal = () => {
+        setIsOpenMejorasModal(false);
+        setActualizarLista(true);
+    }
     const [mejora, setMejora] = useState(null);
 
     // Backend
@@ -21,23 +26,26 @@ export default function MejorasNegocioPage() {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the fetched data here
-                    setLista(data)
-                    console.log('[Lista de Mejoras] GET llamada a API...')
+                    setLista(data);
+                    setActualizarLista(false);
+                    console.log('[Lista de Mejoras] GET llamada a API...');
+                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)');
                 })
                 .catch(error => {
                     // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error)
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[GET] Llamada a la API (MejorasNegocioPage.js): ' + error);
                 });
         }
         getMejoras(); //llamada
-    }, [lista]) // dependencia variable de estado lista
+    }, [actualizarLista]) // dependencia variable de estado lista
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
             <Container className='mejoras-grid-container' fluid>
                 {
                     lista.map((list) => (
-                        <Row key={list.id} onClick={() => { openMejorasModal(); setMejora(list); }}>
+                        <Row key={list.id} onClick={() => { openMejorasModal(); setMejora(list); setActualizarLista(false); }}>
                             <Col xs={3} className='col-3-mejoras'>
                                 <div className="mejoras-img-box-content">
                                     <img className="mejoras-img" style={{ width: '100%' }} src={list.imagen} alt={list.name} />
@@ -70,3 +78,5 @@ export default function MejorasNegocioPage() {
         </div>
     )
 }
+
+export default MejorasNegocioPage;

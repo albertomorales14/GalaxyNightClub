@@ -1,63 +1,76 @@
-import useAuth from "../auth/useAuth";
 import { useState, useEffect } from 'react';
+import useAuth from "../auth/useAuth";
+import logService from '../Utils/logService';
 
-export default function Header({ showSettings }) {
+function Header({ showSettings, layoutRef }) {
 
-    const { user, logout } = useAuth();
+    const { user } = useAuth();
     const [club, setClub] = useState([]);
     const [countdown, setCountdown] = useState(10);
-    const [fame, setFame] = useState(null);
 
+    // Contador infinito: comienza en 10 segundos y se repite cada 5 min: Decrementa la fama del club
     useEffect(() => {
         let timeout;
         if (countdown >= 0) {
             timeout = setTimeout(() => {
                 setCountdown(countdown - 1);
-                if (countdown <= 5) {
+                // Cuando quede 1 segundo
+                if (countdown <= 1) {
                     fetch(`http://localhost:5050/api/Club/${user.club}`, {
                         method: 'GET',
                         headers: { "Content-type": "application/json; charset=UTF-8", },
                     })
                         .then(response => response.json())
                         .then(data => {
-                            // Handle the fetched data here
-                            setClub(data)
-                            setFame(data?.fama)
-                            console.log('[Club fama] GET llamada a API...')
+                            setClub(data);
+                            console.log('[Club fama] GET llamada a API...');
+                            logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (Header.js)');
                         })
                         .catch(error => {
-                            // Handle any errors
-                            console.log('A problem occurred with your fetch operation: ', error)
+                            console.log('A problem occurred with your fetch operation: ', error);
+                            logService.sendLog('error', '[GET] Llamada a la API: Actualizar Club (Header.js): ' + error);
                         });
                 }
             }, 1000);
         } else {
+            // La cuenta atras ha terminado
+            let fame = club?.fama - 25 < 0 ? 0 : club?.fama - 25;
             fetch(`http://localhost:5050/api/Club/${user.club}`, {
                 method: 'PUT',
                 body: JSON.stringify({
-                    fama: club?.fama - 25 < 0 ? 0 : club?.fama - 25,
-                    visitas: club?.visitas + Math.floor(Math.random() * club?.fama >= 90 ? 150 : club?.fama >= 70 ? 100 : club?.fama >= 30 ? 25 : 2),
-                    celebridades: club?.celebridades + Math.floor(Math.random() * club?.fama >= 90 ? 5 : club?.fama >= 70 ? 3 : club?.fama >= 30 ? 2 : 0),
+                    fama: fame,
+                    visitas: club?.visitas + Math.floor(Math.random() * fame >= 90 ? 150 : fame >= 70 ? 100 : fame >= 25 ? 25 : 2),
+                    celebridades: club?.celebridades + Math.floor(Math.random() * fame >= 90 ? 5 : fame >= 70 ? 3 : fame >= 25 ? 2 : 0),
                     caja_fuerte: (club?.ingresos_hoy + club?.caja_fuerte) > 250000 ? 250000 : club?.ingresos_hoy + club?.caja_fuerte,
                     ganancias_club: club?.ganancias_club + club?.ingresos_hoy,
-                    publico: club?.fama >= 95 ? 'Hasta los topes' 
-                            : club?.fama >= 80 ? 'Abarrotado' 
-                            : club?.fama >= 70 ? 'Lleno' 
-                            : club?.fama >= 30 ? 'Poca gente' : 'Vacío',
-                    ingresos_hoy: club?.fama >= 95 ? 30000 
-                            : club?.fama >= 80 ? 25000 
-                            : club?.fama >= 70 ? 15000 
-                            : club?.fama >= 30 ? 10000 : 0
+                    publico: fame >= 95 ? 'Hasta los topes'
+                           : fame >= 80 ? 'Abarrotado'
+                           : fame >= 70 ? 'Lleno'
+                           : fame >= 25 ? 'Poca gente' : 'Vacío',
+                    ingresos_hoy: fame >= 95 ? 30000
+                                : fame >= 80 ? 25000
+                                : fame >= 70 ? 15000
+                                : fame >= 25 ? 10000 : 0
                 }),
                 headers: { "Content-type": "application/json; charset=UTF-8", },
-            }).then(response => response.json())
-                .catch((error) => console.log(error))
+            })
+                .then(response => {
+                    response.json();
+                    console.log('[Pérdida de Fama del Club] PUT llamada a API...');
+                    logService.sendLog('info', '[PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)');
+                    logService.sendLog('info', 'fama al ' + fame + '%');
+                })
+                .catch(error => {
+                    console.log('A problem occurred with your fetch operation: ' + error);
+                    logService.sendLog('error', '[PUT] Llamada a la API: Actualizar Club (Header.js): ' + error);
+                })
 
-            setCountdown(5 * 60);
+            // Vuelve a empezar la cuenta atras
+            setCountdown(5 * 60); // 5 minutos 
         }
 
         return () => clearTimeout(timeout);
-    }, [countdown, fame]);
+    }, [countdown]);
 
     return (
         <div className="header">
@@ -72,7 +85,9 @@ export default function Header({ showSettings }) {
             }}>
                 Sesión iniciada como: <span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
             </h3>
-            <img id="img-header" className="header-img" src="/img/profile-img-1.png" alt="user-photo" onClick={showSettings} />
+            <img id="img-header" ref={layoutRef} className="header-img" src="/img/profile-img-1.png" alt="user-photo" onClick={showSettings} />
         </div>
     )
 }
+
+export default Header;

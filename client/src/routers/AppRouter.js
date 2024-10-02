@@ -47,6 +47,9 @@ export default function AppRouter() {
             <Route exact path={routes.login} element={<PublicRoute />}>
                 <Route exact path={routes.login} element={<LoginPage />} />
             </Route>
+            <Route exact path={routes.logout} element={<PublicRoute />}>
+                <Route exact path={routes.logout} element={<LoginPage />} />
+            </Route>
             <Route exact path={routes.home} element={<PrivateRoute />}>
                 <Route exact path={routes.home} element={<HomePage fama={fama} />} />
             </Route>
@@ -65,12 +68,6 @@ export default function AppRouter() {
             <Route exact path={routes.mejorasNegocio} element={<PrivateRoute />}>
                 <Route exact path={routes.mejorasNegocio} element={<MejorasNegocioPage />} />
             </Route>
-
-
-            <Route exact path={routes.cambiarPassword} element={<PrivateRoute />}>
-                <Route exact path={routes.cambiarPassword} element={<CambiarPassword isOpen={isOpenModal} close={closeModal} />} />
-            </Route>
-            
 
             <Route path="*" element={<NotFoundPage />} />            
         </Switch>

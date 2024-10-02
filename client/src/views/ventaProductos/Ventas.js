@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { ventas } from '../../Utils/ventas';
+import ventas from '../../Utils/ventas';
 import React, { useMemo, useState } from 'react';
 import formatCurrency from '../../Utils/formatCurrency';
 import VenderColeccionModal from './VenderColeccionModal';
@@ -98,7 +98,7 @@ export default function Ventas({ lista, club }) {
             </Row>
             <VenderColeccionModal isOpen={isOpenVentaCollectionModal} 
                                   close={closeVentaCollectionModal} 
-                                  grupo={grupo} 
+                                  grupo={grupo}
                                   coleccion={coleccion}
                                   precioColeccion={precioColeccion}
                                   productos={lista}

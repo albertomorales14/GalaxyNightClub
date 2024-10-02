@@ -7,18 +7,18 @@ const logService = {
             },
             body: JSON.stringify({ level, message })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la respuesta: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Log enviado al servidor:', data);
-        })
-        .catch(error => {
-            console.error('Error al enviar el log:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la respuesta: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Log enviado al servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar el log:', error);
+            });
     }
 };
 

@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import useAuth from '../auth/useAuth';
 import routes from '../Utils/routes';
 
-export default function PublicRoute(props) {
+function PublicRoute() {
 
     const { isLogged } = useAuth();
 
@@ -11,3 +11,5 @@ export default function PublicRoute(props) {
     // Outlet renderiza elementos hijos
     return (<Outlet />)
 }
+
+export default PublicRoute;

@@ -8,8 +8,6 @@ const routes = {
     gestionAlmacen: '/gestion-almacen',
     mejorasNegocio: '/mejoras-negocio',
     ventaProductos: '/venta-productos',
-    cambiarPassword: '/change-pass-word',
-    cambiarImgProfile: '/change-img-profile',
     logout: '/logout'
 };
 
