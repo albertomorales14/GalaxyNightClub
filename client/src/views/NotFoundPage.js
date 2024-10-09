@@ -1,7 +1,8 @@
-import { Container, Row, Col} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import routes from '../Utils/routes'
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import routes from '../Utils/routes';
+
 
 export default function NotFoundPage() {
 
@@ -57,7 +58,9 @@ export default function NotFoundPage() {
                     
                     <h2>ERROR 404</h2>
                     <h3>Parece que te has perdido...</h3>
-                    <h4 className='error-404'><Link to={routes.home}>Vuelve al inicio</Link></h4>
+                    <Button as={NavLink} to={routes.home}>
+                                Volver al inicio
+                    </Button>
                     <button onClick={fillStorage}>Rellenar el almacen</button>
                 </Col>
             </Row>

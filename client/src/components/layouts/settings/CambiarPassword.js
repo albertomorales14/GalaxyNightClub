@@ -8,43 +8,130 @@ import { Button, Modal, Alert, Form } from 'react-bootstrap';
 
 export default function CambiarPassword({ isOpen, close }) {
 
-    const { user, changePassword } = useAuth();
+    const { user, changePassword, comprobarPassword, success, setSuccess, error, setError } = useAuth();
 
+    // Error Alert
+    const [closeAlert, setCloseAlert] = useState(true);
+    const openErrorAlert = () => setCloseAlert(false);
+    const closeErrorAlert = () => {
+        setCloseAlert(true);
+        setError(null);
+    }
+
+    // Carga el error cada vez que lo detecte
+    useEffect(() => {
+        if (error !== null) {
+            openErrorAlert();
+            setSuccess(false);
+        }
+    }, [error]); // dependencia de error
+
+    // Carga el success al cambiar contraseña
+    useEffect(() => {
+        if (success) {
+            cleanForm();
+            close();
+        }
+    }, [success]);
 
     const [password, setPassword] = useState()
-    const [newPassword, setNewPassword] = useState()
+    const [oldPassword, setOldPassword] = useState()
 
+    // Ocultar-Mostrar contraseña (eye icon)
+    const [psswdOldVisible, setPsswdOldVisible] = useState(false);
+    const toogleOldPasswordIcon = () => {
+        var psswd = document.getElementById('old-password');
+        if (psswd.type === "password") {
+            psswd.type = "text";
+            setPsswdOldVisible(true);
+        } else {
+            psswd.type = "password";
+            setPsswdOldVisible(false);
+        }
+    }
 
+    // Ocultar-Mostrar contraseña Nueva (eye icon)
+    const [psswdNewVisible, setPsswdNewVisible] = useState(false);
+    const toogleNewPasswordIcon = () => {
+        var psswd = document.getElementById('new-password');
+        if (psswd.type === "password") {
+            psswd.type = "text";
+            setPsswdNewVisible(true);
+        } else {
+            psswd.type = "password";
+            setPsswdNewVisible(false);
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!oldPassword || !password) {
+            setError('Las contraseñas son obligatorias');
+            setSuccess(false);
+        } else {
+            comprobarPassword(e, oldPassword, password);
+        }
+    }
+
+    const cleanForm = () => {
+        setPassword(null);
+        setOldPassword(null);
+        closeErrorAlert();
+        setSuccess(false);
+    }
 
     return (
-        <Modal show={isOpen} onHide={() => { close(); }} animation={false}>
-        <Modal.Header style={{ display: 'flex !important' }}>
-            <Modal.Title>
-                Cambiar contraseña
-            </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <Alert className='custom-alert'>
-                <Form >
-                    <Form.Group controlId="changeImgFormFile" className="mb-3" variant='dark'>
-                        <Form.Control type="file"
-                            data-browse='Subir'
-                            accept='.png, .jpg, .jpeg' />
-                    </Form.Group>
-                    <Button id="subir-imagen" type="submit" style={{ display: 'none' }} >
-                        Subir
-                    </Button>
-                </Form>
-            </Alert>
-        </Modal.Body>
-        <Modal.Footer>
-            <Button onClick={() => { /*close(); setFileName('Subir una imagen'); setSelectedFile(null)*/ }} style={{ width: '50%', textAlign: 'center !important' }}>
-                Cancelar
-            </Button>
-            <Button onClick={() => {  }} style={{ width: '50%', textAlign: 'center !important' }}>
-                Confirmar
-            </Button>
-        </Modal.Footer>
-    </Modal>
+        <Modal show={isOpen} onHide={() => { close(); cleanForm(); document.getElementById('img-header').click() }} animation={false}>
+            <Modal.Header style={{ display: 'flex !important' }}>
+                <Modal.Title>
+                    Cambiar contraseña
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Alert className='custom-alert'>
+                    <div className="change-psswd-body">
+                        <div className="change-psswd-container">
+                            {error ? (<div className="login-alert" hidden={closeAlert}>
+                                ERROR: {error}
+                                <button className="login-alert-closebtn" onClick={closeErrorAlert}>&times;</button>
+                            </div>) : <></>}
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group className="mb-3">
+                                    <FaLock />
+                                    <Form.Control id="old-password"
+                                        name="oldPassword"
+                                        type="password" placeholder="Contraseña actual" maxLength={30}
+                                        onChange={(e) => {setOldPassword(e.target.value) }}
+                                    />
+                                    <BsFillEyeFill hidden={psswdOldVisible} className="password-eye" onClick={toogleOldPasswordIcon} />
+                                    <BsFillEyeSlashFill hidden={!psswdOldVisible} className="password-eye" onClick={toogleOldPasswordIcon} />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <FaLock />
+                                    <Form.Control id="new-password"
+                                        name="password"
+                                        type="password" placeholder="Nueva contraseña" maxLength={30}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                    <BsFillEyeFill hidden={psswdNewVisible} className="password-eye" onClick={toogleNewPasswordIcon} />
+                                    <BsFillEyeSlashFill hidden={!psswdNewVisible} className="password-eye" onClick={toogleNewPasswordIcon} />
+                                </Form.Group>
+                                <Button id="submit-password" type="submit" style={{ display: 'none' }} >
+                                    Confirmar
+                                </Button>
+                            </Form>
+                        </div></div>
+                </Alert>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={() => { close(); cleanForm() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                    Cancelar
+                </Button>
+                <Button onClick={() => { document.getElementById('submit-password').click() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                    Confirmar
+                </Button>
+            </Modal.Footer>
+        </Modal>
     )
 }

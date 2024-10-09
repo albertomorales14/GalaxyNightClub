@@ -69,7 +69,7 @@ export default function AppRouter() {
                 <Route exact path={routes.mejorasNegocio} element={<MejorasNegocioPage />} />
             </Route>
 
-            <Route path="*" element={<NotFoundPage />} />            
+            <Route path="*" element={<NotFoundPage />} />        
         </Switch>
     )
 }

@@ -1,9 +1,9 @@
 import { Row, Col } from 'react-bootstrap';
 import { ring } from 'ldrs';
 
-export default function TecnicosLoaders() {
+function TecnicosLoaders() {
 
-    ring.register('tecnic-img-ldr')
+    ring.register('tecnic-img-ldr');
 
     return (
         <Row className='tecnico-img-row'>
@@ -35,3 +35,5 @@ export default function TecnicosLoaders() {
         </Row>
     )
 }
+
+export default TecnicosLoaders;

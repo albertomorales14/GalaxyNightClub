@@ -7,14 +7,14 @@ import CambiarPassword from './CambiarPassword';
 import CambiarImagenPerfil from './CambiarImagenPerfil';
 import logService from '../../../Utils/logService';
 
-export default function Settings({ isVisible, layoutRef, layoutPssWdRef, layoutImgRef, clickSettingsButton }) {
+export default function Settings({ isVisible, layoutRef, clickSettingsButton }) {
 
-    const { logout } = useAuth();
+    const { logout, setError } = useAuth();
 
 // Modal password
 const [isOpenPssWdPage, setIsOpenPssWdPage] = useState(false);
-const openPssWdPage = () => setIsOpenPssWdPage(true);
-const closePssWdPage = () => setIsOpenPssWdPage(false);
+const openPssWdPage = () => {setIsOpenPssWdPage(true); setError(null)};
+const closePssWdPage = () => {setIsOpenPssWdPage(false); setError(null)};
 // Modal img
 const [isOpenImgPage, setIsOpenImgPage] = useState(false);
 const openImgPage = () => setIsOpenImgPage(true);
@@ -26,8 +26,8 @@ const closeImgPage = () => setIsOpenImgPage(false);
 
     return (
         <>
-        <CambiarPassword isOpen={isOpenPssWdPage} close={closePssWdPage}/>
-        <CambiarImagenPerfil isOpen={isOpenImgPage} close={closeImgPage}/>
+        <CambiarPassword isOpen={isOpenPssWdPage} close={closePssWdPage} />
+        <CambiarImagenPerfil isOpen={isOpenImgPage} close={closeImgPage} />
 
             {
                 isVisible ? (

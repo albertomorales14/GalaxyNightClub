@@ -4,8 +4,8 @@ function Home(props) {
         <div className="homeLayout">
             <div id="slider">
                 <figure>
-                    <img className="homeImg" src="/img/galaxy-logo.png" alt="logo-galaxy"/>
-                    <img className="homeImg" src="/img/del-perro-club.jpg" alt="del-perro-club"/>
+                    <img className="homeImg" src="/img/home/galaxy-logo.png" alt="logo-galaxy"/>
+                    <img className="homeImg" src="/img/home/del-perro-club.jpg" alt="del-perro-club"/>
                 </figure>
             </div>
             <div className="homeInfo">

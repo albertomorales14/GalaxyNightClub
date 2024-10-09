@@ -5,9 +5,10 @@ import { RiLock2Fill } from "react-icons/ri"; // Lock
 import { GiPerson } from "react-icons/gi"; // Person
 import TecnicosModal from './TecnicosModal';
 
-export default function Tecnicos({ tecnicos, focus, handleClick }) {
+function Tecnicos({ tecnicos, focus, handleClick, actualizar }) {
 
     const [tec, setTecnico] = useState(null);
+    const [sigTec, setSigTecnico] = useState(null);
     
 
     // Modal
@@ -15,15 +16,16 @@ export default function Tecnicos({ tecnicos, focus, handleClick }) {
     const openTecnicosModal = (lst) => {
         setIsOpenTecnicosModal(!(lst?.estado !== 'NO CONTRATADO'));
     };
-    const closeTecnicosModal = () => setIsOpenTecnicosModal(false);
-
-    
+    const closeTecnicosModal = () => {
+        setIsOpenTecnicosModal(false);
+        actualizar(true);
+    };
 
     return (
         <Row className='tecnico-img-row'>
             {
                 tecnicos.map((list, index) => (
-                    <Col key={index} onClick={() => {handleClick(list); setTecnico(list); openTecnicosModal(list)}} className={index === 0 ? 'tecnico-img-col-first' : index === 4 ? 'tecnico-img-col-last' : 'tecnico-img-col'} >
+                    <Col key={index} onClick={() => {handleClick(list); setTecnico(list); setSigTecnico(tecnicos[index < 4 ? index + 1 : index]); openTecnicosModal(list)}} className={index === 0 ? 'tecnico-img-col-first' : index === 4 ? 'tecnico-img-col-last' : 'tecnico-img-col'} >
                         <div class="tecnico-img-box-content">
                             <img className='tecnico-img' src={list.imagen} alt={list.name}
                                 style={{ filter: `brightness(${list.estado === 'BLOQUEADO' || list.estado === 'NO CONTRATADO' ? 0.5 : 1})` }} />
@@ -43,7 +45,9 @@ export default function Tecnicos({ tecnicos, focus, handleClick }) {
                     </Col>
                 ))
             }
-            <TecnicosModal isOpen={isOpenTecnicosModal} close={closeTecnicosModal} tecnico={tec} />
+            <TecnicosModal isOpen={isOpenTecnicosModal} close={closeTecnicosModal} tecnico={tec} siguiente={sigTec}/>
         </Row>
     )
 }
+
+export default Tecnicos;

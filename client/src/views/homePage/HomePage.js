@@ -3,57 +3,41 @@ import { Container, Row, Col } from 'react-bootstrap';
 import FameBar from '../../components/layouts/FameBar';
 import HomeSummary from './HomeSummary';
 import HomeChart from './HomeChart';
+import useAuth from '../../auth/useAuth';
 import formatCurrency from '../../Utils/formatCurrency';
 import logService from '../../Utils/logService';
 
 function HomePage({ fama }) {
 
-    const [lista, setLista] = useState([]);
+    const { club, getClub } = useAuth();
     const [listaExistencias, setListaExistencias] = useState([]);
 
     // Backend
     useEffect(() => {
-        const getClub = async () => {
-            await fetch('http://localhost:5050/api/Club')
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the fetched data here
-                    setLista(data);
-                    console.log('[Lista de Club] GET llamada a API...');
-                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (HomePage.js)');
-                })
-                .catch(error => {
-                    // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error);
-                    logService.sendLog('error', '[GET] Llamada a la API (HomePage.js): ' + error);
-                });
-        }
-        getClub(); //llamada a los datos del club
+
+        getClub('HomePage.js'); //llamada a los datos del club
 
         const getProductos = async () => {
             await fetch('http://localhost:5050/api/Productos', {
                 method: 'GET',
             })
-                .then((response) => { return response.json() })
-                .then((data) => {
-                    // Handle the fetched data here
+                .then(response => response.json())
+                .then(data => {
                     setListaExistencias(data);
-                    console.log('[Lista de Productos] GET llamada a API...');
-                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Productos (HomePage.js)');
+                    logService.sendLog('info', '[GET Request] getProductos: Lista de Productos (HomePage.js)');
                 })
-                .catch((error) => {
-                    // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error);
-                    logService.sendLog('error', '[GET] Llamada a la API (HomePage.js): ' + error);
+                .catch(error => {
+                    logService.sendLog('error', 'Error [GET Request] getProductos: Lista de Productos (HomePage.js): ' + error);
                 });
         }
-        getProductos(); //llamada a los daos de los productos
+        getProductos();
+
     }, []) // [] solo se recarga cada vez que accede a la vista en pantalla
 
-    var trabajosClub = lista[0]?.trabajos;
-    var gananciasClub = lista[0]?.ganancias_club;
-    var ventasAlmacen = lista[0]?.ventas_almacen;
-    var gananciasAlmacen = lista[0]?.ganancias_almacen;
+    var trabajosClub = club?.trabajos;
+    var gananciasClub = club?.ganancias_club;
+    var ventasAlmacen = club?.ventas_almacen;
+    var gananciasAlmacen = club?.ganancias_almacen;
     var gananciasTotales = gananciasClub + gananciasAlmacen;
     var existenciasTotales = listaExistencias.reduce((a, b) => a + (b['existencias'] || 0), 0);
     var existenciasMax = listaExistencias.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0);

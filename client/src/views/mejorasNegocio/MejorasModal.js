@@ -18,16 +18,11 @@ function MejorasModal(props) {
         })
             .then(response => {
                 response.json();
-                console.log('[Actualizar Mejora] PUT llamada a API...');
-                logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Mejora (MejorasModal.js)');
-                logService.sendLog('info', JSON.stringify({
-                    name: props.mejora.name,
-                    comprada: !props.mejora?.comprada
-                }));
+                logService.sendLog('info', '[PUT Request] Comprar Mejora: Actualizar Mejora (MejorasModal.js)');
+                logService.sendLog('info', '\t> Mejora: ' + props.mejora.name + ', Comprada: ' + !props.mejora?.comprada + ' (MejorasModal.js)');
             })
             .catch(error => {
-                console.log('A problem occurred with your fetch operation: ' + error);
-                logService.sendLog('error', '[PUT] Llamada a la API (MejorasModal.js): ' + error);
+                logService.sendLog('error', 'Error: [PUT Request] Comprar Mejora: Actualizar Mejora (MejorasModal.js): ' + error);
             })
     }
 

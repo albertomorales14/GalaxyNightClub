@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import VentaProductoModal from './VentaProductoModal';
 import formatCurrency from '../../Utils/formatCurrency';
-import { useEffect, useState } from 'react';
 
-export default function Productos({ lista, club }) {
+function Productos({ lista, club, actualizarLista }) {
 
     // Modal
     const [isOpenVentaProductoModal, setIsOpenVentaProductoModal] = useState(false);
     const openVentaProductoModal = () => setIsOpenVentaProductoModal(true);
-    const closeVentaProductoModal = () => setIsOpenVentaProductoModal(false);
+    const closeVentaProductoModal = () => {
+        setIsOpenVentaProductoModal(false);
+        actualizarLista();
+    };
     const [producto, setProducto] = useState(null);
 
     return (
@@ -185,3 +188,5 @@ export default function Productos({ lista, club }) {
             <VentaProductoModal isOpen={isOpenVentaProductoModal} close={closeVentaProductoModal} producto={producto} club={club} />
         </Container>)
 }
+
+export default Productos;

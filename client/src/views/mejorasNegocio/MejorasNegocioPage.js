@@ -19,26 +19,21 @@ function MejorasNegocioPage() {
     }
     const [mejora, setMejora] = useState(null);
 
-    // Backend
     useEffect(() => {
         const getMejoras = async () => {
             fetch('http://localhost:5050/api/Mejoras')
                 .then(response => response.json())
                 .then(data => {
-                    // Handle the fetched data here
                     setLista(data);
                     setActualizarLista(false);
-                    console.log('[Lista de Mejoras] GET llamada a API...');
-                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Mejoras (MejorasNegocioPage.js)');
+                    logService.sendLog('info', '[GET Request] getMejoras: Lista de Mejoras (MejorasNegocioPage.js)');
                 })
                 .catch(error => {
-                    // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error);
-                    logService.sendLog('error', '[GET] Llamada a la API (MejorasNegocioPage.js): ' + error);
+                    logService.sendLog('error', 'Error: [GET Request] getMejoras: Lista de Mejoras (MejorasNegocioPage.js): ' + error);
                 });
         }
-        getMejoras(); //llamada
-    }, [actualizarLista]) // dependencia variable de estado lista
+        getMejoras();
+    }, [actualizarLista]);
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>

@@ -9,6 +9,7 @@ import './styles/almacen.css';
 import './styles/ventas.css';
 import './styles/mejoras.css';
 import './styles/modal.css';
+import './styles/settings.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -57,7 +57,7 @@ const comparePassword = async (password, hash) => {
     }
 };
 
-usuarioController.updateUsuario = async (request, response) => {
+const updateUser = async (request, response) => {
     try {
         const { id } = request.params;
         const { password, ...rest } = request.body; // Separar password del resto de datos
@@ -65,7 +65,7 @@ usuarioController.updateUsuario = async (request, response) => {
         if (password) {
             const hashedPassword = await hashPassword(password); // Cifrar la nueva contraseña
             rest.password = hashedPassword;  // Agregar la contraseña cifrada al resto de los datos
-          }
+        }
 
         await Usuario.findByIdAndUpdate(id, {
             $set: rest
@@ -73,19 +73,43 @@ usuarioController.updateUsuario = async (request, response) => {
         response.json({
             message: 'Usuario actualizado'
         })
-        /*
-        const usuario = await Usuario.findById(request.params.id)
-        if (!usuario) {
-            logger.warn('getUsuario (usuarioController.js) Usuario no encontrado')
-            return response.status(404).json({ message: 'Usuario no encontrado' });
-        }
-        logger.info('getUsuario (usuarioController.js) Usuario encontrado: ')
-        logger.info(JSON.stringify(usuario))
-        response.json(usuario);
-        */
     } catch (error) {
         logger.error('Error al actualizar usuario: ' + error)
         throw new Error('Error al actualizar usuario: ' + error)
+    }
+};
+
+usuarioController.updatePassword = [
+    validateFields,
+    updateUser
+]
+
+usuarioController.updateImagen = updateUser;
+
+usuarioController.comparePasswordChangePage = async (request, response) => {
+    try {
+        let body = request.body;
+        await Usuario.findOne({ username: body.username })
+            .then(user => {
+                if (user) {
+                    comparePassword(body.password, user.password)
+                        .then(isPasswordMatch => {
+                            if (isPasswordMatch) {
+                                logger.info('route comparePassword (usuarioController.js) Password Match!');
+                                response.json("SUCCESS");
+                            } else {
+                                logger.warn("route comparePassword (usuarioController.js) Password Doesn´t Match!");
+                                response.json("ERROR");
+                            }
+                        });
+                } else {
+                    logger.warn("No existe el usuario [LOGIN] [usuarioController.js]");
+                    response.json("No existe este usuario");
+                }
+            });
+    } catch (error) {
+        logger.error("Error de comparePassword en usuarioController.js: " + error);
+        throw new Error('Error en comparePassword: ' + error);
     }
 }
 
@@ -111,22 +135,22 @@ usuarioController.login = [
                                         sameSite: 'Strict',
                                         maxAge: 3600000, // 1 hora
                                     });
-                                    logger.info('Acesso login correcto [LOGIN] [usuarioController.js]');
-                                    logger.info('Usuario conectado: ' + JSON.stringify(user));
-                                    response.json(user)
+                                    logger.info('Login: Acesso correcto (usuarioController.js)');
+                                    logger.info('Usuario conectado: ' + JSON.stringify(user.username) + ' (usuarioController.js)');
+                                    response.json(user);
                                 } else {
-                                    logger.warn("Contraseña incorrecta [LOGIN] [usuarioController.js]");
-                                    response.json("Contraseña incorrecta")
+                                    logger.warn("Login: Contraseña incorrecta (usuarioController.js)");
+                                    response.json("Contraseña incorrecta");
                                 }
                             });
                     } else {
-                        logger.warn("No existe el usuario [LOGIN] [usuarioController.js]");
-                        response.json("No existe este usuario")
+                        logger.warn('Login: No existe el usuario (usuarioController.js)');
+                        response.json('No existe este usuario');
                     }
                 });
         } catch (error) {
-            logger.error("Error de login en usuarioController.js: " + error);
-            throw new Error('Error en login: ' + error)
+            logger.error("router post login (usuarioController.js) Error: " + error);
+            throw new Error('Error en login: ' + error);
         }
     }
 ];
@@ -143,7 +167,6 @@ router.post('/logout', (req, res) => {
 
 usuarioController.logout = (request, response) => {
     try {
-
         response.cookie('token', '', {
             httpOnly: true,
             expires: new Date(0), // Expira inmediatamente
@@ -151,11 +174,11 @@ usuarioController.logout = (request, response) => {
             secure: process.env.NODE_ENV === 'production',
         });
 
-        logger.info("Logout exitoso en usuarioController.js");
+        logger.info("Logout (usuarioController.js)");
         response.json({ message: 'Logout exitoso' });
     } catch (error) {
-        logger.error("Error de logout en usuarioController.js: " + error);
-        throw new Error('Error en logout: ' + error)
+        logger.error("Error de logout (usuarioController.js): " + error);
+        throw new Error('Error de logout (usuarioController.js): ' + error)
     }
 }
 

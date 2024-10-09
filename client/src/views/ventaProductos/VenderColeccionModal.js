@@ -42,7 +42,6 @@ function VenderColeccionModal(props) {
                     response.json();
                     console.log('[Actualizar Producto] PUT llamada a API...');
                     logService.sendLog('info', '[PUT] Llamada a la API: Venta de Producto (VenderColeccionModal.js)');
-                    logService.sendLog('info', 'Producto vendido: ' + props.productos[numero].name + ', existencias: ' + props.productos[numero].existencias - getExistencias(numero));
                 })
                 .catch(error => {
                     console.log('A problem occurred with your fetch operation: ' + error);

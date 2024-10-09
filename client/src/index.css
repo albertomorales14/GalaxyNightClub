@@ -188,11 +188,11 @@ html, body {
 
 .input-file-img-custom {
     text-align: left;
-    border: 2px solid var(--purple-light) !important;
+    /*border: 2px solid var(--purple-light) !important;*/
 }
 
 .custom-file-name {
-    margin-left: 2%;
+    /*margin-left: 2%;*/
 }
 
 .img-preview {
@@ -219,8 +219,11 @@ html, body {
     }
 
     .header-img {
-        height: 9vh;
+        /*height: 9vh;*/
         object-fit: cover;
+        aspect-ratio: 1 / 1;
+        width: 90px;
+        height: 90px;
     }
 
     .header-img:hover {
@@ -255,8 +258,11 @@ html, body {
     }
 
     .header-img {
-        height: 12vh;
+        /*height: 12vh;*/
         object-fit: cover;
+        aspect-ratio: 1 / 1;
+        width: 75px;
+        height: 75px;
     }
 
     .header-img:hover {

@@ -15,20 +15,29 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname); // Mantener el nombre original del archivo
-        // cb(null, Date.now() + path.extname(file.originalname)); // Asigna un nombre único al archivo
+        // Asigna un nombre único al archivo
+        // cb(null, Date.now() + path.extname(file.originalname)); 
     }
 });
 
-// Filtro para limitar qué tipos de archivos pueden ser subidos (opcional)
-/*const fileFilter = (req, file, cb) => {
-    // Solo permitir imágenes
-    if (file.mimetype.startsWith('image/')) {
-      cb(null, true);
-    } else {
-      cb(new Error('Tipo de archivo no soportado'), false);
-    }
-  };*/
+// Establecer limite de 5 MB para archivos
+const limits = { fileSize: 5 * 1024 * 1024 }
 
-const upload = multer({ storage });
+// Filtro para limitar qué tipos de archivos pueden ser subidos (opcional)
+const fileFilter = (req, file, cb) => {
+    // Aceptar solo imágenes con extensiones válidas
+    const allowedTypes = /jpeg|jpg|png|gif/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimeType = allowedTypes.test(file.mimetype);
+
+    if (mimeType && extname) {
+        return cb(null, true);
+    } else {
+        // Rechaza el archivo si no es del tipo adecuado
+        return cb(new Error('function fileFilter (multerConfig.js) Error: Only images are allowed'), false);
+    }
+};
+
+const upload = multer({ storage: storage, limits: limits, fileFilter: fileFilter });
 
 module.exports = upload;

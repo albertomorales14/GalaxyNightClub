@@ -19,7 +19,8 @@ const corsOptions = {
 }
 App.use(cors(corsOptions))
 App.use(cookieParser());
-App.use(express.json()); // Middleware para que Express maneje JSON
+App.use(express.json({ limit: '50mb' })); // Middleware para que Express maneje JSON
+App.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 /* Set Cookie Settings 
 App.use(
@@ -52,6 +53,7 @@ App.use('/api/Mejoras', require('./routes/mejora'));
 App.post('/api/Mejoras/:id', require('./routes/mejora'));
 
 App.use('/api/Ingresos', require('./routes/ingreso'));
+App.use('/api/Ingresos/:id', require('./routes/ingreso'));
 
 App.use('/api/Club', require('./routes/club'));
 App.use('/api/Club/:id', require('./routes/club'));
@@ -61,6 +63,8 @@ App.post('/api/DJs/:id', require('./routes/dj'));
 
 App.use('/api/Usuarios', require('./routes/usuario'));
 App.use('/api/Usuarios/:id', require('./routes/usuario'));
+App.use('/api/Usuarios/upload/:id', require('./routes/usuario'));
+App.post('/comparePassword', require('./routes/usuario'));
 
 App.use('/api/Tecnicos', require('./routes/tecnico'));
 App.use('/api/Tecnicos/:id', require('./routes/tecnico'));

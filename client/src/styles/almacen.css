@@ -193,7 +193,6 @@
 
 .row2-last-box-ventas-col-4 {
     margin: 1%;
-    margin-right: 0%;
 }
 
 .row3-first-box-ventas-col-4 {
@@ -240,6 +239,10 @@
     .tecnico-txt-content > h1{
         position: relative;
         font-size: 30px;
+    }
+
+    .tecnico-img {
+        height: 21vh;
     }
 }
 

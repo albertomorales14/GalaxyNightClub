@@ -1,21 +1,19 @@
-import Header from '../Header';
-import Navigation from '../Navigation';
 import { useEffect, useState, useRef } from 'react';
+import Header from '../Header';
+import Settings from './settings/Settings';
+import Navigation from '../Navigation';
 import LoginPage from '../../views/LoginPage';
 import useAuth from '../../auth/useAuth';
-import Settings from './settings/Settings';
 import logService from '../../Utils/logService';
 
-export default function Layout({ children }) {
+function Layout({ children }) {
 
-    const [lista, setLista] = useState([]);
-    const { isLogged, user } = useAuth();
+    const [club, setClub] = useState([]);
+    const { isLogged } = useAuth();
     const [isVisible, setIsVisible] = useState(false);
     const clickSettingsButton = () => setIsVisible(false);
     const layoutSettingsRef = useRef(null); // Referencia para el layout Settings
     const layoutHeaderRef = useRef(null); // Referencia para el layout Header
-    const layoutPssWdRef = useRef(null); // Referencia para el layout Password
-    const layoutImgRef = useRef(null); // Referencia para el layout Imagen
 
     // Backend
     useEffect(() => {
@@ -23,18 +21,14 @@ export default function Layout({ children }) {
             fetch('http://localhost:5050/api/Club')
                 .then(response => response.json())
                 .then(data => {
-                    // Handle the fetched data here
-                    setLista(data);
-                    console.log('[Lista de Club] GET llamada a API...');
-                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (Layout.js)');
+                    setClub(data);
+                    logService.sendLog('info', '[GET Request] getClub: Lista de Club (Layout.js)');
                 })
                 .catch(error => {
-                    // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error);
-                    logService.sendLog('error', '[GET] Llamada a la API: Lista de Club (Layout.js): ' + error);
+                    logService.sendLog('error', 'Error: [GET Request] getClub: Lista de Club (Layout.js): ' + error);
                 });
         }
-        getClub(); //llamada
+        getClub();
     }, []) // sin dependencia variable de estado lista
 
     // useEffect para manejar clics fuera del layout
@@ -65,18 +59,30 @@ export default function Layout({ children }) {
         };
     }, [isVisible]);
 
-    var propietario = lista[0]?.propietario;
-    var ubicacion = lista[0]?.ubicacion;
+    var propietario = club[0]?.propietario;
+    var ubicacion = club[0]?.ubicacion;
 
     const showSettings = () => {
         setIsVisible(!isVisible);
     }
+/*
+    let requestCounter = 0;
 
+    // Guardar la referencia original de fetch
+    const originalFetch = window.fetch;
+
+    // Sobrescribir fetch
+    window.fetch = async function (...args) {
+        requestCounter++;
+        // Llamar a la función fetch original
+        return originalFetch.apply(this, args);
+    };
+*/
     return (
         isLogged() ? (
             <>
                 <Header showSettings={showSettings} layoutRef={layoutHeaderRef} />
-                <Settings isVisible={isVisible} layoutRef={layoutSettingsRef} layoutPssWdRef={layoutPssWdRef} layoutImgRef={layoutImgRef} clickSettingsButton={clickSettingsButton} />
+                <Settings isVisible={isVisible} layoutRef={layoutSettingsRef} clickSettingsButton={clickSettingsButton} />
                 <div className='bodyApp'>
                     <div style={{ display: 'flex' }}>
                         <div style={{ flex: 3 }}>
@@ -92,3 +98,5 @@ export default function Layout({ children }) {
 
     )
 }
+
+export default Layout;

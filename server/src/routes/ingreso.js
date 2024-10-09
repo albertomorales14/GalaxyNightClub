@@ -1,10 +1,14 @@
 const {Router} = require('express')
 const router = Router()
 
-const { getIngresos } = require('../controller/ingresosController')
+const { getIngresos, updateIngresos } = require('../controller/ingresosController')
 
 router.route('/')
 
     .get(getIngresos)
+
+router.route('/:id')
+
+    .put(updateIngresos)
 
 module.exports = router;

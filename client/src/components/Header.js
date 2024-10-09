@@ -6,9 +6,12 @@ function Header({ showSettings, layoutRef }) {
 
     const { user } = useAuth();
     const [club, setClub] = useState([]);
-    const [countdown, setCountdown] = useState(10);
+    const [countdown, setCountdown] = useState(10 * 60);
+    const [src, setSrc] = useState(user ? `http://localhost:5050/uploads/img/${user.imagen}` : '/img/user/profile-default.png');
+    const [ingresosDiarios, setIngresosDiarios] = useState(null);
+    const [listaIngresos, setListaIngresos] = useState([]);
 
-    // Contador infinito: comienza en 10 segundos y se repite cada 5 min: Decrementa la fama del club
+    // Contador infinito:se repite cada 10 min: Decrementa la fama del club
     useEffect(() => {
         let timeout;
         if (countdown >= 0) {
@@ -19,14 +22,12 @@ function Header({ showSettings, layoutRef }) {
                     fetch(`http://localhost:5050/api/Club/${user.club}`, {
                         method: 'GET',
                         headers: { "Content-type": "application/json; charset=UTF-8", },
-                    })
-                        .then(response => response.json())
-                        .then(data => {
+                    }).then(response => response.json())
+                    .then(data => {
                             setClub(data);
                             console.log('[Club fama] GET llamada a API...');
                             logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (Header.js)');
-                        })
-                        .catch(error => {
+                        }).catch(error => {
                             console.log('A problem occurred with your fetch operation: ', error);
                             logService.sendLog('error', '[GET] Llamada a la API: Actualizar Club (Header.js): ' + error);
                         });
@@ -35,6 +36,12 @@ function Header({ showSettings, layoutRef }) {
         } else {
             // La cuenta atras ha terminado
             let fame = club?.fama - 25 < 0 ? 0 : club?.fama - 25;
+            setIngresosDiarios(
+                fame >= 95 ? 30000 : 
+                fame >= 80 ? 25000 : 
+                fame >= 70 ? 15000 : 
+                fame >= 25 ? 10000 : 0
+            );
             fetch(`http://localhost:5050/api/Club/${user.club}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -53,24 +60,27 @@ function Header({ showSettings, layoutRef }) {
                                 : fame >= 25 ? 10000 : 0
                 }),
                 headers: { "Content-type": "application/json; charset=UTF-8", },
+            }).then(response => {
+                response.json();
+                console.log('[Pérdida de Fama del Club] PUT llamada a API...');
+                logService.sendLog('info', '[PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)');
+                logService.sendLog('info', 'fama al ' + fame + '%');
+                
+            }).catch(error => {
+                console.log('A problem occurred with your fetch operation: ' + error);
+                logService.sendLog('error', '[PUT] Llamada a la API: Actualizar Club (Header.js): ' + error);
             })
-                .then(response => {
-                    response.json();
-                    console.log('[Pérdida de Fama del Club] PUT llamada a API...');
-                    logService.sendLog('info', '[PUT] Llamada a la API: Pérdida de Fama del Club (Header.js)');
-                    logService.sendLog('info', 'fama al ' + fame + '%');
-                })
-                .catch(error => {
-                    console.log('A problem occurred with your fetch operation: ' + error);
-                    logService.sendLog('error', '[PUT] Llamada a la API: Actualizar Club (Header.js): ' + error);
-                })
 
             // Vuelve a empezar la cuenta atras
-            setCountdown(5 * 60); // 5 minutos 
+            setCountdown(10 * 60); // 10 minutos 
         }
 
         return () => clearTimeout(timeout);
     }, [countdown]);
+
+    useEffect(() => {
+        setSrc(`http://localhost:5050/uploads/img/${user.imagen}`);
+    }, [user]);
 
     return (
         <div className="header">
@@ -85,7 +95,7 @@ function Header({ showSettings, layoutRef }) {
             }}>
                 Sesión iniciada como: <span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
             </h3>
-            <img id="img-header" ref={layoutRef} className="header-img" src="/img/profile-img-1.png" alt="user-photo" onClick={showSettings} />
+            <img id="img-header" ref={layoutRef} className="header-img" src={src} alt="user-photo" onClick={showSettings} />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
 import formatCurrency from '../../Utils/formatCurrency';
 import useAuth from '../../auth/useAuth';
+import logService from '../../Utils/logService';
 
 export default function VentaProductoModal({ isOpen, close, producto, club }) {
 
@@ -9,7 +10,7 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
     var existencias = producto?.existencias
 
     const venderProducto = () => {
-        
+
         fetch(`http://localhost:5050/api/Productos/${producto._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -20,8 +21,15 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
                 diferencia: producto.capacidadMax
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        }).then(response => {
+            response.json();
+            console.log('[Actualizar Producto] PUT llamada a API...');
+            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Producto \t(VentaProductoModal.js)');
+            logService.sendLog('info', 'Productos vendido: ' + producto.name + ' \t(VentaProductoModal.js)');
+        }).catch(error => {
+            console.log('A problem occurred with your fetch operation: ' + error);
+            logService.sendLog('error', '[PUT] Llamada a la API (Producto) \t(VentaProductoModal.js): ' + error);
+        })
 
 
         fetch(`http://localhost:5050/api/Club/${user.club}`, {
@@ -33,8 +41,14 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
                 productos_vendidos: club?.productos_vendidos + existencias
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        }).then(response => {
+            response.json();
+            console.log('[Actualizar Club] PUT llamada a API...');
+            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club \t(VentaProductoModal.js)');
+        }).catch(error => {
+            console.log('A problem occurred with your fetch operation: ' + error);
+            logService.sendLog('error', '[PUT] Llamada a la API (Club) \t(VentaProductoModal.js): ' + error);
+        })
     }
 
     return (

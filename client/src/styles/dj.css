@@ -4,23 +4,23 @@
     gap: 1.5%;
     padding: 10px;
     padding-left: 6px;
-  }
-  
-  .dj-grid-container > div {
+}
+
+.dj-grid-container>div {
     /*background-color: #251032;*/
     text-align: center;
     /*font-size: 30px;*/
-  }
+}
 
-  .dj-grid-container img {
+.dj-grid-container img {
     width: 100%;
     height: 33vh;
     object-fit: cover;
-  }
+}
 
-.dj-grid-container > div > h3 {
-  font-size: var(--bs-nav-link-font-size);
-  font-weight: var(--bs-nav-link-font-weight);
+.dj-grid-container>div>h3 {
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
 }
 
 .dj-h3 {
@@ -38,7 +38,7 @@
     text-align: center;
 }
 
-button > span.dj-btn-size {
+button>span.dj-btn-size {
     text-align: center;
 }
 
@@ -53,96 +53,96 @@ button > span.dj-btn-size {
 }
 
 .dj-btn:hover {
-  border: 1px solid var(--purple-light) !important;
-  
+    border: 1px solid var(--purple-light) !important;
+
 }
 
 
 
 .dj-col {
-  padding: 0 !important;
-  
+    padding: 0 !important;
+
 }
 
 .dj-name {
-  margin-top: 8px !important;
-  text-align: center;
+    margin-top: 8px !important;
+    text-align: center;
 }
 
 .dj-img {
-  width: 100%;
-  height: 25vh;
-  object-fit: cover;
+    width: 100%;
+    height: 25vh;
+    object-fit: cover;
 }
 
 .dj-left {
-  margin-right: 4px !important;
-  
+    margin-right: 4px !important;
+
 }
 
 .dj-right {
-  margin-left: 4px !important;
+    margin-left: 4px !important;
 }
 
 .dj-img-box {
-  position: relative;
-  
+    position: relative;
+
 }
 
 .dj-audio-btn {
-  position: absolute;
-  z-index: 100;
-  right: 0%;
-  bottom: 0%;
-  background-color: #251032;
-  border: 1px solid var(--purple-light);
-  color: white;
-  padding: 0 7.5%;
-  margin: 0.75%;
+    position: absolute;
+    z-index: 100;
+    right: 0%;
+    bottom: 0%;
+    background-color: #251032;
+    border: 1px solid var(--purple-light);
+    color: white;
+    padding: 0 7.5%;
+    margin: 0.75%;
 
 }
 
 .dj-audio-btn:hover {
-  background-color: #461E5C !important;
-  cursor: var(--gtav-cursor), auto !important;
+    background-color: #461E5C !important;
+    cursor: var(--gtav-cursor), auto !important;
 }
 
 /* > */
 .play-audio-btn {
-  background-color: transparent !important;
-  border: none;
-  color: white;
+    background-color: transparent !important;
+    border: none;
+    color: white;
 
-  margin-bottom: 2%;
+    margin-bottom: 4%;
     margin-left: 50%;
 }
 
 .play-audio-btn:hover {
-  cursor: var(--gtav-cursor), auto !important;
+    cursor: var(--gtav-cursor), auto !important;
 }
 
 
 
 @media screen and (min-width: 1900px) {
-  
-  .dj-img {
-    width: 100%;
-    height: 22vh;
-    object-fit: cover;
-  }
+
+    .dj-img {
+        width: 100%;
+        height: 22vh;
+        object-fit: cover;
+    }
 
 }
 
 @media screen and (max-width: 1900px) {
 
-  .dj-img {
-    width: 100%;
-    height: 30vh;
-    object-fit: cover;
-  }
-  
-  .dj-audio-btn {
-    padding: 0 5%;
-  }
+    .dj-img {
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+    }
+
+    .dj-audio-btn {
+        padding: 0 5%;
+    }
 
 }

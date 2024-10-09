@@ -25,13 +25,11 @@ function FameModal(props) {
         })
             .then(response => {
                 response.json();
-                console.log('[Aumentar Fama del Club] PUT llamada a API...');
-                logService.sendLog('info', '[PUT] Actualizar Club: Aumentar Fama (FameModal.js)');
-                logService.sendLog('info', 'fama al ' + fame + '%');
+                logService.sendLog('info', '[PUT Request] Aumentar fama del club: Actualizar Club (FameModal.js)');
+                logService.sendLog('info', '\t> Fama del club al ' + fame + '%');
             })
             .catch(error => {
-                console.log('A problem occurred with your fetch operation: ' + error);
-                logService.sendLog('error', '[PUT] Llamada a la API (FameModal.js): ' + error);
+                logService.sendLog('error', 'Error: [PUT Request] Aumentar fama del club: Actualizar Club (FameModal.js): ' + error);
             })
     }
 

@@ -1,7 +1,8 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
 import formatCurrency from '../../Utils/formatCurrency';
+import logService from '../../Utils/logService';
 
-export default function TecnicosModal({ isOpen, close, tecnico, producto }) {
+export default function TecnicosModal({ isOpen, close, tecnico, producto, siguiente }) {
 
     const accion = () => {
         if (tecnico?.estado === 'NO CONTRATADO') {
@@ -12,8 +13,32 @@ export default function TecnicosModal({ isOpen, close, tecnico, producto }) {
                     estado: 'CONTRATADO',
                 }),
                 headers: { "Content-type": "application/json; charset=UTF-8", },
-            }).then(response => response.json())
-                .catch((error) => console.log(error))
+            })
+                .then(response => {
+                    response.json();
+                    logService.sendLog('info', '[PUT] Contratar técnico (TecnicosModal.js): ' + tecnico?.name);
+                })
+                .catch(error => {
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[PUT] Error al contratar técnico (TecnicosModal.js): ' + error);
+                });
+
+            // Desbloquear el siguiente
+            fetch(`http://localhost:5050/api/Tecnicos/${siguiente._id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    estado: 'NO CONTRATADO',
+                }),
+                headers: { "Content-type": "application/json; charset=UTF-8", },
+            })
+                .then(response => {
+                    response.json();
+                    logService.sendLog('info', '[PUT] Desbloquear siguiente técnico (TecnicosModal.js): ' + siguiente?.name);
+                })
+                .catch(error => {
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[PUT] Error al desbloquear siguiente técnico (TecnicosModal.js): ' + error);
+                });
         } else {
             // Asignar tecnico
             fetch(`http://localhost:5050/api/Tecnicos/${tecnico._id}`, {
@@ -23,8 +48,15 @@ export default function TecnicosModal({ isOpen, close, tecnico, producto }) {
                     producto: producto
                 }),
                 headers: { "Content-type": "application/json; charset=UTF-8", },
-            }).then(response => response.json())
-                .catch((error) => console.log(error))
+            })
+                .then(response => {
+                    response.json();
+                    logService.sendLog('info', '[PUT] Asignar técnico (TecnicosModal.js): ' + siguiente?.name);
+                })
+                .catch(error => {
+                    console.log('A problem occurred with your fetch operation: ', error);
+                    logService.sendLog('error', '[PUT] Error al asignar técnico (TecnicosModal.js): ' + error);
+                });
         }
     }
 
@@ -35,10 +67,10 @@ export default function TecnicosModal({ isOpen, close, tecnico, producto }) {
             </Modal.Header>
             <Modal.Body>
                 <Alert className='custom-alert'>
-                {tecnico?.estado === 'NO CONTRATADO' ? (<>
-                    ¿Quieres contratar a un técnico por ${formatCurrency(tecnico?.salario)}?
+                    {tecnico?.estado === 'NO CONTRATADO' ? (<>
+                        ¿Quieres contratar a un técnico por ${formatCurrency(tecnico?.salario)}?
                     </>) : (<>¿Seguro que quieres asignar este técnico a este producto?</>)}
-                    
+
                 </Alert>
             </Modal.Body>
             <Modal.Footer>

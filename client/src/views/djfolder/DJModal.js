@@ -1,6 +1,7 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
+import logService from '../../Utils/logService';
 
-export default function DJModal({ isOpen, close, dj, AllDJs }) {
+function DJModal({ isOpen, close, dj, AllDJs }) {
 
     const ContratarDJ = async () => {
 
@@ -11,7 +12,7 @@ export default function DJModal({ isOpen, close, dj, AllDJs }) {
                 actual_residente = item;
             }
         })
-        
+
         fetch(`http://localhost:5050/api/DJs/${actual_residente._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -20,10 +21,15 @@ export default function DJModal({ isOpen, close, dj, AllDJs }) {
                 contratado: actual_residente.contratado
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        }).then(response => {
+            response.json();
+            logService.sendLog('info', '[PUT Request] Cambio de residente: Actualizar DJ (DJModal.js)');
+            logService.sendLog('info', '\t> Cambio de residente: ' + actual_residente.name + ' ya no es DJ residente del club (DJModal.js)');
+        }).catch(error => {
+            logService.sendLog('error', 'Error: [PUT Request] Cambio de residente: Actualizar DJ (DJModal.js): ' + error);
+        })
 
-        // Contratar y poner de Residente al nuevo
+        // Contratar y poner de Residente al nuevo DJ
         fetch(`http://localhost:5050/api/DJs/${dj._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -32,8 +38,13 @@ export default function DJModal({ isOpen, close, dj, AllDJs }) {
                 contratado: true
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        }).then(response => {
+            response.json();
+            logService.sendLog('info', '[PUT Request] Contratar DJ: Actualizar DJ (DJModal.js)');
+            logService.sendLog('info', '\t> Contratar DJ: ' + actual_residente.name + ' ahora es el DJ residente del club (DJModal.js)');
+        }).catch(error => {
+            logService.sendLog('error', 'Error: [PUT Request] Contratar DJ: Actualizar DJ (DJModal.js): ' + error);
+        })
     }
 
     let msg1 = '¿Seguro que quieres contratar a ' + dj?.name + ' por $100,000?';
@@ -56,18 +67,20 @@ export default function DJModal({ isOpen, close, dj, AllDJs }) {
                         <Button onClick={close} style={{ width: '50%', textAlign: 'center !important' }}>
                             Cancelar
                         </Button>
-                        <Button onClick={() => { ContratarDJ(); close()} } style={{ width: '50%', textAlign: 'center !important' }}>
+                        <Button onClick={() => { ContratarDJ(); close() }} style={{ width: '50%', textAlign: 'center !important' }}>
                             Confirmar
                         </Button>
                     </Modal.Footer>
-                    ) : (
+                ) : (
                     <Modal.Footer>
                         <Button onClick={close} style={{ width: '50%', textAlign: 'center !important' }}>
                             OK
                         </Button>
                     </Modal.Footer>
-                    )
+                )
             }
         </Modal>
     )
 }
+
+export default DJModal;

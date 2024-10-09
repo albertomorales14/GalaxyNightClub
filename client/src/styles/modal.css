@@ -28,6 +28,13 @@
     display: block !important;
 }
 
+.modal-header-img-page {
+    background-color: #251032 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: flex !important;
+}
+
 .custom-alert {
     color: white !important;
     background-color: transparent !important;

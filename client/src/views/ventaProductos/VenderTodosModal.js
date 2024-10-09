@@ -1,14 +1,16 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
 import formatCurrency from '../../Utils/formatCurrency';
 import useAuth from '../../auth/useAuth';
+import logService from '../../Utils/logService';
 
-export default function VentaProductoModal({ isOpen, close, productos, club, total }) {
+function VenderTodosModal({ isOpen, close, productos, club, total }) {
 
     const { user } = useAuth();
     var num_ventas = 0;
     var num_productos = 0;
 
     const venderProductos = (total) => {
+        // Actualizar cada producto
         for (let item of productos) {
             if (item.existencias !== 0) {
                 num_ventas++;
@@ -23,11 +25,19 @@ export default function VentaProductoModal({ isOpen, close, productos, club, tot
                         diferencia: item.capacidadMax
                     }),
                     headers: { "Content-type": "application/json; charset=UTF-8", },
-                }).then(response => response.json())
-                    .catch((error) => console.log(error))
+                }).then(response => {
+                    response.json();
+                    console.log('[Actualizar Producto] PUT llamada a API...');
+                    logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Producto \t(VenderTodosModal.js)');
+                    logService.sendLog('info', 'Producto vendido: ' + item.name + ' \t(VenderTodosModal.js)');
+                }).catch(error => {
+                    console.log('A problem occurred with your fetch operation: ' + error);
+                    logService.sendLog('error', '[PUT] Llamada a la API (Productos) \t(VenderTodosModal.js): ' + error);
+                })
             }
         }
 
+        // Actualizar el Club despues de la venta
         fetch(`http://localhost:5050/api/Club/${user.club}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -37,8 +47,16 @@ export default function VentaProductoModal({ isOpen, close, productos, club, tot
                 productos_vendidos: club?.productos_vendidos + num_productos
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },
-        }).then(response => response.json())
-            .catch((error) => console.log(error))
+        }).then(response => {
+            response.json();
+            console.log('[Actualizar Club] PUT llamada a API...');
+            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club \t(VenderTodosModal.js)');
+            logService.sendLog('info', 'Ventas realizadas: ' + num_ventas + ' \t(VenderTodosModal.js)');
+            logService.sendLog('info', 'Productos vendidos: ' + num_productos + ' \t(VenderTodosModal.js)');
+        }).catch(error => {
+            console.log('A problem occurred with your fetch operation: ' + error);
+            logService.sendLog('error', '[PUT] Llamada a la API (Club) \t(VenderTodosModal.js): ' + error);
+        })
     }
 
     return (
@@ -65,3 +83,5 @@ export default function VentaProductoModal({ isOpen, close, productos, club, tot
         </Modal>
     )
 }
+
+export default VenderTodosModal;

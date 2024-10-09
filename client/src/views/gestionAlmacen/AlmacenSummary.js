@@ -13,7 +13,7 @@ export default function AlmacenSummary({ tecnicos, club }) {
             <Row className='store-row'>
                 <Col xs={9}>Productos disponibles
                 </Col>
-                <Col xs={3}>6/7
+                <Col xs={3}>7/7
                 </Col>
             </Row>
             <Row className='store-row'>
