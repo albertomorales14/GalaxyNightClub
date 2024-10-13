@@ -1,14 +1,15 @@
-const {Router} = require('express')
-const router = Router()
+const { Router } = require('express');
+const router = Router();
 
-const { getTecnicos, updateTecnico } = require('../controller/tecnicoController')
+const { getTecnicos, getTecnicosByClub, updateTecnico } = require('../controller/tecnicoController');
 
 router.route('/')
+    .get(getTecnicos);
 
-    .get(getTecnicos)
+router.route('/Club/:id')
+    .get(getTecnicosByClub);
 
 router.route('/:id')
-
-    .put(updateTecnico)
+    .put(updateTecnico);
 
 module.exports = router;

@@ -1,0 +1,14 @@
+2024-10-12T18:03:52.573Z [error]: 	> Error: getIngresosByClub: Invalid club ID (ingresosController.js)
+2024-10-12T18:22:56.329Z [error]: Error: generarSetUpClub: generar todas las colecciones (registerController.js): ReferenceError: req is not defined
+2024-10-12T18:22:56.384Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
+2024-10-12T18:22:56.454Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
+2024-10-12T18:22:56.477Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
+2024-10-12T18:25:13.342Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
+2024-10-12T18:25:13.348Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
+2024-10-12T18:25:13.370Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
+2024-10-12T18:38:23.161Z [error]: Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+2024-10-12T18:38:30.982Z [error]: Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+2024-10-12T18:38:34.743Z [error]: Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+2024-10-12T18:39:38.546Z [error]: Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+2024-10-12T18:39:41.369Z [error]: Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+2024-10-12T19:06:56.965Z [error]: Error: [POST Request] Logout (AuthProvider.js): 

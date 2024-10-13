@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const clubSchema = new Schema({
     fama: Number,
@@ -16,8 +16,12 @@ const clubSchema = new Schema({
     caja_fuerte: Number,
     productos_vendidos: Number
 },
-{
-    timestamps: true
-})
+    {
+        collection: 'clubs'
+    },
+    {
+        timestamps: true
+    }
+);
 
-module.exports = model('Club', clubSchema)
+module.exports = model('Club', clubSchema);

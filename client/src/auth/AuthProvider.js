@@ -85,6 +85,50 @@ function AuthProvider({ children }) {
         }
     };
 
+    // Crear usuario
+    const createUser = (e, user, psswd) => {
+        e.preventDefault();
+        try {
+            fetch('http://localhost:5050/preparacionDelClub', {
+                method: 'POST',
+                headers: {
+                    Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: user,
+                    password: psswd
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.errors) {
+                        data.errors.forEach(error => {
+                            logService.sendLog('warn', 'Validation Error: Crear nuevo usuario (AuthProvider.js): ' + error.msg);
+                            setError(error.msg);
+                        });
+                    } else {
+                        if (data === "Contraseña incorrecta") {
+                            logService.sendLog('warn', '[POST Request] Login: ' + data + ' (AuthProvider.js)');
+                            setError('La contraseña es incorrecta');
+                        } else if (data === "No existe este usuario") {
+                            logService.sendLog('warn', '[POST Request] Login: ' + data + ' (AuthProvider.js)');
+                            setError('El usuario ' + user + ' no existe');
+                        } else {
+                            // SUCCESS
+                            logService.sendLog('info', '[POST Request] Login: SUCCESS (AuthProvider.js)');
+                            setUser(data);
+                            setError(null); // Sin errores en login
+                        }
+                    }
+                })
+                .catch(error => {
+                    logService.sendLog('error', 'Error [POST Request] Login (AuthProvider.js) : ', error);
+                });
+        } catch (error) {
+            logService.sendLog('error', 'Error: [POST Request] Crear nuevo usuario (AuthProvider.js): ', error);
+        }
+    }
+
     const isLogged = () => !!user; // doble negacion retorna true
     const hasRole = (role) => user?.role === role;
 
@@ -94,15 +138,15 @@ function AuthProvider({ children }) {
             .then(response => response.json())
             .then(data => {
                 setClub(data);
-                logService.sendLog('info', '[GET Request] getClub: Lista de Club (' + page + ')');
+                logService.sendLog('info', '[GET Request] getClub: Lista de Club (AuthProvider.js) < (' + page + ')');
             })
             .catch(error => {
-                logService.sendLog('error', 'Error: [GET Request] getClub: Lista de Club (' + page + '): ' + error);
+                logService.sendLog('error', 'Error: [GET Request] getClub: Lista de Club (AuthProvider.js) < (' + page + '): ' + error);
             });
     }
 
     const changePassword = (e, password) => {
-        e.preventDefault()
+        e.preventDefault();
         fetch(`http://localhost:5050/api/Usuarios/${user._id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -114,11 +158,11 @@ function AuthProvider({ children }) {
             .then(data => {
                 if (data.errors) {
                     data.errors.forEach(error => {
-                        logService.sendLog('warn', 'changePassword (AuthProvider.js) Error validation: ' + error.msg);
+                        logService.sendLog('warn', 'Validation Error: [PUT Request] changePassword (AuthProvider.js): ' + error.msg);
                         setError(error.msg);
                     });
                 } else {
-                    logService.sendLog('info', 'changePassword (AuthProvider.js) ' + data.message);
+                    logService.sendLog('info', '[PUT Request] changePassword: ' + data.message + ' (AuthProvider.js)');
                     setError(null); // Sin errores
                     setSuccess(true);
                 }
@@ -126,7 +170,7 @@ function AuthProvider({ children }) {
             .catch(error => console.log(error))
     }
 
-    const comprobarPassword = (e, password, newPassword) => {
+    const compareAndChangePassword = (e, password, newPassword) => {
         e.preventDefault();
         try {
             fetch('http://localhost:5050/comparePassword', {
@@ -143,16 +187,16 @@ function AuthProvider({ children }) {
                 .then(response => response.json())
                 .then(data => {
                     if (data === "ERROR") {
-                        logService.sendLog('warn', 'comprobarPassword (AuthProvider.js) La contraseña no coincide con tu contraseña');
+                        logService.sendLog('warn', 'Validation Error: [POST Request] compareAndChangePassword: Las contraseñas no coinciden (AuthProvider.js)');
                         setError('La contraseña no coincide con tu contraseña');
                     } else {
                         // SUCCESS
-                        logService.sendLog('info', 'comprobarPassword (AuthProvider.js) Las contraseñas coinciden');
+                        logService.sendLog('info', '[POST Request] compareAndChangePassword: Las contraseñas coinciden (AuthProvider.js)');
                         changePassword(e, newPassword);
                     }
                 })
         } catch (error) {
-            logService.sendLog('error', 'comprobarPassword (AuthProvider.js) A problem occurred with your fetch operation: ', error);
+            logService.sendLog('error', 'Error: [POST Request] compareAndChangePassword: A problem occurred with your fetch operation (AuthProvider.js): ', error);
         }
     }
 
@@ -165,12 +209,10 @@ function AuthProvider({ children }) {
                 .then(response => response.json())
                 .then(data => {
                     setUser(data);
-                    //console.log('[Club fama] GET llamada a API...');
-                    //logService.sendLog('info', '[GET] Llamada a la API: Lista de Club (Header.js)');
+                    logService.sendLog('info', '[GET Request] getUser: Usuario encontrado (AuthProvider.js)');
                 })
                 .catch(error => {
-                    //console.log('A problem occurred with your fetch operation: ', error);
-                    //logService.sendLog('error', '[GET] Llamada a la API: Actualizar Club (Header.js): ' + error);
+                    logService.sendLog('error', 'Error: [GET Request] getUser: Usuario encontrado (AuthProvider.js): ' + error);
                 });
         }
     }
@@ -185,9 +227,9 @@ function AuthProvider({ children }) {
                 headers: { "Content-type": "application/json; charset=UTF-8", },
             }).then(response => {
                 response.json();
-                logService.sendLog('info', 'updateUser (AuthProvider.js) Usuario actualizado');
+                logService.sendLog('info', '[PUT Request] updateUser: Usuario actualizado (AuthProvider.js)');
             }).catch(error => {
-                logService.sendLog('error', 'updateUser (AuthProvider.js) Error al actualizar usuario: ' + error);
+                logService.sendLog('error', 'Error: [PUT Request] updateUser: Usuario actualizado (AuthProvider.js): ' + error);
             })
             getUser(user);
         }
@@ -195,22 +237,12 @@ function AuthProvider({ children }) {
 
     // se envian las varibles al contextValue para poder consumirlas
     const contextValue = {
-        user,
-        isLogged,
+        user, getUser, createUser, updateUser, changePassword, compareAndChangePassword,
+        login, isLogged, logout, loginAdminTest,
         hasRole,
-        login,
-        logout,
-        error,
-        success,
-        setError,
-        setSuccess,
-        loginAdminTest,
-        changePassword,
-        comprobarPassword,
-        updateUser,
-        getUser,
-        getClub,
-        club
+        error, setError,
+        success, setSuccess,
+        club, getClub
     };
 
     return (

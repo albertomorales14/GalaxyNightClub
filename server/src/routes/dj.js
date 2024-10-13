@@ -1,14 +1,15 @@
-const {Router} = require('express')
-const router = Router()
+const { Router } = require('express');
+const router = Router();
 
-const { getDJs, updateDJ } = require('../controller/djController')
+const { getDJs, getDJsByClub, updateDJ } = require('../controller/djController');
 
 router.route('/')
+    .get(getDJs) // Obtener todos los DJs
 
-    .get(getDJs)
+router.route('/Club/:id')
+    .get(getDJsByClub);
 
 router.route('/:id')
-
-    .put(updateDJ)
+    .put(updateDJ); // Actualizar un DJ
 
 module.exports = router;

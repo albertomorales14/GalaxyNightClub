@@ -1,46 +1,27 @@
-import {Routes as Switch, Route} from 'react-router-dom';
-import HomePage from '../views/homePage/HomePage';
-import LoginPage from '../views/LoginPage';
-import NotFoundPage from '../views/NotFoundPage';
+import React, { useEffect } from 'react';
+import { Routes as Switch, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import React, { Fragment } from 'react';
-import routes from '../Utils/routes';
+import LoginPage from '../views/LoginPage';
+import HomePage from '../views/homePage/HomePage';
 import GestionClubPage from '../views/gestionClub/GestionClubPage';
 import DJResidentePage from '../views/djfolder/DJResidentePage';
 import GestionAlmacenPage from '../views/gestionAlmacen/GestionAlmacenPage';
 import MejorasNegocioPage from '../views/mejorasNegocio/MejorasNegocioPage';
 import VentaProductosPage from '../views/ventaProductos/VentaProductosPage';
-import CambiarPassword from '../components/layouts/settings/CambiarPassword';
-import { useEffect, useState } from 'react';
+import NotFoundPage from '../views/NotFoundPage';
+import routes from '../Utils/routes';
+import useAuth from '../auth/useAuth';
 
-export default function AppRouter() {
+function AppRouter() {
 
-    // Modal
-    const [isOpenModal, setIsOpenModal] = useState(true);
-    const openModal = () => setIsOpenModal(true);
-    const closeModal = () => setIsOpenModal(false);
+    const { club, getClub } = useAuth();
 
-    const [lista, setLista] = useState([]);
-
-    // Backend
     useEffect(() => {
-        const getClub = async () => {
-            fetch('http://localhost:5050/api/Club')
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the fetched data here
-                    setLista(data)
-                })
-                .catch(error => {
-                    // Handle any errors
-                    alert('A problem occurred with your fetch operation: ', error)
-                });
-        }
-        getClub(); //llamada
-    }, [lista]) // dependencia variable de estado lista
+        getClub('AppRouter.js');
+    }, []);
 
-    var fama = lista[0]?.fama;
+    var fama = club?.fama;
 
     return (
         <Switch>
@@ -69,7 +50,9 @@ export default function AppRouter() {
                 <Route exact path={routes.mejorasNegocio} element={<MejorasNegocioPage />} />
             </Route>
 
-            <Route path="*" element={<NotFoundPage />} />        
+            <Route path="*" element={<NotFoundPage />} />
         </Switch>
     )
 }
+
+export default AppRouter;

@@ -6,15 +6,15 @@ const logFormat = printf(({ level, message, timestamp }) => {
 });
 
 const logger = createLogger({
-    level: 'info',  // Puedes ajustar el nivel de logging (info, warn, error, etc.)
+    level: 'info',  // Se puede ajustar el nivel de logging (info, warn, error, etc.)
     format: combine(
         timestamp(),
         logFormat
     ),
     transports: [
         new transports.Console(), // Log en la consola
-        new transports.File({ filename: 'logs/error.log', level: 'error' }), // Log de errores
-        new transports.File({ filename: 'logs/combined.log' }) // Log general
+        new transports.File({ filename: 'logs/error.log', level: 'error' }), // Crear Log de errores
+        new transports.File({ filename: 'logs/combined.log' }) // Crear Log general
     ]
 });
 

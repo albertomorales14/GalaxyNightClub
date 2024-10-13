@@ -27,12 +27,10 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
                     headers: { "Content-type": "application/json; charset=UTF-8", },
                 }).then(response => {
                     response.json();
-                    console.log('[Actualizar Producto] PUT llamada a API...');
-                    logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Producto \t(VenderTodosModal.js)');
-                    logService.sendLog('info', 'Producto vendido: ' + item.name + ' \t(VenderTodosModal.js)');
+                    logService.sendLog('info', '[PUT Request] Venta de Todos los Productos: Actualizar Producto (VenderTodosModal.js)');
+                    logService.sendLog('info', '\t> Producto vendido: ' + item.name + ' (VenderTodosModal.js)');
                 }).catch(error => {
-                    console.log('A problem occurred with your fetch operation: ' + error);
-                    logService.sendLog('error', '[PUT] Llamada a la API (Productos) \t(VenderTodosModal.js): ' + error);
+                    logService.sendLog('error', 'Error: [PUT Request] Venta de Todos los Productos: Actualizar Producto (VenderTodosModal.js): ' + error);
                 })
             }
         }
@@ -49,13 +47,11 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
             headers: { "Content-type": "application/json; charset=UTF-8", },
         }).then(response => {
             response.json();
-            console.log('[Actualizar Club] PUT llamada a API...');
-            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club \t(VenderTodosModal.js)');
-            logService.sendLog('info', 'Ventas realizadas: ' + num_ventas + ' \t(VenderTodosModal.js)');
-            logService.sendLog('info', 'Productos vendidos: ' + num_productos + ' \t(VenderTodosModal.js)');
+            logService.sendLog('info', '[PUT Request] Actualizar ganancias y ventas del Club (VenderTodosModal.js)');
+            logService.sendLog('info', '\t> Ventas realizadas: ' + num_ventas + ' (VenderTodosModal.js)');
+            logService.sendLog('info', '\t> Productos vendidos: ' + num_productos + ' (VenderTodosModal.js)');
         }).catch(error => {
-            console.log('A problem occurred with your fetch operation: ' + error);
-            logService.sendLog('error', '[PUT] Llamada a la API (Club) \t(VenderTodosModal.js): ' + error);
+            logService.sendLog('error', 'Error: [PUT Request] Actualizar ganancias y ventas del Club (VenderTodosModal.js): ' + error);
         })
     }
 

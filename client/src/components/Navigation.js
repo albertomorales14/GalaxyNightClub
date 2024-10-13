@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import routes from '../Utils/routes';
 import Home from './Home';
 
-function Navigation(props) {
+function Navigation() {
 
     return (
         <div className='aside'>
-            <Home propietario={props.propietario} ubicacion={props.ubicacion} />
+            <Home />
             <div className='aside-menu'>
                 <Button className="p-2" as={NavLink} to={routes.home}>
                     Inicio

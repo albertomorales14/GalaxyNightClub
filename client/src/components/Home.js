@@ -1,19 +1,28 @@
-function Home(props) {
-    
+import { useEffect } from 'react';
+import useAuth from '../auth/useAuth';
+
+function Home() {
+
+    const { club, getClub } = useAuth();
+
+    useEffect(() => {
+        getClub('Home.js');
+    }, []);
+
     return (
         <div className="homeLayout">
             <div id="slider">
                 <figure>
-                    <img className="homeImg" src="/img/home/galaxy-logo.png" alt="logo-galaxy"/>
-                    <img className="homeImg" src="/img/home/del-perro-club.jpg" alt="del-perro-club"/>
+                    <img className="homeImg" src="/img/home/galaxy-logo.png" alt="logo-galaxy" />
+                    <img className="homeImg" src="/img/home/del-perro-club.jpg" alt="del-perro-club" />
                 </figure>
             </div>
             <div className="homeInfo">
                 <p className="homeInfo-color-primary">PROPIETARIO</p>
-                <p className="homeInfo-color-secondary">{props.propietario}</p>
+                <p className="homeInfo-color-secondary">{club.propietario}</p>
                 <br />
                 <p className="homeInfo-color-primary">UBICACIÓN</p>
-                <p className="homeInfo-color-secondary">{props.ubicacion}</p>
+                <p className="homeInfo-color-secondary">{club.ubicacion}</p>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ import { Button, Modal, Alert, Form } from 'react-bootstrap';
 
 export default function CambiarPassword({ isOpen, close }) {
 
-    const { user, changePassword, comprobarPassword, success, setSuccess, error, setError } = useAuth();
+    const { compareAndChangePassword, success, setSuccess, error, setError } = useAuth();
 
     // Error Alert
     const [closeAlert, setCloseAlert] = useState(true);
@@ -70,7 +70,7 @@ export default function CambiarPassword({ isOpen, close }) {
             setError('Las contraseñas son obligatorias');
             setSuccess(false);
         } else {
-            comprobarPassword(e, oldPassword, password);
+            compareAndChangePassword(e, oldPassword, password);
         }
     }
 

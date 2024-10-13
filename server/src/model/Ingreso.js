@@ -1,12 +1,20 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const ingresoSchema = new Schema({
     dia: String,
     value: Number,
-    avg_temp: Number
+    club: {
+        type: Schema.Types.ObjectId,
+        ref: 'Club',
+        required: [true, 'El ingreso debe estar asignado a un club']
+    }
 },
-{
-    timestamps: true
-})
+    {
+        collection: 'ingresos'
+    },
+    {
+        timestamps: true
+    }
+);
 
-module.exports = model('Ingreso', ingresoSchema)
+module.exports = model('Ingreso', ingresoSchema);

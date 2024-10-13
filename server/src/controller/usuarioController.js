@@ -1,11 +1,10 @@
-const usuarioController = {}
-const { validationResult } = require('express-validator'); // Importar validationResult
+const usuarioController = {};
 
 const argon2 = require('argon2'); // Argon2: hash password
+const { validationResult } = require('express-validator'); // Importar validationResult
 const jwt = require('jsonwebtoken'); // JWT JSON Web Token
 const logger = require('../utils/logger'); // winston log
-
-const Usuario = require('../model/Usuario')
+const Usuario = require('../model/Usuario');
 
 // Middleware para validar los errores de validación
 const validateFields = (req, res, next) => {
@@ -16,22 +15,34 @@ const validateFields = (req, res, next) => {
     next();
 };
 
+// Obtener TODOS los usuarios
 usuarioController.getUsuarios = async (request, response) => {
-    const usuarios = await Usuario.find()
-    response.json(usuarios)
+    try {
+        const usuarios = await Usuario.find();
+        logger.info('\t> getUsuarios: Todos los usuarios obtenidos (usuariosController.js)');
+        response.json(usuarios);
+    } catch (error) {
+        logger.error('\t> Error: getUsuarios: obtener todos los usuarios (usuariosController.js): ' + error);
+        response.status(500).json({ message: 'Error al obtener todos los usuarios' });
+    }
 }
 
 usuarioController.getUsuario = [
     validateFields, // Agregar la validación de campos
     async (request, response) => {
-        const usuario = await Usuario.findById(request.params.id)
-        if (!usuario) {
-            logger.warn('getUsuario (usuarioController.js) Usuario no encontrado')
-            return response.status(404).json({ message: 'Usuario no encontrado' });
+        try {
+            const usuario = await Usuario.findById(request.params.id);
+            if (!usuario) {
+                logger.warn('\t> getUsuario: Usuario no encontrado (usuarioController.js)');
+                return response.status(404).json({ message: 'Usuario no encontrado' });
+            }
+            logger.info('\t> getUsuario: Usuario encontrado (usuarioController.js)');
+            logger.info(JSON.stringify(usuario));
+            response.json(usuario);
+        } catch (error) {
+            logger.error('\t> Error: getUsuario: obtener usuario (usuariosController.js): ' + error);
+            response.status(500).json({ message: 'Error al obtener el usuario' });
         }
-        logger.info('getUsuario (usuarioController.js) Usuario encontrado: ')
-        logger.info(JSON.stringify(usuario))
-        response.json(usuario);
     }
 ];
 
@@ -42,7 +53,7 @@ const hashPassword = async (password) => {
         return hash;
     } catch (error) {
         logger.error('Error al hashear password: ' + error);
-        throw new Error('Error al hashear password: ' + error)
+        throw new Error('Error al hashear password: ' + error);
     }
 };
 
@@ -52,8 +63,8 @@ const comparePassword = async (password, hash) => {
         const isMatch = await argon2.verify(hash, password);
         return isMatch;
     } catch (error) {
-        logger.error('Error al verificar password: ' + error)
-        throw new Error('Error al verificar password: ' + error)
+        logger.error('Error al verificar password: ' + error);
+        throw new Error('Error al verificar password: ' + error);
     }
 };
 
@@ -79,13 +90,16 @@ const updateUser = async (request, response) => {
     }
 };
 
+// Actualizar contraseña: validar + actualizar usuario
 usuarioController.updatePassword = [
     validateFields,
     updateUser
 ]
 
+// Actualizar imagen de perfil: actualizar usuario
 usuarioController.updateImagen = updateUser;
 
+// Validar contraseña
 usuarioController.comparePasswordChangePage = async (request, response) => {
     try {
         let body = request.body;
@@ -95,15 +109,15 @@ usuarioController.comparePasswordChangePage = async (request, response) => {
                     comparePassword(body.password, user.password)
                         .then(isPasswordMatch => {
                             if (isPasswordMatch) {
-                                logger.info('route comparePassword (usuarioController.js) Password Match!');
+                                logger.info('\t> comparePasswordChangePage: Password Match! (usuarioController.js)');
                                 response.json("SUCCESS");
                             } else {
-                                logger.warn("route comparePassword (usuarioController.js) Password Doesn´t Match!");
+                                logger.warn("\t> comparePasswordChangePage: Password Doesn´t Match! (usuarioController.js)");
                                 response.json("ERROR");
                             }
                         });
                 } else {
-                    logger.warn("No existe el usuario [LOGIN] [usuarioController.js]");
+                    logger.warn("\t> Login: No existe el usuario (usuarioController.js)");
                     response.json("No existe este usuario");
                 }
             });
@@ -113,6 +127,7 @@ usuarioController.comparePasswordChangePage = async (request, response) => {
     }
 }
 
+// Iniciar sesion
 usuarioController.login = [
     validateFields, // Agregar la validación de campos
     async (request, response) => {
@@ -135,16 +150,16 @@ usuarioController.login = [
                                         sameSite: 'Strict',
                                         maxAge: 3600000, // 1 hora
                                     });
-                                    logger.info('Login: Acesso correcto (usuarioController.js)');
-                                    logger.info('Usuario conectado: ' + JSON.stringify(user.username) + ' (usuarioController.js)');
+                                    logger.info('\t> Login: Acesso correcto (usuarioController.js)');
+                                    logger.info('\t> Usuario conectado: ' + JSON.stringify(user.username) + ' (usuarioController.js)');
                                     response.json(user);
                                 } else {
-                                    logger.warn("Login: Contraseña incorrecta (usuarioController.js)");
+                                    logger.warn("\t> Login: Contraseña incorrecta (usuarioController.js)");
                                     response.json("Contraseña incorrecta");
                                 }
                             });
                     } else {
-                        logger.warn('Login: No existe el usuario (usuarioController.js)');
+                        logger.warn('\t> Login: No existe el usuario (usuarioController.js)');
                         response.json('No existe este usuario');
                     }
                 });
@@ -155,16 +170,7 @@ usuarioController.login = [
     }
 ];
 
-/*
-
-// Cerrar sesión
-router.post('/logout', (req, res) => {
-    res.clearCookie('token'); // Limpiar la cookie del token
-    res.json({ message: 'Logged out successfully' });
-});
-
-*/
-
+// Cerrar sesion
 usuarioController.logout = (request, response) => {
     try {
         response.cookie('token', '', {
@@ -174,28 +180,12 @@ usuarioController.logout = (request, response) => {
             secure: process.env.NODE_ENV === 'production',
         });
 
-        logger.info("Logout (usuarioController.js)");
+        logger.info("\t> Logout (usuarioController.js)");
         response.json({ message: 'Logout exitoso' });
     } catch (error) {
-        logger.error("Error de logout (usuarioController.js): " + error);
-        throw new Error('Error de logout (usuarioController.js): ' + error)
+        logger.error("\t> Error de logout (usuarioController.js): " + error);
+        throw new Error('Error de logout (usuarioController.js): ' + error);
     }
 }
-
-/*
-// Registro
-router.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
-
-    try {
-        const newUser = new User({ username, email, password });
-        await newUser.save();
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-*/
 
 module.exports = usuarioController;

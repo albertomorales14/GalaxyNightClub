@@ -151,3 +151,45 @@ input[type=password]:hover {
     }
 
 }
+
+
+
+
+
+/* Register Page */
+.register-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-sizing: content-box;
+}
+
+.register-container>form>div>svg {
+    position: absolute;
+    bottom: 30%;
+    left: 2%;
+}
+
+.register-container>form>div>svg.password-eye {
+    right: 0%;
+    left: 94%;
+}
+
+.register-container>form>div>svg.password-eye:hover {
+    cursor: var(--gtav-cursor), auto;
+}
+
+.register-container>form>div {
+    position: relative;
+}
+
+.register-container>form {
+    padding: 3%;
+}
+
+.register-container>form>div>button {
+    width: -webkit-fill-available;
+    text-align: center !important
+}
+
+.register-btn {
+    margin: 0 !important;
+}

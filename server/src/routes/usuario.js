@@ -1,8 +1,19 @@
 const { Router } = require('express');
-const { body, param } = require('express-validator'); // Importar los métodos para validar
 const router = Router();
 
-const { getUsuarios, getUsuario, updatePassword, updateImagen, login, logout, comparePasswordChangePage } = require('../controller/usuarioController');
+const { body, param } = require('express-validator'); // Importar los métodos para validar
+
+const {
+    getUsuarios,
+    getUsuario,
+    updatePassword,
+    updateImagen,
+    login,
+    logout,
+    comparePasswordChangePage
+} = require('../controller/usuarioController');
+
+const { generarSetUpClub } = require('../controller/registerController');
 
 router.route('/')
     .get(getUsuarios);
@@ -32,5 +43,12 @@ router.route('/logout')
 
 router.route('/comparePassword')
     .post(comparePasswordChangePage);
+
+router.route('/preparacionDelClub')
+    .post(
+        body('username').notEmpty().withMessage('El nombre de usuario es obligatorio'), // Validar el campo 'username'
+        body('password').isLength({ min: 3 }).withMessage('La contraseña debe tener al menos 3 caracteres'), // Validar el campo 'password'
+        generarSetUpClub
+    );
 
 module.exports = router;

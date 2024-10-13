@@ -9,7 +9,7 @@ import logService from '../../Utils/logService';
 
 function HomePage({ fama }) {
 
-    const { club, getClub } = useAuth();
+    const { user, club, getClub } = useAuth();
     const [listaExistencias, setListaExistencias] = useState([]);
 
     // Backend
@@ -18,9 +18,7 @@ function HomePage({ fama }) {
         getClub('HomePage.js'); //llamada a los datos del club
 
         const getProductos = async () => {
-            await fetch('http://localhost:5050/api/Productos', {
-                method: 'GET',
-            })
+            fetch(`http://localhost:5050/api/Productos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setListaExistencias(data);
@@ -39,8 +37,8 @@ function HomePage({ fama }) {
     var ventasAlmacen = club?.ventas_almacen;
     var gananciasAlmacen = club?.ganancias_almacen;
     var gananciasTotales = gananciasClub + gananciasAlmacen;
-    var existenciasTotales = listaExistencias.reduce((a, b) => a + (b['existencias'] || 0), 0);
-    var existenciasMax = listaExistencias.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0);
+    var existenciasTotales = listaExistencias?.reduce((a, b) => a + (b['existencias'] || 0), 0);
+    var existenciasMax = listaExistencias?.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0);
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
@@ -49,7 +47,7 @@ function HomePage({ fama }) {
             <Container>
                 <Row>
                     <Col xs={9} className='home-chart-col'>
-                        <HomeChart />
+                        <HomeChart lista={listaExistencias} />
                     </Col>
                     <Col xs={3} style={{ textAlign: 'center' }}>
                         <div className="home-row-chart">

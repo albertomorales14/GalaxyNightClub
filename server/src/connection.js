@@ -1,11 +1,8 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const logger = require('./utils/logger'); // winston log
 
 // Cadena de conexion
-const URI = process.env.MONGODB_URI
-            ? process.env.MONGODB_URI
-            : 'mongodb://localhost/dbtest';
-
+const URI = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/dbtest';
 
 mongoose.connect(URI);
 

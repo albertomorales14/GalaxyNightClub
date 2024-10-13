@@ -3,7 +3,7 @@ import formatCurrency from '../../Utils/formatCurrency';
 import useAuth from '../../auth/useAuth';
 import logService from '../../Utils/logService';
 
-export default function VentaProductoModal({ isOpen, close, producto, club }) {
+function VentaProductoModal({ isOpen, close, producto, club }) {
 
     const { user } = useAuth();
     var venta = producto?.existencias / producto?.capacidadMax * producto?.totalValue
@@ -23,12 +23,10 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
             headers: { "Content-type": "application/json; charset=UTF-8", },
         }).then(response => {
             response.json();
-            console.log('[Actualizar Producto] PUT llamada a API...');
-            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Producto \t(VentaProductoModal.js)');
-            logService.sendLog('info', 'Productos vendido: ' + producto.name + ' \t(VentaProductoModal.js)');
+            logService.sendLog('info', '[PUT Request] Venta de Producto: Actualizar Producto (VentaProductoModal.js)');
+            logService.sendLog('info', '\t> Producto vendido: ' + producto.name + ' (VentaProductoModal.js)');
         }).catch(error => {
-            console.log('A problem occurred with your fetch operation: ' + error);
-            logService.sendLog('error', '[PUT] Llamada a la API (Producto) \t(VentaProductoModal.js): ' + error);
+            logService.sendLog('error', 'Error [PUT Request] Venta de Producto: Actualizar Producto (VentaProductoModal.js): ' + error);
         })
 
 
@@ -43,11 +41,9 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
             headers: { "Content-type": "application/json; charset=UTF-8", },
         }).then(response => {
             response.json();
-            console.log('[Actualizar Club] PUT llamada a API...');
-            logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club \t(VentaProductoModal.js)');
+            logService.sendLog('info', '[PUT Request] Actualizar ganancias y ventas del Club (VentaProductoModal.js)');
         }).catch(error => {
-            console.log('A problem occurred with your fetch operation: ' + error);
-            logService.sendLog('error', '[PUT] Llamada a la API (Club) \t(VentaProductoModal.js): ' + error);
+            logService.sendLog('error', 'Error: [PUT Request] Actualizar ganancias y ventas del Club (VentaProductoModal.js): ' + error);
         })
     }
 
@@ -75,3 +71,5 @@ export default function VentaProductoModal({ isOpen, close, producto, club }) {
         </Modal>
     )
 }
+
+export default VentaProductoModal;

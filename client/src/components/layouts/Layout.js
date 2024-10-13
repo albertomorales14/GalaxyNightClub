@@ -4,32 +4,14 @@ import Settings from './settings/Settings';
 import Navigation from '../Navigation';
 import LoginPage from '../../views/LoginPage';
 import useAuth from '../../auth/useAuth';
-import logService from '../../Utils/logService';
 
 function Layout({ children }) {
 
-    const [club, setClub] = useState([]);
     const { isLogged } = useAuth();
     const [isVisible, setIsVisible] = useState(false);
     const clickSettingsButton = () => setIsVisible(false);
     const layoutSettingsRef = useRef(null); // Referencia para el layout Settings
     const layoutHeaderRef = useRef(null); // Referencia para el layout Header
-
-    // Backend
-    useEffect(() => {
-        const getClub = async () => {
-            fetch('http://localhost:5050/api/Club')
-                .then(response => response.json())
-                .then(data => {
-                    setClub(data);
-                    logService.sendLog('info', '[GET Request] getClub: Lista de Club (Layout.js)');
-                })
-                .catch(error => {
-                    logService.sendLog('error', 'Error: [GET Request] getClub: Lista de Club (Layout.js): ' + error);
-                });
-        }
-        getClub();
-    }, []) // sin dependencia variable de estado lista
 
     // useEffect para manejar clics fuera del layout
     useEffect(() => {
@@ -59,8 +41,6 @@ function Layout({ children }) {
         };
     }, [isVisible]);
 
-    var propietario = club[0]?.propietario;
-    var ubicacion = club[0]?.ubicacion;
 
     const showSettings = () => {
         setIsVisible(!isVisible);
@@ -86,7 +66,7 @@ function Layout({ children }) {
                 <div className='bodyApp'>
                     <div style={{ display: 'flex' }}>
                         <div style={{ flex: 3 }}>
-                            <Navigation propietario={propietario} ubicacion={ubicacion} />
+                            <Navigation />
                         </div>
                         <div style={{ flex: 9, flexDirection: 'column', display: 'flex' }}>
                             {children}

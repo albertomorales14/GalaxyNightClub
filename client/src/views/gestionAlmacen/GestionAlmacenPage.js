@@ -19,20 +19,22 @@ function GestionAlmacenPage() {
     const handleClick = (list) => {
         if (list?.estado !== 'BLOQUEADO' && list?.estado !== 'NO CONTRATADO') {
             setFocus(list?.name)
-        } 
+        }
     };
 
     useEffect(() => {
         getClub();
-        fetch('http://localhost:5050/api/Tecnicos', {
-            method: 'GET',
-        }).then((response) => { return response.json() })
+        fetch(`http://localhost:5050/api/Tecnicos/Club/${club?._id}`)
+            .then(response => response.json())
             .then(data => {
                 setTecnicos(data);
                 setLoading(false);
                 setActualizarLista(false);
-                logService.sendLog('info', '[GET] Llamada a la API: Lista de técnicos (GestionAlmacenPage.js)');
+                logService.sendLog('info', '[GET Request] getTecnicos: Lista de Tecnicos (GestionAlmacenPage.js)');
             })
+            .catch(error => {
+                logService.sendLog('error', 'Error: [GET Request] getTecnicos: Lista de Tecnicos (GestionAlmacenPage.js): ' + error);
+            });
     }, [actualizarLista]) // dependencia variable de estado lista
 
     return (
@@ -45,7 +47,7 @@ function GestionAlmacenPage() {
                         </h1>
                     </div>
                 </Row>
-                {loading ? ( <TecnicosLoaders/> ) : ( <Tecnicos tecnicos={tecnicos} focus={focus} handleClick={handleClick} actualizar={setActualizarLista} /> )}
+                {loading ? (<TecnicosLoaders />) : (<Tecnicos tecnicos={tecnicos} focus={focus} handleClick={handleClick} actualizar={setActualizarLista} />)}
                 <Row style={{ marginTop: '0.5rem' }}>
                     <p style={{ marginBottom: '0.5rem', fontSize: '0.95rem' }}>
                         Selecciona a técnicos del almacén y asígnalos a un tipo de producto disponible
@@ -55,7 +57,7 @@ function GestionAlmacenPage() {
                     </p>
                 </Row>
                 <Row>
-                    <ProductosAlmacen tecnicos={tecnicos} focus={focus}/>
+                    <ProductosAlmacen tecnicos={tecnicos} focus={focus} />
                 </Row>
             </Container>
             <hr />

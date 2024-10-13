@@ -1,9 +1,9 @@
-.modal-backdrop.show {
-    background-color: blueviolet !important;
-}
-  
 .modal-backdrop {
     background-color: blueviolet !important;
+}
+
+.register-modal {
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
 .modal-header, .modal-title, .modal-body, .modal-footer {

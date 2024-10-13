@@ -20,44 +20,25 @@ function VentaProductosPage() {
     const [lista, setLista] = useState([]);
     const [actualizarLista, setActualizarLista] = useState(false);
     const reloadLista = () => setActualizarLista(true);
-    const { user } = useAuth();
-    const [club, setClub] = useState([]);
+    const { club, getClub } = useAuth();
 
     useEffect(() => {
         // Obtener todos los productos
         const getProductos = async () => {
-            fetch('http://localhost:5050/api/Productos', {
-                method: 'GET',
-            })
+            fetch(`http://localhost:5050/api/Productos/Club/${club?._id}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Handle the fetched data here
                     setLista(data);
                     setActualizarLista(false);
-                    console.log('[Lista de Productos] GET llamada a API...');
-                    logService.sendLog('info', '[GET] Llamada a la API: Lista de Productos \t(VentaProductosPage.js)');
+                    logService.sendLog('info', '[GET Request] getProductos: Lista de Productos (VentaProductosPage.js)');
                 })
                 .catch(error => {
-                    // Handle any errors
-                    console.log('A problem occurred with your fetch operation: ', error);
-                    logService.sendLog('error', '[GET] Llamada a la API (Productos) \t(VentaProductosPage.js): ' + error);
+                    logService.sendLog('error', 'Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): ' + error);
                 });
         }
         getProductos(); // llamada lista de productos
         // Datos del club
-        fetch(`http://localhost:5050/api/Club/${user.club}`)
-            .then(response => response.json())
-            .then(data => {
-                // Handle the fetched data here
-                setClub(data);
-                console.log('[Lista de Club] GET llamada a API...');
-                logService.sendLog('info', '[GET] Llamada a la API: Lista de Club \t(VentaProductosPage.js)');
-            })
-            .catch(error => {
-                // Handle any errors
-                console.log('A problem occurred with your fetch operation: ', error);
-                logService.sendLog('error', '[GET] Llamada a la API (Club) \t(VentaProductosPage.js): ' + error);
-            });
+        getClub('VentaProductosPage.js');
     }, [actualizarLista]) // dependencia variable de estado lista
 
     let totalValue = lista.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0)

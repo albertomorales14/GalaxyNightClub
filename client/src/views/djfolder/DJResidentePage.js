@@ -3,18 +3,20 @@ import { Container, Row, Col } from 'react-bootstrap';
 import FameBar from "../../components/layouts/FameBar";
 import PlayAudio from "./PlayAudio";
 import DJModal from "./DJModal";
+import useAuth from '../../auth/useAuth';
 import logService from '../../Utils/logService';
 import names from "../../Utils/namesDJ";
 import audios from '../../Utils/audios'; // Audios DJ
 
 function DJResidentePage({ fama }) {
 
+    const { user } = useAuth();
     const [lista, setLista] = useState([]); // lista de DJs
     const [actualizarLista, setActualizarLista] = useState(false);
 
     useEffect(() => {
         const getDJs = async () => {
-            fetch('http://localhost:5050/api/DJs')
+            fetch(`http://localhost:5050/api/DJs/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);

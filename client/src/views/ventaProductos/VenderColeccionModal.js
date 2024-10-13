@@ -40,12 +40,11 @@ function VenderColeccionModal(props) {
             })
                 .then(response => {
                     response.json();
-                    console.log('[Actualizar Producto] PUT llamada a API...');
-                    logService.sendLog('info', '[PUT] Llamada a la API: Venta de Producto (VenderColeccionModal.js)');
+                    logService.sendLog('info', '[PUT Request] Venta de Producto: Actualizar Producto (VenderColeccionModal.js)');
+                    logService.sendLog('info', '\t> Se han vendido ' + getExistencias(numero) + ' existencias de ' + props.productos[numero].name + ' (VenderColeccionModal.js)');
                 })
                 .catch(error => {
-                    console.log('A problem occurred with your fetch operation: ' + error);
-                    logService.sendLog('error', '[PUT] Llamada a la API: Venta de Producto (VenderColeccionModal.js): ' + error);
+                    logService.sendLog('error', 'Error: [PUT Request] Venta de Producto: Actualizar Producto (VenderColeccionModal.js): ' + error);
                 })
         ))
 
@@ -61,12 +60,11 @@ function VenderColeccionModal(props) {
         })
             .then(response => {
                 response.json();
-                console.log('[Actualizar Club] PUT llamada a API...');
-                logService.sendLog('info', '[PUT] Llamada a la API: Actualizar Club (VenderColeccionModal.js)');
+                logService.sendLog('info', '[PUT Request] Actualizar ganancias y ventas del Club (VenderColeccionModal.js)');
+                logService.sendLog('info', '\t> Se ha vendido una colección de productos (VenderColeccionModal.js)');
             })
             .catch(error => {
-                console.log('A problem occurred with your fetch operation: ' + error);
-                logService.sendLog('error', '[PUT] Llamada a la API: Actualizar Club (VenderColeccionModal.js): ' + error);
+                logService.sendLog('error', 'Error: [PUT Request] Actualizar ganancias y ventas del Club (VenderColeccionModal.js): ' + error);
             })
     }
 

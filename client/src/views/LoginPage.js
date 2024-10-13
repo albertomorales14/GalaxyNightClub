@@ -6,11 +6,12 @@ import { FaUser } from "react-icons/fa"; // user icon
 import { FaLock } from "react-icons/fa6"; // password icon
 import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
+import RegisterPage from "./RegisterPage";
 
 function LoginPage() {
 
     const location = useLocation(); // Hook location
-    const { login, loginAdminTest, error, setError } = useAuth();
+    const { login, error, setError } = useAuth();
 
     // Carga el error de auth cada vez que lo detecte
     useEffect(() => {
@@ -42,6 +43,11 @@ function LoginPage() {
             setPsswdVisible(false);
         }
     }
+
+    // Registro Modal
+    const [isOpenRegisterModal, setIsOpenRegisterModal] = useState(false);
+    const openRegisterModal = () => setIsOpenRegisterModal(true);
+    const closeRegisterModal = () => setIsOpenRegisterModal(false);
 
     return (
         <>
@@ -78,13 +84,14 @@ function LoginPage() {
                             <Button className="login-btn" variant="primary" type="submit">
                                 Iniciar sesión
                             </Button>
-                            <Button id="register-btn" type="submit" onClick={loginAdminTest}>
+                            <Button id="register-btn" onClick={openRegisterModal}>
                                 Crear cuenta
                             </Button>
                         </div>
                     </Form>
                 </div>
             </div>
+            <RegisterPage isOpen={isOpenRegisterModal} close={closeRegisterModal} />
         </>
     )
 }

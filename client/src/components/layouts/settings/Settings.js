@@ -41,7 +41,7 @@ const closeImgPage = () => setIsOpenImgPage(false);
                                 Cambiar imagen de perfil
                             </Button>
 
-                        <Button onClick={() => { clickSettingsButton(); logout() }}>
+                        <Button as={NavLink} to={routes.logout} onClick={() => { clickSettingsButton(); logout() }}>
                             Cerrar sesión
                         </Button>
                     </div>

@@ -3,10 +3,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaRegCircleCheck } from "react-icons/fa6";  // Check Icon
 import MejorasModal from './MejorasModal';
 import formatCurrency from '../../Utils/formatCurrency';
+import useAuth from '../../auth/useAuth';
 import logService from '../../Utils/logService';
 
 function MejorasNegocioPage() {
 
+    const { user } = useAuth();
     const [lista, setLista] = useState([]);
     const [actualizarLista, setActualizarLista] = useState(false);
 
@@ -21,7 +23,7 @@ function MejorasNegocioPage() {
 
     useEffect(() => {
         const getMejoras = async () => {
-            fetch('http://localhost:5050/api/Mejoras')
+            fetch(`http://localhost:5050/api/Mejoras/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);
