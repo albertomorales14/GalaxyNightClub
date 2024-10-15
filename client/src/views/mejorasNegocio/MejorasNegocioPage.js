@@ -41,8 +41,8 @@ function MejorasNegocioPage() {
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
             <Container className='mejoras-grid-container' fluid>
                 {
-                    lista.map((list) => (
-                        <Row key={list.id} onClick={() => { openMejorasModal(); setMejora(list); setActualizarLista(false); }}>
+                    lista.map((list, index) => (
+                        <Row key={index} onClick={() => { openMejorasModal(); setMejora(list); setActualizarLista(false); }}>
                             <Col xs={3} className='col-3-mejoras'>
                                 <div className="mejoras-img-box-content">
                                     <img className="mejoras-img" style={{ width: '100%' }} src={list.imagen} alt={list.name} />

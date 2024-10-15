@@ -12,13 +12,13 @@ function FameModal(props) {
             body: JSON.stringify({
                 fama: fame,
                 trabajos: props.club.trabajos + 1,
-                publico: fame >= 95 ? 'Hasta los topes'
-                       : fame >= 80 ? 'Abarrotado'
-                       : fame >= 70 ? 'Lleno'
+                publico: fame === 100 ? 'Hasta los topes'
+                       : fame >= 75 ? 'Abarrotado'
+                       : fame >= 50 ? 'Lleno'
                        : fame >= 25 ? 'Poca gente' : 'Vacío',
-                ingresos_hoy: fame >= 95 ? 30000
-                            : fame >= 80 ? 25000
-                            : fame >= 70 ? 15000
+                ingresos_hoy: fame === 100 ? 30000
+                            : fame >= 75 ? 25000
+                            : fame >= 50 ? 15000
                             : fame >= 25 ? 10000 : 0
             }),
             headers: { "Content-type": "application/json; charset=UTF-8", },

@@ -13,7 +13,7 @@ const {
     comparePasswordChangePage
 } = require('../controller/usuarioController');
 
-const { generarSetUpClub } = require('../controller/registerController');
+const { generarSetUpClub, deleteUserAndClub } = require('../controller/registerController');
 
 router.route('/')
     .get(getUsuarios);
@@ -50,5 +50,8 @@ router.route('/preparacionDelClub')
         body('password').isLength({ min: 3 }).withMessage('La contraseña debe tener al menos 3 caracteres'), // Validar el campo 'password'
         generarSetUpClub
     );
+
+router.route('/eliminarCuenta')
+    .post(deleteUserAndClub);
 
 module.exports = router;

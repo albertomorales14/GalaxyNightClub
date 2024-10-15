@@ -83,12 +83,12 @@ function Ventas({ lista, club, actualizarLista }) {
                                 </div>
                                 <div className='list-products'>
                                     {grupo.map((numero, idx) => (
-                                        <div style={{ display: 'flex' }}>
+                                        <div key={idx} style={{ display: 'flex' }}>
                                             <div style={{ flex: '2' }}>
                                                 {lista[numero]?.name}
                                             </div>
                                             <div style={{ flex: '1', textAlign: 'right' }}>
-                                                <span key={idx}>
+                                                <span>
                                                     {getExistencias(numero)}/{getCapMax(numero)}
                                                 </span>
                                             </div>

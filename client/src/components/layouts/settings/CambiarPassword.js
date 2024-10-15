@@ -1,12 +1,11 @@
-import useAuth from '../../../auth/useAuth';
 import { useEffect, useState } from 'react';
-import { FaUser } from "react-icons/fa"; // user icon
+import { Button, Modal, Alert, Form } from 'react-bootstrap';
+import useAuth from '../../../auth/useAuth';
 import { FaLock } from "react-icons/fa6"; // password icon
 import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
-import { Button, Modal, Alert, Form } from 'react-bootstrap';
 
-export default function CambiarPassword({ isOpen, close }) {
+function CambiarPassword({ isOpen, close }) {
 
     const { compareAndChangePassword, success, setSuccess, error, setError } = useAuth();
 
@@ -83,7 +82,7 @@ export default function CambiarPassword({ isOpen, close }) {
 
     return (
         <Modal show={isOpen} onHide={() => { close(); cleanForm(); document.getElementById('img-header').click() }} animation={false}>
-            <Modal.Header style={{ display: 'flex !important' }}>
+            <Modal.Header style={{ display: 'flex !important' }} className='change-psswd-header'>
                 <Modal.Title>
                     Cambiar contraseña
                 </Modal.Title>
@@ -92,17 +91,19 @@ export default function CambiarPassword({ isOpen, close }) {
                 <Alert className='custom-alert'>
                     <div className="change-psswd-body">
                         <div className="change-psswd-container">
-                            {error ? (<div className="login-alert" hidden={closeAlert}>
-                                ERROR: {error}
-                                <button className="login-alert-closebtn" onClick={closeErrorAlert}>&times;</button>
-                            </div>) : <></>}
+                            {
+                                error ? (<div className="login-alert" hidden={closeAlert}>
+                                    ERROR: {error}
+                                    <button className="login-alert-closebtn" onClick={closeErrorAlert}>&times;</button>
+                                </div>) : <></>
+                            }
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3">
                                     <FaLock />
                                     <Form.Control id="old-password"
                                         name="oldPassword"
                                         type="password" placeholder="Contraseña actual" maxLength={30}
-                                        onChange={(e) => {setOldPassword(e.target.value) }}
+                                        onChange={(e) => { setOldPassword(e.target.value) }}
                                     />
                                     <BsFillEyeFill hidden={psswdOldVisible} className="password-eye" onClick={toogleOldPasswordIcon} />
                                     <BsFillEyeSlashFill hidden={!psswdOldVisible} className="password-eye" onClick={toogleOldPasswordIcon} />
@@ -121,10 +122,11 @@ export default function CambiarPassword({ isOpen, close }) {
                                     Confirmar
                                 </Button>
                             </Form>
-                        </div></div>
+                        </div>
+                    </div>
                 </Alert>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='change-psswd-footer'>
                 <Button onClick={() => { close(); cleanForm() }} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
@@ -135,3 +137,5 @@ export default function CambiarPassword({ isOpen, close }) {
         </Modal>
     )
 }
+
+export default CambiarPassword;

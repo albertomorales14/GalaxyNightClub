@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from './routers/AppRouter';
 import AuthProvider from './auth/AuthProvider';
 import Layout from './components/layouts/Layout';
+import AppRouter from './routers/AppRouter';
 
 function App() {
     return (
@@ -14,7 +14,7 @@ function App() {
                 </AuthProvider>
             </Router>
         </>
-    );
+    )
 }
 
 export default App;

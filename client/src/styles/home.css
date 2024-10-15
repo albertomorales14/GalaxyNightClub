@@ -11,7 +11,6 @@ hr {
 .sumary-row > .col-3 {
     text-align: end !important;
     padding-right: 1% !important;
-    /*padding-top: 1% !important;*/
 }
 
 .custom-chart-tooltip .ag-chart-tooltip-content {
@@ -23,7 +22,6 @@ hr {
 .ag-chart-tooltip::after {
     border-top-color: rgb(0, 0, 0);
 }
-
 
 /* Big Screen */
 @media screen and (min-width: 1900px) {
@@ -44,12 +42,6 @@ hr {
     .sumary-row {
         padding: 0.25% 0;
     }
-
-   /* .sumary-row > .col-3 {
-        padding: 1%;
-        padding-right: 10% !important;
-        padding-left: 2% !important;
-    }*/
 
     .sumary-row > .col-3 {
         padding-top: 1% !important;

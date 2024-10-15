@@ -4,7 +4,7 @@ import { renderer2 } from "../../Utils/renderChartTooltip";
 
 function IngresosChart({ lista }) {
 
-    const [options, setOptions] = useState({})
+    const [options, setOptions] = useState({});
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {

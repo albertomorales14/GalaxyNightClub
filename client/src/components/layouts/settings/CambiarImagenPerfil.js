@@ -107,7 +107,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
 
     return (
         <Modal show={isOpen} onHide={() => { cleanComponent(); document.getElementById('img-header').click() }} animation={false}>
-            <Modal.Header className='modal-header-img-page'>
+            <Modal.Header className='modal-header-img-page change-img-header'>
                 <Modal.Title>
                     <img id="img-header" className="header-img" src={`http://localhost:5050/uploads/img/${user.imagen}`} style={{ cursor: 'default' }} alt="user-photo" />
                     &nbsp;<span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
@@ -147,7 +147,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
                     </div>
                 </Alert>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='change-img-footer'>
                 <Button onClick={cleanComponent} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>

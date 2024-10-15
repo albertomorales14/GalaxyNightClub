@@ -20,12 +20,12 @@ function VentaProductosPage() {
     const [lista, setLista] = useState([]);
     const [actualizarLista, setActualizarLista] = useState(false);
     const reloadLista = () => setActualizarLista(true);
-    const { club, getClub } = useAuth();
+    const { user, club, getClub } = useAuth();
 
     useEffect(() => {
         // Obtener todos los productos
         const getProductos = async () => {
-            fetch(`http://localhost:5050/api/Productos/Club/${club?._id}`)
+            fetch(`http://localhost:5050/api/Productos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);
@@ -41,7 +41,7 @@ function VentaProductosPage() {
         getClub('VentaProductosPage.js');
     }, [actualizarLista]) // dependencia variable de estado lista
 
-    let totalValue = lista.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0)
+    let totalValue = lista?.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0);
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>

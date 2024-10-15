@@ -6,12 +6,14 @@ import { FaUser } from "react-icons/fa"; // user icon
 import { FaLock } from "react-icons/fa6"; // password icon
 import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
+import { FaLinkedin } from "react-icons/fa6"; // LinkedIn icon
+import { IoLogoGithub } from "react-icons/io"; // GitHub icon
 import RegisterPage from "./RegisterPage";
 
 function LoginPage() {
 
     const location = useLocation(); // Hook location
-    const { login, error, setError } = useAuth();
+    const { login, error, setError, setSuccess } = useAuth();
 
     // Carga el error de auth cada vez que lo detecte
     useEffect(() => {
@@ -46,7 +48,11 @@ function LoginPage() {
 
     // Registro Modal
     const [isOpenRegisterModal, setIsOpenRegisterModal] = useState(false);
-    const openRegisterModal = () => setIsOpenRegisterModal(true);
+    const openRegisterModal = () => {
+        setIsOpenRegisterModal(true);
+        setError(null);
+        setSuccess(false);
+    };
     const closeRegisterModal = () => setIsOpenRegisterModal(false);
 
     return (
@@ -54,12 +60,12 @@ function LoginPage() {
             <div className="login-body">
                 <div className="login-container">
                     <h2 className="text-center">Galaxy NightClub</h2>
-                    <div className="login-alert" hidden={closeAlert}>
+                    {error ? (<div className="login-alert" hidden={closeAlert}>
                         ERROR: {error}
                         <button className="login-alert-closebtn" onClick={close}>&times;</button>
-                    </div>
+                    </div>) : <></>}
                     <Form onSubmit={(e) => login(e, username, password, location.state?.from)}>
-                        
+
                         <Form.Group className="mb-3" controlId="controlId.User">
                             <FaUser />
                             <Form.Control
@@ -74,7 +80,7 @@ function LoginPage() {
                             <Form.Control id="login-password"
                                 name="password"
                                 type="password" placeholder="Contraseña" maxLength={30}
-                                onChange={(e) => setPassword(e.target.value)} 
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <BsFillEyeFill hidden={psswdVisible} className="password-eye" onClick={tooglePasswordIcon} />
                             <BsFillEyeSlashFill hidden={!psswdVisible} className="password-eye" onClick={tooglePasswordIcon} />
@@ -89,6 +95,13 @@ function LoginPage() {
                             </Button>
                         </div>
                     </Form>
+                </div>
+            </div>
+            <div className='login-footer'>
+                <p style={{ textShadow: '2px 2px 1px black' }}>Desarrollado por Alberto Morales</p>
+                <div className='login-icons'>
+                    <a href='https://github.com/albertomorales14' target="_blank"><IoLogoGithub /></a>
+                    <a href='https://www.linkedin.com/in/alberto-morales-serrano-284056238/' target="_blank"><FaLinkedin /></a>
                 </div>
             </div>
             <RegisterPage isOpen={isOpenRegisterModal} close={closeRegisterModal} />

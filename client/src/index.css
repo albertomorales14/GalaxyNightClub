@@ -44,6 +44,10 @@ body {
     /*background-color: rgb(63, 62, 62);*/
 }
 
+.main-common-container {
+    height: var(--full-height);
+}
+
 .container {
     margin: 0 !important;
 }
@@ -81,13 +85,11 @@ code {
 .homeImg {
     width: 100%;
     margin-bottom: 8px;
-    /*margin-right: 8px;*/
 }
 
 .homeInfo {
     background-color: #251032;
     color: white;
-
     font-size: 1.2em;
     padding: 3%;
 }
@@ -108,7 +110,6 @@ code {
 aside {
     position: sticky;
     top: 8px;
-    /*margin: 4px;*/
 }
 
 .aside-menu {
@@ -181,30 +182,6 @@ html, body {
     flex-direction: column;
 }
 
-/* Pantalla de Settings */
-.form-control[type=file]:not(:disabled):not([readonly]) {
-    cursor: var(--gtav-cursor), auto !important;
-}
-
-.input-file-img-custom {
-    text-align: left;
-    /*border: 2px solid var(--purple-light) !important;*/
-}
-
-.custom-file-name {
-    /*margin-left: 2%;*/
-}
-
-.img-preview {
-    padding: 2% 0 !important;
-    background-color: #100616;
-}
-
-.img-preview > img {
-    border: 3px solid var(--purple-light) !important;
-    height: 30vh !important;
-}
-
 /* Encuadre del layout responsive */
 
 /* Big Screen */
@@ -219,7 +196,6 @@ html, body {
     }
 
     .header-img {
-        /*height: 9vh;*/
         object-fit: cover;
         aspect-ratio: 1 / 1;
         width: 90px;
@@ -230,24 +206,6 @@ html, body {
         cursor: var(--gtav-cursor), auto;
     }
 
-     /* Pantalla de settings */
-.setting-container {
-    width: 15%;
-}
-
-.change-password-body {
-    position: absolute !important;
-    top: 12% !important;
-    z-index: 3 !important;
-    right: 30% !important;
-    width: 35% !important;
-    /* margin: 8%; */
-    /* margin-left: 25%; */
-    border: 2px solid var(--purple-light);
-    padding: 2% !important;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-    
 }
 
 /* Small Screen */
@@ -258,7 +216,6 @@ html, body {
     }
 
     .header-img {
-        /*height: 12vh;*/
         object-fit: cover;
         aspect-ratio: 1 / 1;
         width: 75px;
@@ -268,33 +225,6 @@ html, body {
     .header-img:hover {
         cursor: var(--gtav-cursor), auto;
     }
-
-    /* Pantalla de settings */
-.setting-container {
-    width: 20%;
-}
-
-input#changeImgFormFile.form-control {
-    background-color: #251032;
-    color: white;
-}
-
-
-
-.change-password-body {
-    position: absolute;
-    top: 14%;
-    z-index: 3;
-    right: 33%;
-    width: 42%;
-    /* margin: 8%; */
-    /* margin-left: 25%; */
-    border: 2px solid var(--purple-light);
-    padding: 1%;
-    background-color: rgba(0, 0, 0, 0.9);
-    
-    
-}
 
 }
 
@@ -323,7 +253,6 @@ div#slider figure {
     animation: 10s slidy infinite;
     /*el movimiento se va a mantener de forma indefinida -infinito-*/
 }
-
 
 /*esta parte del código define el movimiento de las imágenes a la izquierda*/
 @keyframes slidy {
@@ -358,123 +287,3 @@ div#slider figure {
     background-color: #461E5C !important;
     border: 3px solid #865EAB !important;
 }
-
-.a:hover {
-    background-color: #461E5C !important;
-    border: 3px solid #865EAB !important;
-}
-
-a {
-    border: 2px solid var(--purple-light);
-    cursor: var(--gtav-cursor), auto;
-    color: white !important;
-    text-decoration: none !important;
-    text-transform: none !important;
-    padding: 3%;
-}
-
-/* Pantalla de settings */
-.setting-container {
-    background-color: rgba(0, 0, 0, 0.9);
-    border: 2px solid var(--purple-light);
-    padding: 1%;
-    text-align: center;
-    position: absolute;
-    z-index: 2;
-    right: 12%;
-    display: inline-grid;
-
-    transform: translateY(-20px);
-  transition: transform 0.5s ease, opacity 0.5s ease;
-
-  backdrop-filter: blur(3px);
-}
-
-.setting-container.slide-down {
-    opacity: 1;
-  transform: translateY(0);
-}
-
-.change-password-bg {
-    background: rgba(0, 0, 0, 0.85);
-    height: -webkit-fill-available;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    
-}
-
-.change-password-body {
-    position: absolute;
-    top: 14%;
-    z-index: 3;
-    right: 33%;
-    width: 42%;
-    /* margin: 8%; */
-    /* margin-left: 25%; */
-    border: 2px solid var(--purple-light);
-    padding: 1%;
-    background-color: rgba(0, 0, 0, 0.9);
-    
-    
-}
-
-.change-password-container {
-    box-sizing: content-box;
-    
-}
-
-.change-password-container > form > div > svg {
-    position: absolute;
-    bottom: 30%;
-    left: 2%;
-}
-
-.change-password-container > form > div > svg.password-eye {
-    right: 0%;
-    left: 94%;
-}
-
-.change-password-container > form > div > svg.password-eye:hover {
-    cursor: var(--gtav-cursor), auto;
-}
-
-.change-password-container > form > div {
-    position: relative;
-}
-
-.change-password-container>h2 {
-    color: white;
-    margin: 0;
-    padding: 2%;
-}
-
-.login-container>form {
-    padding: 3%;
-}
-
-.login-container>form>div>button {
-    width: -webkit-fill-available;
-    text-align: center !important
-}
-
-
-
-
-
-.main-common-container {
-    /*border: 1px solid red;*/
-    height: var(--full-height);
-}
-
-/*
-.row {
-  border: 1px solid yellow;
-}
-
-.col-3 {
-  border: 1px solid red;
-}*/

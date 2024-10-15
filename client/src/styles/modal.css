@@ -28,10 +28,13 @@
     display: block !important;
 }
 
+.register-header, .change-psswd-header, .change-img-header {
+    border-top-left-radius: var(--bs-modal-inner-border-radius) !important;
+    border-top-right-radius: var(--bs-modal-inner-border-radius) !important;
+}
+
 .modal-header-img-page {
     background-color: #251032 !important;
-    border: none !important;
-    border-radius: 0 !important;
     display: flex !important;
 }
 
@@ -54,6 +57,11 @@
     justify-content: center !important;
     padding-top: 0 !important;
     flex-wrap: nowrap !important;
+}
+
+.register-footer, .change-psswd-footer, .change-img-footer {
+    border-bottom-left-radius: var(--bs-modal-inner-border-radius) !important;
+    border-bottom-right-radius: var(--bs-modal-inner-border-radius) !important;
 }
 
 .modal-footer > button {

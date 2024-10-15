@@ -1,10 +1,19 @@
+.login-body {
+    margin: 10% 25%;
+}
+
 .login-container {
     background-color: rgba(0, 0, 0, 0.8);
     box-sizing: content-box;
 }
 
-.login-body {
-    margin: 10% 25%;
+.login-container > form {
+    padding: 3%;
+}
+
+.login-container > form > div > button {
+    width: -webkit-fill-available;
+    text-align: center !important
 }
 
 .login-container > form > div > svg {
@@ -134,11 +143,36 @@ input[type=password]:hover {
     cursor: var(--gtav-cursor), auto;
 }
 
+.login-icons > a {
+    color: white;
+}
+
+.login-icons > svg:hover {
+    cursor: var(--gtav-cursor), auto;
+}
+
 /* Big Screen */
 @media screen and (min-width: 1900px) {
 
     .login-body {
-        margin: 20% 30%;
+        margin: 20% 30% 0% 30%;
+    }
+
+    .login-footer {
+        margin: 1% 25% 10% 25%;
+        text-align: center;
+    }
+
+    .login-footer > p {
+        font-size: 0.9em;
+        text-shadow: '1px 1px 1px black';
+        margin-bottom: 1%;
+    }
+
+    .login-icons > a > svg {
+        height: 2em !important;
+        width: 2em !important;
+        margin: 0 2px;
     }
 
 }
@@ -147,7 +181,24 @@ input[type=password]:hover {
 @media screen and (max-width: 1900px) {
 
     .login-body {
-        margin: 15% 25% 10% 25%;
+        margin: 15% 25% 0% 25%;
+    }
+
+    .login-footer {
+        margin: 1% 25% 10% 25%;
+        text-align: center;
+    }
+
+    .login-footer > p {
+        font-size: 0.85em;
+        text-shadow: '1px 1px 1px black';
+        margin-bottom: 1%;
+    }
+
+    .login-icons > a > svg {
+        height: 1.5em !important;
+        width: 1.5em !important;
+        margin: 0 2px;
     }
 
 }
@@ -183,6 +234,7 @@ input[type=password]:hover {
 
 .register-container>form {
     padding: 3%;
+    padding-bottom: 0;
 }
 
 .register-container>form>div>button {
@@ -192,4 +244,10 @@ input[type=password]:hover {
 
 .register-btn {
     margin: 0 !important;
+}
+
+.register-loader-div {
+    position: absolute;
+    left: 40%;
+    z-index: 5;
 }

@@ -6,14 +6,6 @@
     margin: 1% 0 !important;
 }
 
-/* Ratón hover */
-.box-ventas-col-6:hover, .box-ventas-col-12:hover {
-    background-color: #461E5C !important;
-    border: 2px solid #865EAB !important;
-    color: white;
-    cursor: var(--gtav-cursor), auto;
-}
-
 .row-productos > * {
     padding: 0 !important;
 }
@@ -21,12 +13,19 @@
 .row-ventas > * {
     padding: 0 !important;
 }
+
+/* Ratón hover */
+.box-ventas-col-6:hover, .box-ventas-col-12:hover {
+    background-color: #461E5C !important;
+    border: 2px solid #865EAB !important;
+    color: white;
+    cursor: var(--gtav-cursor), auto;
+}
   
 /* Estilos comunes de las cajas de la pantalla */
 .box-ventas-col-6, .box-ventas-col-12 {
     border: 2px solid var(--purple-light);
     background-color: rgba(0,0,0,0.5);
-    
     display: flex;
 }
 
@@ -44,7 +43,6 @@
     display: flex;
     border: 2px solid gray;
 }
-
 
 .box-ventas-col-6-no-products {
     display: flex;
@@ -101,6 +99,7 @@
     border: 3px solid var(--purple-light) !important;
     opacity: 0.5;
 }
+
 .venta-btn-empty:hover {
     cursor: default !important;
     background-color: transparent !important;

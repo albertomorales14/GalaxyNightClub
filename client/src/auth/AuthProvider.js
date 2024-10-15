@@ -107,17 +107,15 @@ function AuthProvider({ children }) {
                             setError(error.msg);
                         });
                     } else {
-                        if (data === "Contraseña incorrecta") {
-                            logService.sendLog('warn', '[POST Request] Login: ' + data + ' (AuthProvider.js)');
-                            setError('La contraseña es incorrecta');
-                        } else if (data === "No existe este usuario") {
-                            logService.sendLog('warn', '[POST Request] Login: ' + data + ' (AuthProvider.js)');
-                            setError('El usuario ' + user + ' no existe');
+                        if (data === "El usuario ya existe") {
+                            logService.sendLog('warn', 'Validation Error: ' + data + ' (AuthProvider.js)');
+                            setError('El usuario ' + user + ' ya existe');
                         } else {
                             // SUCCESS
-                            logService.sendLog('info', '[POST Request] Login: SUCCESS (AuthProvider.js)');
-                            setUser(data);
-                            setError(null); // Sin errores en login
+                            logService.sendLog('info', '[POST Request] createUser: SUCCESS (AuthProvider.js)');
+                            //getUser(data);
+                            setError(null); // Sin errores
+                            setSuccess(true);
                         }
                     }
                 })
@@ -126,6 +124,27 @@ function AuthProvider({ children }) {
                 });
         } catch (error) {
             logService.sendLog('error', 'Error: [POST Request] Crear nuevo usuario (AuthProvider.js): ', error);
+        }
+    }
+
+    // Eliminar usuario y club
+    const deleteUserAndClub = (user) => {
+        try {
+            fetch('http://localhost:5050/eliminarCuenta', {
+                method: 'POST',
+                headers: {
+                    Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    clubId: user?.club
+                }),
+            })
+            .then(response => response.json())
+            .catch(error => {
+                logService.sendLog('error', 'Error [POST Request] deleteUserAndClub (AuthProvider.js) : ', error);
+            });
+        } catch (error) {
+            logService.sendLog('error', 'Error: [POST Request] Eliminar usuario (AuthProvider.js): ', error);
         }
     }
 
@@ -217,9 +236,9 @@ function AuthProvider({ children }) {
         }
     }
 
-    const updateUser = (data) => {
+    const updateUser = async (data) => {
         if (user) {
-            fetch(`http://localhost:5050/api/Usuarios/upload/${user._id}`, {
+            await fetch(`http://localhost:5050/api/Usuarios/upload/${user._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     ...data
@@ -237,7 +256,7 @@ function AuthProvider({ children }) {
 
     // se envian las varibles al contextValue para poder consumirlas
     const contextValue = {
-        user, getUser, createUser, updateUser, changePassword, compareAndChangePassword,
+        user, getUser, createUser, deleteUserAndClub, updateUser, changePassword, compareAndChangePassword,
         login, isLogged, logout, loginAdminTest,
         hasRole,
         error, setError,

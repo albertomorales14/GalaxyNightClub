@@ -6,7 +6,6 @@ import DJModal from "./DJModal";
 import useAuth from '../../auth/useAuth';
 import logService from '../../Utils/logService';
 import names from "../../Utils/namesDJ";
-import audios from '../../Utils/audios'; // Audios DJ
 
 function DJResidentePage({ fama }) {
 
@@ -16,7 +15,7 @@ function DJResidentePage({ fama }) {
 
     useEffect(() => {
         const getDJs = async () => {
-            fetch(`http://localhost:5050/api/DJs/Club/${user?.club}`)
+            await fetch(`http://localhost:5050/api/DJs/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);
@@ -38,6 +37,12 @@ function DJResidentePage({ fama }) {
         setIsOpenDJModal(false);
         setActualizarLista(true);
     };
+
+    // Audios desde servicio Cloudinary
+    const solomunAudio = 'https://res.cloudinary.com/djxewugx1/video/upload/v1728890975/solomun_k3l8kg.mp3';
+    const taleOfUsAudio = 'https://res.cloudinary.com/djxewugx1/video/upload/v1728889683/tale-of-us_rbwy70.mp3';
+    const dixonAudio = 'https://res.cloudinary.com/djxewugx1/video/upload/v1728889555/dixon_epu7va.mp3';
+    const madonnaAudio = 'https://res.cloudinary.com/djxewugx1/video/upload/v1728889673/the-black-madonna_e8kwux.mp3';
 
     const [currentAudio, setCurrentAudio] = useState(null);
     const audioRef = useRef(null); // Referencia para el audio actual
@@ -67,13 +72,13 @@ function DJResidentePage({ fama }) {
                 </Row>
                 <Row>
                     <Col className="dj-col dj-left" style={{ border: '1px solid var(--purple-light)', borderTop: 'none' }}>
-                        <div class="dj-img-box">
-                            <div class="dj-img-box-content">
+                        <div className="dj-img-box">
+                            <div className="dj-img-box-content">
                                 <img className='dj-img' src="/img/dj/solomun.jpg" alt="Solomun-picture" />
                                 <div>
                                     <PlayAudio
                                         name={names.SOLOMUN}
-                                        audioSrc={audios.solomun}
+                                        audioSrc={solomunAudio}
                                         isPlaying={currentAudio === 0}
                                         onPlay={() => handlePlay(0)}
                                         onPause={() => handlePlay(-1)}
@@ -83,13 +88,13 @@ function DJResidentePage({ fama }) {
                         </div>
                     </Col>
                     <Col className="dj-col dj-right" style={{ border: '1px solid var(--purple-light)', borderTop: 'none' }}>
-                        <div class="dj-img-box">
-                            <div class="dj-img-box-content">
+                        <div className="dj-img-box">
+                            <div className="dj-img-box-content">
                                 <img className='dj-img' src="/img/dj/tale-of-us.jpg" alt="Tale-Of-Us-picture" style={{ objectPosition: '100% 2%' }} />
                                 <div>
                                     <PlayAudio
                                         name={names.TALE_OF_US}
-                                        audioSrc={audios.taleOfUs}
+                                        audioSrc={taleOfUsAudio}
                                         isPlaying={currentAudio === 1}
                                         onPlay={() => handlePlay(1)}
                                         onPause={() => handlePlay(-1)}
@@ -131,12 +136,12 @@ function DJResidentePage({ fama }) {
                 </Row>
                 <Row>
                     <Col className="dj-col dj-left" style={{ border: '1px solid var(--purple-light)', borderTop: 'none' }}>
-                        <div class="dj-img-box">
-                            <div class="dj-img-box-content">
+                        <div className="dj-img-box">
+                            <div className="dj-img-box-content">
                                 <img className='dj-img' src="/img/dj/dixon.jpg" alt="Dixon-picture" style={{ objectPosition: '100% 0%' }} />
                                 <PlayAudio
                                     name={names.DIXON}
-                                    audioSrc={audios.dixon}
+                                    audioSrc={dixonAudio}
                                     isPlaying={currentAudio === 2}
                                     onPlay={() => handlePlay(2)}
                                     onPause={() => handlePlay(-1)}
@@ -145,12 +150,12 @@ function DJResidentePage({ fama }) {
                         </div>
                     </Col>
                     <Col className="dj-col dj-right" style={{ border: '1px solid var(--purple-light)',  borderTop: 'none' }}>
-                        <div class="dj-img-box">
-                            <div class="dj-img-box-content">
+                        <div className="dj-img-box">
+                            <div className="dj-img-box-content">
                                 <img className='dj-img' src="/img/dj/the-black-madonna.jpg" alt="The-Black-Madonna-picture" style={{ objectPosition: '100% 25%' }} />
                                 <PlayAudio
                                     name={names.THE_BLACK_MADONNA}
-                                    audioSrc={audios.madonna}
+                                    audioSrc={madonnaAudio}
                                     isPlaying={currentAudio === 3}
                                     onPlay={() => handlePlay(3)}
                                     onPause={() => handlePlay(-1)}

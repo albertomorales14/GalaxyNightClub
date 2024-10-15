@@ -5,13 +5,18 @@ import { FaUser } from "react-icons/fa"; // user icon
 import { FaLock } from "react-icons/fa6"; // password icon
 import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
+import { ring } from 'ldrs'; // loader
+import logService from '../Utils/logService';
 
 function RegisterPage(props) {
 
-    const { createUser, error, setError, setSuccess } = useAuth();
+    const { createUser, error, setError, success, setSuccess } = useAuth();
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+
+    ring.register('register-ldr');
+    const [showLoader, setShowLoader] = useState(false);
 
     // Carga el error de auth cada vez que lo detecte
     useEffect(() => {
@@ -19,6 +24,13 @@ function RegisterPage(props) {
             open();
         }
     }, [error]) // dependencia de error
+
+    // Carga el success de auth cada vez que lo detecte
+    useEffect(() => {
+        if (success) {
+            closeModal();
+        }
+    }, [success]) // dependencia de exito
 
     // Error Alert
     const [closeAlert, setCloseAlert] = useState(true);
@@ -47,25 +59,43 @@ function RegisterPage(props) {
         if (!password) {
             setError('La contraseña es obligatoria');
             setSuccess(false);
+            logService.sendLog('warn', 'Validation Error: La contraseña es obligatoria (RegisterPage.js)');
         } else {
-            createUser(e, username, password);
+            if (!username) {
+                setError('El usuario es obligatorio');
+                setSuccess(false);
+                logService.sendLog('warn', 'Validation Error: El usuario es obligatorio (RegisterPage.js)');
+            } else {
+                createUser(e, username, password);
+                setShowLoader(true);
+            }
         }
+    }
+
+    const closeModal = () => {
+        setUsername(null);
+        setPassword(null);
+        setError(null);
+        setShowLoader(false);
+        props.close();
     }
 
     return (
         <>
-
-            <Modal show={props.isOpen} onHide={props.close} animation={false} className='register-modal'>
-                <Modal.Header>
+            <Modal show={props.isOpen} onHide={closeModal} animation={false} className='register-modal'>
+                <Modal.Header className='register-header'>
                     <Modal.Title>Crear nueva cuenta</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Alert className='custom-alert'>
+                    <Alert className='custom-alert register-alert'>
                         <div className="register-body">
                             <div className="register-container">
-                                <div className="login-alert" hidden={closeAlert}>
+                                {error ? (<div className="login-alert" hidden={closeAlert}>
                                     ERROR: {error}
                                     <button className="login-alert-closebtn" onClick={close}>&times;</button>
+                                </div>) : <></>}
+                                <div hidden={!showLoader} className='register-loader-div'>
+                                    <register-ldr color="var(--purple-dark)" size='100' stroke='10'></register-ldr>
                                 </div>
                                 <Form onSubmit={handleSubmit}>
 
@@ -89,7 +119,7 @@ function RegisterPage(props) {
                                         <BsFillEyeSlashFill hidden={!psswdVisible} className="password-eye" onClick={tooglePasswordIcon} />
                                     </Form.Group>
                                     <div className="text-center">
-                                        <Button id="submit-new-password" style={{ display: 'none' }} className="login-btn" variant="primary" type="submit">
+                                        <Button id="submit-registro" style={{ display: 'none' }} className="login-btn" variant="primary" type="submit">
                                             Submit
                                         </Button>
                                     </div>
@@ -98,11 +128,11 @@ function RegisterPage(props) {
                         </div>
                     </Alert>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={props.close} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Modal.Footer className='register-footer'>
+                    <Button onClick={closeModal} style={{ width: '50%', textAlign: 'center !important' }}>
                         Cancelar
                     </Button>
-                    <Button onClick={() => { document.getElementById('submit-new-password').click() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                    <Button onClick={() => { document.getElementById('submit-registro').click() }} style={{ width: '50%', textAlign: 'center !important' }}>
                         Crear cuenta
                     </Button>
                 </Modal.Footer>

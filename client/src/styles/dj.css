@@ -6,10 +6,8 @@
     padding-left: 6px;
 }
 
-.dj-grid-container>div {
-    /*background-color: #251032;*/
+.dj-grid-container > div {
     text-align: center;
-    /*font-size: 30px;*/
 }
 
 .dj-grid-container img {
@@ -18,13 +16,12 @@
     object-fit: cover;
 }
 
-.dj-grid-container>div>h3 {
+.dj-grid-container > div > h3 {
     font-size: var(--bs-nav-link-font-size);
     font-weight: var(--bs-nav-link-font-weight);
 }
 
 .dj-h3 {
-    /*background-color: #251032;*/
     font-size: var(--bs-nav-link-font-size);
     font-weight: var(--bs-nav-link-font-weight);
     padding: 2%;
@@ -38,7 +35,7 @@
     text-align: center;
 }
 
-button>span.dj-btn-size {
+button > span.dj-btn-size {
     text-align: center;
 }
 
@@ -54,14 +51,10 @@ button>span.dj-btn-size {
 
 .dj-btn:hover {
     border: 1px solid var(--purple-light) !important;
-
 }
-
-
 
 .dj-col {
     padding: 0 !important;
-
 }
 
 .dj-name {
@@ -77,7 +70,6 @@ button>span.dj-btn-size {
 
 .dj-left {
     margin-right: 4px !important;
-
 }
 
 .dj-right {
@@ -86,7 +78,6 @@ button>span.dj-btn-size {
 
 .dj-img-box {
     position: relative;
-
 }
 
 .dj-audio-btn {
@@ -99,7 +90,6 @@ button>span.dj-btn-size {
     color: white;
     padding: 0 7.5%;
     margin: 0.75%;
-
 }
 
 .dj-audio-btn:hover {
@@ -112,7 +102,6 @@ button>span.dj-btn-size {
     background-color: transparent !important;
     border: none;
     color: white;
-
     margin-bottom: 4%;
     margin-left: 50%;
 }
@@ -121,8 +110,7 @@ button>span.dj-btn-size {
     cursor: var(--gtav-cursor), auto !important;
 }
 
-
-
+/* Big Screen */
 @media screen and (min-width: 1900px) {
 
     .dj-img {
@@ -133,6 +121,7 @@ button>span.dj-btn-size {
 
 }
 
+/* Small Screen */
 @media screen and (max-width: 1900px) {
 
     .dj-img {

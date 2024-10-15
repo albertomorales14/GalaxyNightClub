@@ -47,6 +47,7 @@ App.use('/api/Usuarios/:id', require('./routes/usuario'));
 App.use('/api/Usuarios/upload/:id', require('./routes/usuario'));
 App.post('/comparePassword', require('./routes/usuario'));
 App.post('/preparacionDelClub', require('./routes/usuario'));
+App.post('/eliminarCuenta', require('./routes/usuario'));
 
 // Club
 App.use('/api/Club', require('./routes/club'));

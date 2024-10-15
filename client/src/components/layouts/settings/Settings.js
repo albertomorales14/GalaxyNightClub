@@ -1,52 +1,57 @@
-import { Button } from 'react-bootstrap';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import routes from '../../../Utils/routes';
+import { Button } from 'react-bootstrap';
 import useAuth from '../../../auth/useAuth';
-import { useState, useEffect } from 'react';
 import CambiarPassword from './CambiarPassword';
 import CambiarImagenPerfil from './CambiarImagenPerfil';
-import logService from '../../../Utils/logService';
+import DeleteAccountModal from './DeleteAccountModal';
+import routes from '../../../Utils/routes';
 
-export default function Settings({ isVisible, layoutRef, clickSettingsButton }) {
+function Settings({ isVisible, layoutRef, clickSettingsButton }) {
 
     const { logout, setError } = useAuth();
 
-// Modal password
-const [isOpenPssWdPage, setIsOpenPssWdPage] = useState(false);
-const openPssWdPage = () => {setIsOpenPssWdPage(true); setError(null)};
-const closePssWdPage = () => {setIsOpenPssWdPage(false); setError(null)};
-// Modal img
-const [isOpenImgPage, setIsOpenImgPage] = useState(false);
-const openImgPage = () => setIsOpenImgPage(true);
-const closeImgPage = () => setIsOpenImgPage(false);
+    // Modal password
+    const [isOpenPssWdPage, setIsOpenPssWdPage] = useState(false);
+    const openPssWdPage = () => { setIsOpenPssWdPage(true); setError(null) };
+    const closePssWdPage = () => { setIsOpenPssWdPage(false); setError(null) };
 
+    // Modal img
+    const [isOpenImgPage, setIsOpenImgPage] = useState(false);
+    const openImgPage = () => setIsOpenImgPage(true);
+    const closeImgPage = () => setIsOpenImgPage(false);
 
-
-
+    // Modal delete account
+    const [isOpenDelAccountPage, setIsOpenDelAccountPage] = useState(false);
+    const openDelAccountPage = () => setIsOpenDelAccountPage(true);
+    const closeDelAccountPage = () => setIsOpenDelAccountPage(false);
 
     return (
         <>
-        <CambiarPassword isOpen={isOpenPssWdPage} close={closePssWdPage} />
-        <CambiarImagenPerfil isOpen={isOpenImgPage} close={closeImgPage} />
-
+            <CambiarPassword isOpen={isOpenPssWdPage} close={closePssWdPage} />
+            <CambiarImagenPerfil isOpen={isOpenImgPage} close={closeImgPage} />
+            <DeleteAccountModal isOpen={isOpenDelAccountPage} close={closeDelAccountPage} />
             {
                 isVisible ? (
                     <div className={`setting-container ${isVisible ? 'slide-down' : ''}`} ref={layoutRef}>
                         <h3>Opciones</h3>
-                        <Button onClick={() => { openPssWdPage(); }}>
-                                Cambiar contraseña
+                        <Button onClick={openPssWdPage}>
+                            Cambiar contraseña
                         </Button>
-                        
-                        <Button onClick={() => { openImgPage(); }}>
-                                Cambiar imagen de perfil
-                            </Button>
-
+                        <Button onClick={openImgPage}>
+                            Cambiar imagen de perfil
+                        </Button>
                         <Button as={NavLink} to={routes.logout} onClick={() => { clickSettingsButton(); logout() }}>
                             Cerrar sesión
                         </Button>
+                        <Button className='danger-account-btn' onClick={openDelAccountPage}>
+                            Eliminar cuenta
+                        </Button>
                     </div>
                 ) : (<></>)
-            }</>
-
+            }
+        </>
     )
 }
+
+export default Settings;
