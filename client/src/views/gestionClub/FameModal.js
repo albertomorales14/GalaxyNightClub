@@ -7,7 +7,7 @@ function FameModal(props) {
 
         let fame = (props.club?.fama + 25) >= 100 ? 100 : props.club?.fama + 25;
 
-        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${props.club._id}`, {
+        await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${props.club._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 fama: fame,
@@ -27,9 +27,11 @@ function FameModal(props) {
                 response.json();
                 logService.sendLog('info', '[PUT Request] Aumentar fama del club: Actualizar Club (FameModal.js)');
                 logService.sendLog('info', '\t> Fama del club al ' + fame + '%');
+                props.close();
             })
             .catch(error => {
                 logService.sendLog('error', 'Error: [PUT Request] Aumentar fama del club: Actualizar Club (FameModal.js): ' + error);
+                props.close();
             })
     }
 
@@ -48,7 +50,7 @@ function FameModal(props) {
                 <Button onClick={props.close} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
-                <Button onClick={() => { aumentarFama(); props.close() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={aumentarFama} style={{ width: '50%', textAlign: 'center !important' }}>
                     Confirmar
                 </Button>
             </Modal.Footer>
