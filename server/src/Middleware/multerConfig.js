@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
     }
 });
 
-// Establecer limite de 5 MB para archivos
+// Establecer limite de 5MB para archivos
 const limits = { fileSize: 5 * 1024 * 1024 }
 
 // Filtro para limitar qué tipos de archivos pueden ser subidos (opcional)
