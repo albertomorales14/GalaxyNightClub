@@ -52,7 +52,7 @@ function RegisterPage(props) {
     // Ocultar-Mostrar contraseña (eye icon)
     const [psswdVisible, setPsswdVisible] = useState(false);
     const tooglePasswordIcon = () => {
-        var psswd = document.getElementById("login-password");
+        var psswd = document.getElementById("register-password");
         if (psswd.type === "password") {
             psswd.type = "text";
             setPsswdVisible(true);

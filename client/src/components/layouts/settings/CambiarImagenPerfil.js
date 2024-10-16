@@ -109,7 +109,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
         <Modal show={isOpen} onHide={() => { cleanComponent(); document.getElementById('img-header').click() }} animation={false}>
             <Modal.Header className='modal-header-img-page change-img-header'>
                 <Modal.Title>
-                    <img id="img-header" className="header-img" src={`http://localhost:5050/uploads/img/${user.imagen}`} style={{ cursor: 'default' }} alt="user-photo" />
+                    <img id="img-header" className="header-img" src={`${process.env.REACT_APP_RENDER_URL}/uploads/img/${user.imagen}`} style={{ cursor: 'default' }} alt="user-photo" />
                     &nbsp;<span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
                 </Modal.Title>
             </Modal.Header>
