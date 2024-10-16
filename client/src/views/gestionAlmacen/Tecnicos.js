@@ -5,11 +5,10 @@ import { RiLock2Fill } from "react-icons/ri"; // Lock
 import { GiPerson } from "react-icons/gi"; // Person
 import TecnicosModal from './TecnicosModal';
 
-function Tecnicos({ tecnicos, focus, handleClick, actualizar }) {
+function Tecnicos({ tecnicos, focus, handleClick, actualizarLista }) {
 
     const [tec, setTecnico] = useState(null);
     const [sigTec, setSigTecnico] = useState(null);
-    
 
     // Modal
     const [isOpenTecnicosModal, setIsOpenTecnicosModal] = useState(false);
@@ -18,7 +17,7 @@ function Tecnicos({ tecnicos, focus, handleClick, actualizar }) {
     };
     const closeTecnicosModal = () => {
         setIsOpenTecnicosModal(false);
-        actualizar(true);
+        actualizarLista();
     };
 
     return (

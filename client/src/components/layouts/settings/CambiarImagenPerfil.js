@@ -70,7 +70,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
         logService.sendLog('info', formData.get('image'));
 
         try {
-            const response = await fetch('http://localhost:5050/api/upload', {
+            const response = await fetch(`${process.env.REACT_APP_LOCALHOST}/api/upload`, {
                 method: 'POST',
                 body: formData, // Enviar el FormData con la imagen
             });

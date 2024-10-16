@@ -27,6 +27,7 @@ usuarioController.getUsuarios = async (request, response) => {
     }
 }
 
+// Obtener usuario
 usuarioController.getUsuario = [
     validateFields, // Agregar la validación de campos
     async (request, response) => {
@@ -68,6 +69,7 @@ const comparePassword = async (password, hash) => {
     }
 };
 
+// Actualizar usuario
 const updateUser = async (request, response) => {
     try {
         const { id } = request.params;

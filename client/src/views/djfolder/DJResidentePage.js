@@ -15,7 +15,7 @@ function DJResidentePage({ fama }) {
 
     useEffect(() => {
         const getDJs = async () => {
-            await fetch(`http://localhost:5050/api/DJs/Club/${user?.club}`)
+            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/DJs/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);

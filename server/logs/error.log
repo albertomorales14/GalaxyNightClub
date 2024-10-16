@@ -1,18 +1,1 @@
-2024-10-14T07:26:32.420Z [error]: Error al reproducir el audio de Solomun (PlayAudio.js): NotSupportedError: The element has no supported sources.
-2024-10-14T07:55:51.973Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
-2024-10-14T07:57:01.434Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
-2024-10-14T14:42:55.621Z [error]: 	> Error: getIngresosByClub: Invalid club ID (ingresosController.js)
-2024-10-14T15:08:44.405Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:08:44.411Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
-2024-10-14T15:08:44.415Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:08:44.422Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:13:51.640Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:13:51.643Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
-2024-10-14T15:13:51.645Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:13:51.648Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:16:07.767Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:16:07.771Z [error]: 	> Error: getProductosByClub: Invalid club ID (productoController.js)
-2024-10-14T15:16:07.774Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-14T15:16:07.803Z [error]: 	> Error: getMyClub: Invalid club ID (clubController.js)
-2024-10-15T10:13:09.790Z [error]: Error [POST Request] deleteUserAndClub (AuthProvider.js) : 
-2024-10-15T10:18:26.494Z [error]: Error: deleteUserAndClub: eliminar todas las colecciones (registerController.js): ReferenceError: ObjectId is not defined
+2024-10-16T07:02:58.244Z [error]: Error [POST Request] Login (AuthProvider.js) : 

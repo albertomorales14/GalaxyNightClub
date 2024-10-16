@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import VentaProductoModal from './VentaProductoModal';
 import formatCurrency from '../../Utils/formatCurrency';
+import PRODUCTO from '../../Utils/namesProductos';
 
 function Productos({ lista, club, actualizarLista }) {
 
@@ -21,7 +22,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[0]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 first-left-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Mercancía y cargamentos<br />Vender por:
+                                {PRODUCTO.MERCANCIA}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[0]?.existencias / lista[0]?.capacidadMax * lista[0]?.totalValue)}
                                 </span>
@@ -32,7 +33,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products first-left-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Mercancía y cargamentos<br /><br />
+                                {PRODUCTO.MERCANCIA}<br /><br />
                             </div>
                             <div>
                                 {lista[0]?.existencias}/{lista[0]?.capacidadMax}
@@ -44,7 +45,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[1]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 first-right-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Equipo de caza<br />Vender por:
+                                {PRODUCTO.CAZA}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[1]?.existencias / lista[1]?.capacidadMax * lista[1]?.totalValue)}
                                 </span>
@@ -55,7 +56,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products first-right-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Equipo de caza<br /><br />
+                                {PRODUCTO.CAZA}<br /><br />
                             </div>
                             <div>
                                 {lista[1]?.existencias}/{lista[1]?.capacidadMax}
@@ -69,7 +70,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[2]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 middle-box-ventas-col-6 middle-left'>
                             <div style={{ flex: '1' }}>
-                                Importaciones sudamericanas<br />Vender por:
+                                {PRODUCTO.LATAM}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[2]?.existencias / lista[2]?.capacidadMax * lista[2]?.totalValue)}
                                 </span>
@@ -80,7 +81,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products middle-box-ventas-col-6 middle-left'>
                             <div style={{ flex: '1' }}>
-                                Importaciones sudamericanas<br /><br />
+                                {PRODUCTO.LATAM}<br /><br />
                             </div>
                             <div>
                                 {lista[2]?.existencias}/{lista[2]?.capacidadMax}
@@ -92,7 +93,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[3]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 middle-box-ventas-col-6 middle-right'>
                             <div style={{ flex: '1' }}>
-                                Investigaciones farmacéuticas<br />Vender por:
+                                {PRODUCTO.FARMACEUTICA}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[3]?.existencias / lista[3]?.capacidadMax * lista[3]?.totalValue)}
                                 </span>
@@ -103,7 +104,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products middle-box-ventas-col-6 middle-right'>
                             <div style={{ flex: '1' }}>
-                                Investigaciones farmacéuticas<br /><br />
+                                {PRODUCTO.FARMACEUTICA}<br /><br />
                             </div>
                             <div>
                                 {lista[3]?.existencias}/{lista[3]?.capacidadMax}
@@ -117,7 +118,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[4]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 middle-box-ventas-col-6 middle-left'>
                             <div style={{ flex: '1' }}>
-                                Productos orgánicos<br />Vender por:
+                                {PRODUCTO.ORGANIC}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[4]?.existencias / lista[4]?.capacidadMax * lista[4]?.totalValue)}
                                 </span>
@@ -128,7 +129,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products middle-box-ventas-col-6 middle-left'>
                             <div style={{ flex: '1' }}>
-                                Productos orgánicos<br /><br />
+                                {PRODUCTO.ORGANIC}<br /><br />
                             </div>
                             <div>
                                 {lista[4]?.existencias}/{lista[4]?.capacidadMax}
@@ -140,7 +141,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[5]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 middle-box-ventas-col-6 middle-right'>
                             <div style={{ flex: '1' }}>
-                                Fotocopias e impresiones<br />Vender por:
+                                {PRODUCTO.FOTOCOPIAS}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[5]?.existencias / lista[5]?.capacidadMax * lista[5]?.totalValue)}
                                 </span>
@@ -151,7 +152,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products middle-box-ventas-col-6 middle-right'>
                             <div style={{ flex: '1' }}>
-                                Fotocopias e impresiones<br /><br />
+                                {PRODUCTO.FOTOCOPIAS}<br /><br />
                             </div>
                             <div>
                                 {lista[5]?.existencias}/{lista[5]?.capacidadMax}
@@ -165,7 +166,7 @@ function Productos({ lista, club, actualizarLista }) {
                     {lista[6]?.existencias !== 0 ?
                         (<div className='box-ventas-col-6 last-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Imprenta de billetes<br />Vender por:
+                                {PRODUCTO.BILLETES}<br />Vender por:
                                 <span className='venta-all-price'>
                                     &nbsp;${formatCurrency(lista[6]?.existencias / lista[6]?.capacidadMax * lista[6]?.totalValue)}
                                 </span>
@@ -176,7 +177,7 @@ function Productos({ lista, club, actualizarLista }) {
                         </div>) :
                         (<div className='box-ventas-col-6-no-products last-box-ventas-col-6'>
                             <div style={{ flex: '1' }}>
-                                Imprenta de billetes<br /><br />
+                                {PRODUCTO.BILLETES}<br /><br />
                             </div>
                             <div>
                                 {lista[6]?.existencias}/{lista[6]?.capacidadMax}

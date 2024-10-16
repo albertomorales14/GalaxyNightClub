@@ -4,14 +4,17 @@ import Tecnicos from './Tecnicos';
 import TecnicosLoaders from './TecnicosLoaders';
 import ProductosAlmacen from './ProductosAlmacen';
 import AlmacenSummary from './AlmacenSummary';
+import { FaRegCircleCheck } from "react-icons/fa6"; // Check
+import { GiPerson } from "react-icons/gi"; // Person
 import useAuth from '../../auth/useAuth';
 import logService from '../../Utils/logService';
 
 function GestionAlmacenPage() {
 
-    const { club, getClub } = useAuth();
+    const { user, club, getClub } = useAuth();
     const [tecnicos, setTecnicos] = useState([]);
     const [actualizarLista, setActualizarLista] = useState(false);
+    const reloadLista = () => setActualizarLista(true);
     const [loading, setLoading] = useState(true);
 
     const [focus, setFocus] = useState('tecnico1');
@@ -23,8 +26,8 @@ function GestionAlmacenPage() {
     };
 
     useEffect(() => {
-        getClub();
-        fetch(`http://localhost:5050/api/Tecnicos/Club/${club?._id}`)
+        getClub('GestionAlmacenPage.js');
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setTecnicos(data);
@@ -47,17 +50,19 @@ function GestionAlmacenPage() {
                         </h1>
                     </div>
                 </Row>
-                {loading ? (<TecnicosLoaders />) : (<Tecnicos tecnicos={tecnicos} focus={focus} handleClick={handleClick} actualizar={setActualizarLista} />)}
+                {loading ? (<TecnicosLoaders />) : (<Tecnicos tecnicos={tecnicos} focus={focus} handleClick={handleClick} actualizarLista={reloadLista} />)}
                 <Row style={{ marginTop: '0.5rem' }}>
-                    <p style={{ marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                        Selecciona a técnicos del almacén y asígnalos a un tipo de producto disponible
+                    <p style={{ marginBottom: '0.5rem', fontSize: '1rem' }}>
+                        <abbr title='Icono de la persona'>Selecciona</abbr> a técnicos del almacén 
+                        y <abbr title='Icono del check'>asígnalos</abbr> a un tipo de producto disponible
                         para su gestión. Para poder asignarles un tipo de producto, el negocio asociado
                         debe estar en activo. Los técnicos asignados acumularán productos en el
                         almacén del club nocturno automáticamente con el tiempo.
+
                     </p>
                 </Row>
                 <Row>
-                    <ProductosAlmacen tecnicos={tecnicos} focus={focus} />
+                    <ProductosAlmacen tecnicos={tecnicos} focus={focus} actualizarLista={reloadLista} />
                 </Row>
             </Container>
             <hr />

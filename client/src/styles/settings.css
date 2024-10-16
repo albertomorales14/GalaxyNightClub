@@ -14,19 +14,19 @@
     left: 94%;
 }
 
-.change-psswd-container>form>div>svg.password-eye:hover {
+.change-psswd-container > form > div > svg.password-eye:hover {
     cursor: var(--gtav-cursor), auto;
 }
 
-.change-psswd-container>form>div {
+.change-psswd-container > form > div {
     position: relative;
 }
 
-.change-psswd-container>form {
+.change-psswd-container > form {
     padding: 3%;
 }
 
-.change-psswd-container>form>div>button {
+.change-psswd-container > form > div > button {
     width: -webkit-fill-available;
     text-align: center !important
 }
@@ -63,7 +63,6 @@
     top: 0;
     bottom: 0;
     z-index: 1;
-    
 }
 
 .change-password-body {
@@ -75,13 +74,10 @@
     border: 2px solid var(--purple-light);
     padding: 1%;
     background-color: rgba(0, 0, 0, 0.9);
-    
-    
 }
 
 .change-password-container {
     box-sizing: content-box;
-    
 }
 
 .change-password-container > form > div > svg {

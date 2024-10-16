@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import roles from '../Utils/roles';
 import logService from '../Utils/logService';
 
 export const AuthContext = createContext();
@@ -10,13 +9,7 @@ function AuthProvider({ children }) {
     const history = useNavigate(); // Hook
     const [user, setUser] = useState(null);
     const [club, setClub] = useState([]);
-
-    const loginAdminTest = () => {
-        setUser({
-            username: 'Cutiti007', password: '123', role: roles.admin,
-            club: "66e49d559bdb5e631a4fde59"
-        });
-    }
+    const [logged, setLogged] = useState(false);
 
     // Errores de credenciales
     const [error, setError] = useState(null);
@@ -30,7 +23,7 @@ function AuthProvider({ children }) {
             history.push(fromLocation);
         }
 
-        fetch('http://localhost:5050/login', {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/login`, {
             method: 'POST',
             credentials: "include", // Incluir cookies en la solicitud
             headers: {
@@ -60,6 +53,7 @@ function AuthProvider({ children }) {
                         logService.sendLog('info', '[POST Request] Login: SUCCESS (AuthProvider.js)');
                         setUser(data);
                         setError(null); // Sin errores en login
+                        setLogged(true);
                     }
                 }
             })
@@ -71,7 +65,7 @@ function AuthProvider({ children }) {
     // Cerrar sesión
     const logout = async () => {
         try {
-            fetch('http://localhost:5050/logout', {
+            fetch(`${process.env.REACT_APP_LOCALHOST}/logout`, {
                 method: 'POST',
                 credentials: "include", // Incluir cookies en la solicitud
                 headers: {
@@ -79,6 +73,7 @@ function AuthProvider({ children }) {
                 }
             })
             setUser(null); // Limpiar el estado del usuario
+            setLogged(false);
             logService.sendLog('info', '[POST Request] Logout (AuthProvider.js)');
         } catch (error) {
             logService.sendLog('error', 'Error: [POST Request] Logout (AuthProvider.js): ', error);
@@ -89,7 +84,7 @@ function AuthProvider({ children }) {
     const createUser = (e, user, psswd) => {
         e.preventDefault();
         try {
-            fetch('http://localhost:5050/preparacionDelClub', {
+            fetch(`${process.env.REACT_APP_LOCALHOST}/preparacionDelClub`, {
                 method: 'POST',
                 headers: {
                     Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
@@ -130,7 +125,7 @@ function AuthProvider({ children }) {
     // Eliminar usuario y club
     const deleteUserAndClub = (user) => {
         try {
-            fetch('http://localhost:5050/eliminarCuenta', {
+            fetch(`${process.env.REACT_APP_LOCALHOST}/eliminarCuenta`, {
                 method: 'POST',
                 headers: {
                     Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
@@ -153,7 +148,7 @@ function AuthProvider({ children }) {
 
     // getUserClub
     const getClub = (page) => {
-        fetch(`http://localhost:5050/api/Club/${user?.club}`)
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setClub(data);
@@ -166,7 +161,7 @@ function AuthProvider({ children }) {
 
     const changePassword = (e, password) => {
         e.preventDefault();
-        fetch(`http://localhost:5050/api/Usuarios/${user._id}`, {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/${user._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 password: password,
@@ -192,7 +187,7 @@ function AuthProvider({ children }) {
     const compareAndChangePassword = (e, password, newPassword) => {
         e.preventDefault();
         try {
-            fetch('http://localhost:5050/comparePassword', {
+            fetch(`${process.env.REACT_APP_LOCALHOST}/comparePassword`, {
                 method: 'POST',
                 credentials: "include", // Incluir cookies en la solicitud
                 headers: {
@@ -221,7 +216,7 @@ function AuthProvider({ children }) {
 
     const getUser = (user) => {
         if (user) {
-            fetch(`http://localhost:5050/api/Usuarios/${user._id}`, {
+            fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/${user._id}`, {
                 method: 'GET',
                 headers: { "Content-type": "application/json; charset=UTF-8", },
             })
@@ -238,7 +233,7 @@ function AuthProvider({ children }) {
 
     const updateUser = async (data) => {
         if (user) {
-            await fetch(`http://localhost:5050/api/Usuarios/upload/${user._id}`, {
+            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/upload/${user._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     ...data
@@ -257,7 +252,7 @@ function AuthProvider({ children }) {
     // se envian las varibles al contextValue para poder consumirlas
     const contextValue = {
         user, getUser, createUser, deleteUserAndClub, updateUser, changePassword, compareAndChangePassword,
-        login, isLogged, logout, loginAdminTest,
+        login, isLogged, logout,
         hasRole,
         error, setError,
         success, setSuccess,

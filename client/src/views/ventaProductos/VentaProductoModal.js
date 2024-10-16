@@ -11,7 +11,7 @@ function VentaProductoModal({ isOpen, close, producto, club }) {
 
     const venderProducto = () => {
 
-        fetch(`http://localhost:5050/api/Productos/${producto._id}`, {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/${producto._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: producto.name,
@@ -30,7 +30,7 @@ function VentaProductoModal({ isOpen, close, producto, club }) {
         })
 
 
-        fetch(`http://localhost:5050/api/Club/${user.club}`, {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${user.club}`, {
             method: 'PUT',
             body: JSON.stringify({
                 ganancias_almacen: (club?.ganancias_almacen + Math.floor(venta)),

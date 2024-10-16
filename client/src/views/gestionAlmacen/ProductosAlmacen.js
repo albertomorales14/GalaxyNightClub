@@ -1,11 +1,11 @@
+import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaRegCircleCheck } from "react-icons/fa6"; // Check
-import { RiLock2Fill } from "react-icons/ri"; // Lock
-import { GiPerson } from "react-icons/gi"; // Person
-import { useEffect, useState } from 'react';
 import TecnicosModal from './TecnicosModal';
+import { FaRegCircleCheck } from "react-icons/fa6"; // Check
+import { GiPerson } from "react-icons/gi"; // Person
+import PRODUCTO from '../../Utils/namesProductos';
 
-export default function ProductosAlmacen({ tecnicos, focus }) {
+function ProductosAlmacen({ tecnicos, focus, actualizarLista }) {
 
     // Modal
     const [isOpenAsignarModal, setIsOpenAsignarModal] = useState(false);
@@ -19,12 +19,13 @@ export default function ProductosAlmacen({ tecnicos, focus }) {
             }
         } else {
             // No puede abrir la modal
-
         }
+    }
 
-
-    };
-    const closeAsignarModal = () => setIsOpenAsignarModal(false);
+    const closeAsignarModal = () => {
+        setIsOpenAsignarModal(false);
+        actualizarLista();
+    }
 
     const [tecnico, setTecnico] = useState(null);
     const [producto, setProducto] = useState(null);
@@ -50,23 +51,19 @@ export default function ProductosAlmacen({ tecnicos, focus }) {
             <Row className='row-productos'>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row1-first-box-ventas-col-4'
-                        style={{ opacity: `${getStyleBox('Mercancía y cargamentos')}`, cursor: `${getCursor('Mercancía y cargamentos')}` }}>
+                        style={{ opacity: `${getStyleBox(PRODUCTO.MERCANCIA)}`, cursor: `${getCursor(PRODUCTO.MERCANCIA)}` }}>
                         <div style={{ display: 'flex', position: 'relative' }}>
                             <div onClick={() => {
-                                openAsignarModal('Mercancía y cargamentos');
-                                setProducto('Mercancía y cargamentos');
+                                openAsignarModal(PRODUCTO.MERCANCIA);
+                                setProducto(PRODUCTO.MERCANCIA);
                                 setTecnico(tecnicos[focus.at(-1) - 1]);
-                            }}
-                                style={{ width: '90%' }} className='product-cell'>
-                                Mercancía y cargamentos<br /><br />
+                            }} style={{ width: '90%' }} className='product-cell'>
+                                {PRODUCTO.MERCANCIA}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!isIncluded('Mercancía y cargamentos') || !hasPersonIcon('Mercancía y cargamentos')}>
+                            <div className="producto-check-icon-content" hidden={!isIncluded(PRODUCTO.MERCANCIA) || !hasPersonIcon(PRODUCTO.MERCANCIA)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
-                            </div>
-                            <div className="producto-person-icon-content" hidden={hasPersonIcon('Mercancía y cargamentos')}>
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.MERCANCIA)}>
                                 <GiPerson />
                             </div>
                         </div>
@@ -74,36 +71,38 @@ export default function ProductosAlmacen({ tecnicos, focus }) {
                 </Col>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row1-middle-box-ventas-col-4'
-                        style={{ opacity: `${isIncluded('Equipo de caza') && ((tecnicos[focus.at(-1) - 1]?.producto !== 'Equipo de caza') || (tecnicos[focus.at(-1) - 1]?.producto === '')) ? 0.4 : 1}` }}>
-                        <div style={{ display: 'flex', position: 'relative' }}>
-                            <div style={{ width: '90%' }} className='product-cell'>
-                                Equipo de caza<br /><br />
+                        style={{ opacity: `${getStyleBox(PRODUCTO.CAZA)}`, cursor: `${getCursor(PRODUCTO.CAZA)}` }}>                        <div style={{ display: 'flex', position: 'relative' }}>
+                            <div onClick={() => {
+                                openAsignarModal(PRODUCTO.CAZA);
+                                setProducto(PRODUCTO.CAZA);
+                                setTecnico(tecnicos[focus.at(-1) - 1]);
+                            }} style={{ width: '90%' }} className='product-cell'>
+                                {PRODUCTO.CAZA}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!isIncluded('Equipo de caza')}>
+                            <div className="producto-check-icon-content" hidden={!isIncluded(PRODUCTO.CAZA) || !hasPersonIcon(PRODUCTO.CAZA)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.CAZA)}>
+                                <GiPerson />
                             </div>
                         </div>
                     </div>
                 </Col>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row1-last-box-ventas-col-4'
-                        style={{ opacity: `${isIncluded('Importaciones sudamericanas') && ((tecnicos[focus.at(-1) - 1]?.producto !== 'Importaciones sudamericanas') || (tecnicos[focus.at(-1) - 1]?.producto === '')) ? 0.4 : 1}` }}>
-                        <div style={{ display: 'flex', position: 'relative' }}>
+                        style={{ opacity: `${getStyleBox(PRODUCTO.LATAM)}`, cursor: `${getCursor(PRODUCTO.LATAM)}` }}>                        <div style={{ display: 'flex', position: 'relative' }}>
                             <div onClick={() => {
-                                openAsignarModal('Importaciones sudamericanas');
-                                setProducto('Importaciones sudamericanas');
+                                openAsignarModal(PRODUCTO.LATAM);
+                                setProducto(PRODUCTO.LATAM);
                                 setTecnico(tecnicos[focus.at(-1) - 1]);
                             }} style={{ width: '90%' }} className='product-cell'>
-                                Importaciones sudamericanas<br /><br />
+                                {PRODUCTO.LATAM}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!isIncluded('Importaciones sudamericanas')}>
+                            <div className="producto-check-icon-content" hidden={!isIncluded(PRODUCTO.LATAM) || !hasPersonIcon(PRODUCTO.LATAM)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.LATAM)}>
+                                <GiPerson />
                             </div>
                         </div>
                     </div>
@@ -112,54 +111,58 @@ export default function ProductosAlmacen({ tecnicos, focus }) {
             <Row className='row-productos'>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row2-first-box-ventas-col-4'
-                        style={{ opacity: `${getStyleBox('Investigaciones farmacéuticas')}` }}>
-                        <div style={{ display: 'flex', position: 'relative' }}>
+                        style={{ opacity: `${getStyleBox(PRODUCTO.FARMACEUTICA)}`, cursor: `${getCursor(PRODUCTO.FARMACEUTICA)}` }}>                        <div style={{ display: 'flex', position: 'relative' }}>
                             <div onClick={() => {
-                                openAsignarModal('Investigaciones farmacéuticas');
-                                setProducto('Investigaciones farmacéuticas');
+                                openAsignarModal(PRODUCTO.FARMACEUTICA);
+                                setProducto(PRODUCTO.FARMACEUTICA);
                                 setTecnico(tecnicos[focus.at(-1) - 1])
                             }} style={{ width: '90%' }} className='product-cell'>
-                                Investigaciones farmacéuticas<br /><br />
+                                {PRODUCTO.FARMACEUTICA}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!(isIncluded("Investigaciones farmacéuticas")) || !hasPersonIcon('Investigaciones farmacéuticas')}>
+                            <div className="producto-check-icon-content" hidden={!(isIncluded(PRODUCTO.FARMACEUTICA)) || !hasPersonIcon(PRODUCTO.FARMACEUTICA)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
-                            </div>
-                            <div className="producto-person-icon-content" hidden={hasPersonIcon('Investigaciones farmacéuticas')}>
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.FARMACEUTICA)}>
                                 <GiPerson />
                             </div>
                         </div>
                     </div>
                 </Col>
                 <Col xs={4}>
-                    <div className='box-ventas-col-4 row2-middle-box-ventas-col-4'>
+                    <div className='box-ventas-col-4 row2-middle-box-ventas-col-4'
+                        style={{ opacity: `${getStyleBox(PRODUCTO.ORGANIC)}`, cursor: `${getCursor(PRODUCTO.ORGANIC)}` }}>
                         <div style={{ display: 'flex', position: 'relative' }}>
-                            <div style={{ width: '90%' }} className='product-cell'>
-                                Productos orgánicos<br /><br />
+                            <div onClick={() => {
+                                openAsignarModal(PRODUCTO.ORGANIC);
+                                setProducto(PRODUCTO.ORGANIC);
+                                setTecnico(tecnicos[focus.at(-1) - 1]);
+                            }} style={{ width: '90%' }} className='product-cell'>
+                                {PRODUCTO.ORGANIC}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!(isIncluded("Productos orgánicos"))}>
+                            <div className="producto-check-icon-content" hidden={!(isIncluded(PRODUCTO.ORGANIC)) || !hasPersonIcon(PRODUCTO.ORGANIC)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.ORGANIC)}>
+                                <GiPerson />
                             </div>
                         </div>
                     </div>
                 </Col>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row2-last-box-ventas-col-4'
-                        style={{ opacity: `${getStyleBox('Fotocopias e impresiones')}` }}>
-                        <div style={{ display: 'flex', position: 'relative' }}>
-                            <div style={{ width: '90%' }} className='product-cell'>
-                                Fotocopias e impresiones<br /><br />
+                        style={{ opacity: `${getStyleBox(PRODUCTO.FOTOCOPIAS)}`, cursor: `${getCursor(PRODUCTO.FOTOCOPIAS)}` }}>                        <div style={{ display: 'flex', position: 'relative' }}>
+                            <div onClick={() => {
+                                openAsignarModal(PRODUCTO.FOTOCOPIAS);
+                                setProducto(PRODUCTO.FOTOCOPIAS);
+                                setTecnico(tecnicos[focus.at(-1) - 1]);
+                            }} style={{ width: '90%' }} className='product-cell'>
+                                {PRODUCTO.FOTOCOPIAS}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!(isIncluded("Fotocopias e impresiones"))}>
+                            <div className="producto-check-icon-content" hidden={!(isIncluded(PRODUCTO.FOTOCOPIAS)) || !hasPersonIcon(PRODUCTO.FOTOCOPIAS)}>
                                 <FaRegCircleCheck />
                             </div>
-                            <div className="producto-lock-icon-content" hidden={true}>
-                                <RiLock2Fill />
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.FOTOCOPIAS)}>
+                                <GiPerson />
                             </div>
                         </div>
                     </div>
@@ -168,18 +171,27 @@ export default function ProductosAlmacen({ tecnicos, focus }) {
             <Row className='row-productos'>
                 <Col xs={4}>
                     <div className='box-ventas-col-4 row3-first-box-ventas-col-4'
-                    style={{ opacity: `${getStyleBox('Imprenta de billetes')}` }}>
-                        <div style={{ display: 'flex', position: 'relative' }}>
-                            <div style={{ width: '90%' }} className='product-cell'>
-                                Imprenta de billetes<br /><br />
+                        style={{ opacity: `${getStyleBox(PRODUCTO.BILLETES)}`, cursor: `${getCursor(PRODUCTO.BILLETES)}` }}>                        <div style={{ display: 'flex', position: 'relative' }}>
+                            <div onClick={() => {
+                                openAsignarModal(PRODUCTO.BILLETES);
+                                setProducto(PRODUCTO.BILLETES);
+                                setTecnico(tecnicos[focus.at(-1) - 1]);
+                            }} style={{ width: '90%' }} className='product-cell'>
+                                {PRODUCTO.BILLETES}<br /><br />
                             </div>
-                            <div className="producto-check-icon-content" hidden={!(isIncluded("Imprenta de billetes"))}>
+                            <div className="producto-check-icon-content" hidden={!(isIncluded(PRODUCTO.BILLETES)) || !hasPersonIcon(PRODUCTO.BILLETES)}>
                                 <FaRegCircleCheck />
+                            </div>
+                            <div className="producto-person-icon-content" hidden={hasPersonIcon(PRODUCTO.BILLETES)}>
+                                <GiPerson />
                             </div>
                         </div>
                     </div>
                 </Col>
             </Row>
             <TecnicosModal isOpen={isOpenAsignarModal} close={closeAsignarModal} tecnico={tecnico} producto={producto} />
-        </Container>)
+        </Container>
+    )
 }
+
+export default ProductosAlmacen;

@@ -18,7 +18,7 @@ function HomePage({ fama }) {
         getClub('HomePage.js'); //llamada a los datos del club
 
         const getProductos = async () => {
-            await fetch(`http://localhost:5050/api/Productos/Club/${user?.club}`)
+            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setListaExistencias(data);

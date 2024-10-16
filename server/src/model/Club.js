@@ -14,7 +14,8 @@ const clubSchema = new Schema({
     visitas: Number,
     ingresos_hoy: Number,
     caja_fuerte: Number,
-    productos_vendidos: Number
+    productos_vendidos: Number,
+    productos_acumulados: Number
 },
     {
         collection: 'clubs'

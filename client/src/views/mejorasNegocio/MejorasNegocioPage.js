@@ -23,7 +23,7 @@ function MejorasNegocioPage() {
 
     useEffect(() => {
         const getMejoras = async () => {
-            fetch(`http://localhost:5050/api/Mejoras/Club/${user?.club}`)
+            fetch(`${process.env.REACT_APP_LOCALHOST}/api/Mejoras/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setLista(data);

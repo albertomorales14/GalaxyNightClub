@@ -31,16 +31,13 @@
     position: relative;
 }
 
-.row-productos {
-    /*font-size: 0.80em;*/
-}
-
 .tecnico-check-icon-content:hover, 
 .tecnico-lock-icon-content:hover, 
 .tecnico-person-icon-content:hover,
 .tecnico-txt-content:hover {
     cursor: var(--gtav-cursor), auto;
 }
+
 /* Check Icon ***********************/
 
 /* Tecnico */
@@ -56,7 +53,6 @@
 .tecnico-check-icon-content > * {
     fill: var(--purple-dark);
     stroke: var(--purple-dark);
-    /*stroke-width: 3%;*/
     background-color: white;
     height: 2em !important;
     width: 2em !important;
@@ -150,7 +146,6 @@
 .almacen-sumary-row > .col-3 {
     text-align: end !important;
     padding-right: 1% !important;
-    /*padding-top: 1% !important;*/
 }
 
 .box-ventas-col-4 {
@@ -206,8 +201,6 @@
     position: relative;
 }
 
-
-
 .store-row > .col-3 {
     text-align: end !important;
     padding-right: 1% !important;
@@ -244,11 +237,26 @@
     .tecnico-img {
         height: 21vh;
     }
+
+    .producto-person-icon-content {
+        position: absolute;
+        right: -4%;
+        bottom: 0;
+    }
+
+    .producto-check-icon-content {
+        bottom: 15%;
+    }
+
 }
 
 /* Small Screen */
 @media screen and (max-width: 1900px) {
     
+    .tecnico-img {
+        height: 23vh;
+    }
+
     .tecnico-lock-icon-content > * {
         height: 2em !important;
         width: 2em !important;
@@ -278,7 +286,7 @@
 
     .product-cell {
         width: 90%;
-        font-size: 0.8em !important;
+        font-size: 0.825em !important;
     }
 
 }
@@ -299,4 +307,3 @@
     }
 
 }
-

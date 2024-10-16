@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import Cron from '../Cron';
 import Header from '../Header';
 import Settings from './settings/Settings';
 import Navigation from '../Navigation';
@@ -45,22 +46,11 @@ function Layout({ children }) {
     const showSettings = () => {
         setIsVisible(!isVisible);
     }
-/*
-    let requestCounter = 0;
 
-    // Guardar la referencia original de fetch
-    const originalFetch = window.fetch;
-
-    // Sobrescribir fetch
-    window.fetch = async function (...args) {
-        requestCounter++;
-        // Llamar a la función fetch original
-        return originalFetch.apply(this, args);
-    };
-*/
     return (
         isLogged() ? (
             <>
+                <Cron />
                 <Header showSettings={showSettings} layoutRef={layoutHeaderRef} />
                 <Settings isVisible={isVisible} layoutRef={layoutSettingsRef} clickSettingsButton={clickSettingsButton} />
                 <div className='bodyApp'>
@@ -75,7 +65,6 @@ function Layout({ children }) {
                 </div>
             </>
         ) : (<LoginPage />)
-
     )
 }
 

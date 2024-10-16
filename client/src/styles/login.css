@@ -125,6 +125,20 @@ input[type=password]:hover {
     color: white;
 }
 
+/* Success Alert */
+.success-login-alert {
+    padding: 2%;
+    background-color: rgba(30, 104, 33, 0.7);
+    color: white;
+}
+
+/* Warn Alert */
+.warn-login-alert {
+    padding: 2%;
+    background-color: rgba(134, 65, 180, 0.7);
+    color: white;
+}
+
 .login-alert-closebtn {
     margin-left: 15px;
     color: white;
@@ -203,41 +217,37 @@ input[type=password]:hover {
 
 }
 
-
-
-
-
 /* Register Page */
 .register-container {
     background-color: rgba(0, 0, 0, 0.8);
     box-sizing: content-box;
 }
 
-.register-container>form>div>svg {
+.register-container > form > div > svg {
     position: absolute;
     bottom: 30%;
     left: 2%;
 }
 
-.register-container>form>div>svg.password-eye {
+.register-container > form > div > svg.password-eye {
     right: 0%;
     left: 94%;
 }
 
-.register-container>form>div>svg.password-eye:hover {
+.register-container > form > div > svg.password-eye:hover {
     cursor: var(--gtav-cursor), auto;
 }
 
-.register-container>form>div {
+.register-container > form > div {
     position: relative;
 }
 
-.register-container>form {
+.register-container > form {
     padding: 3%;
     padding-bottom: 0;
 }
 
-.register-container>form>div>button {
+.register-container > form > div > button {
     width: -webkit-fill-available;
     text-align: center !important
 }

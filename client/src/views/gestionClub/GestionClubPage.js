@@ -26,7 +26,7 @@ function GestionClubPage({ fama }) {
         getClub('GestionClubPage.js');
         setActualizarLista(false);
 
-        fetch(`http://localhost:5050/api/Ingresos/Club/${club?._id}`)
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Ingresos/Club/${club?._id}`)
             .then(response => response.json())
             .then(data => {
                 setIngresos(data);

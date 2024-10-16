@@ -50,7 +50,8 @@ registerController.generarSetUpClub = [
                     visitas: 0,
                     ingresos_hoy: 0,
                     caja_fuerte: 0,
-                    productos_vendidos: 0
+                    productos_vendidos: 0,
+                    productos_acumulados: 0
                 });
                 await newClub.save();
 

@@ -1,12 +1,14 @@
 import { Button, Modal, Alert } from 'react-bootstrap';
 import useAuth from '../../../auth/useAuth';
+import ALERT from '../../../Utils/alertMessages';
 
 function DeleteAccountModal({ isOpen, close }) {
 
-    const { user, logout, deleteUserAndClub } = useAuth();
+    const { user, logout, deleteUserAndClub, setError } = useAuth();
 
     const deleteAccount = () => {
         deleteUserAndClub(user);
+        setError(ALERT.WARN);
         logout();
     }
 

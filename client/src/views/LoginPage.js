@@ -9,6 +9,7 @@ import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
 import { FaLinkedin } from "react-icons/fa6"; // LinkedIn icon
 import { IoLogoGithub } from "react-icons/io"; // GitHub icon
 import RegisterPage from "./RegisterPage";
+import ALERT from '../Utils/alertMessages';
 
 function LoginPage() {
 
@@ -48,22 +49,34 @@ function LoginPage() {
 
     // Registro Modal
     const [isOpenRegisterModal, setIsOpenRegisterModal] = useState(false);
+    const closeRegisterModal = () => setIsOpenRegisterModal(false);
     const openRegisterModal = () => {
         setIsOpenRegisterModal(true);
         setError(null);
         setSuccess(false);
-    };
-    const closeRegisterModal = () => setIsOpenRegisterModal(false);
+    }
 
     return (
         <>
             <div className="login-body">
                 <div className="login-container">
                     <h2 className="text-center">Galaxy NightClub</h2>
-                    {error ? (<div className="login-alert" hidden={closeAlert}>
-                        ERROR: {error}
-                        <button className="login-alert-closebtn" onClick={close}>&times;</button>
-                    </div>) : <></>}
+                    {
+                        error === ALERT.SUCCESS ? (
+                            <div className="success-login-alert" hidden={closeAlert}>
+                                {error}
+                                <button className="login-alert-closebtn" onClick={close}>&times;</button>
+                            </div>
+                        ) : error === ALERT.WARN ? (
+                            <div className="warn-login-alert" hidden={closeAlert}>
+                                {error}
+                                <button className="login-alert-closebtn" onClick={close}>&times;</button>
+                            </div>
+                        ) : error ? (<div className="login-alert" hidden={closeAlert}>
+                            ERROR: {error}
+                            <button className="login-alert-closebtn" onClick={close}>&times;</button>
+                        </div>) : <></>
+                    }
                     <Form onSubmit={(e) => login(e, username, password, location.state?.from)}>
 
                         <Form.Group className="mb-3" controlId="controlId.User">
@@ -71,6 +84,7 @@ function LoginPage() {
                             <Form.Control
                                 name="user"
                                 type="text" placeholder="Usuario" maxLength={30}
+                                autocomplete="off"
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </Form.Group>
@@ -104,7 +118,7 @@ function LoginPage() {
                     <a href='https://www.linkedin.com/in/alberto-morales-serrano-284056238/' target="_blank"><FaLinkedin /></a>
                 </div>
             </div>
-            <RegisterPage isOpen={isOpenRegisterModal} close={closeRegisterModal} />
+            <RegisterPage isOpen={isOpenRegisterModal} close={closeRegisterModal} setUser={setUsername} setPsswd={setPassword} />
         </>
     )
 }

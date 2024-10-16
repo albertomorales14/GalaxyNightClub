@@ -13,7 +13,7 @@ function DJModal({ isOpen, close, dj, AllDJs }) {
             }
         })
 
-        fetch(`http://localhost:5050/api/DJs/${actual_residente._id}`, {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/DJs/${actual_residente._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: actual_residente.name,
@@ -30,7 +30,7 @@ function DJModal({ isOpen, close, dj, AllDJs }) {
         })
 
         // Contratar y poner de Residente al nuevo DJ
-        fetch(`http://localhost:5050/api/DJs/${dj._id}`, {
+        fetch(`${process.env.REACT_APP_LOCALHOST}/api/DJs/${dj._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: dj.name,

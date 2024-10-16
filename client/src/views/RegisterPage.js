@@ -7,6 +7,7 @@ import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
 import { ring } from 'ldrs'; // loader
 import logService from '../Utils/logService';
+import ALERT from '../Utils/alertMessages';
 
 function RegisterPage(props) {
 
@@ -21,6 +22,7 @@ function RegisterPage(props) {
     // Carga el error de auth cada vez que lo detecte
     useEffect(() => {
         if (error !== null) {
+            setShowLoader(false);
             open();
         }
     }, [error]) // dependencia de error
@@ -29,6 +31,13 @@ function RegisterPage(props) {
     useEffect(() => {
         if (success) {
             closeModal();
+            setError(ALERT.SUCCESS);
+            
+            props.setUser(username);
+            document.getElementById("controlId.User").value = username;
+            
+            props.setPsswd(password);
+            document.getElementById("login-password").value = password;
         }
     }, [success]) // dependencia de exito
 
@@ -104,6 +113,7 @@ function RegisterPage(props) {
                                         <Form.Control
                                             name="user"
                                             type="text" placeholder="Usuario" maxLength={30}
+                                            autocomplete="off"
                                             onChange={(e) => setUsername(e.target.value)}
                                         />
                                     </Form.Group>

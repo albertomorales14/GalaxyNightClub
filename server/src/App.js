@@ -21,15 +21,6 @@ App.use(cookieParser());
 App.use(express.json({ limit: '50mb' })); // Middleware para que Express maneje JSON
 App.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-/* Set Cookie Settings 
-App.use(
-    session({
-      name: 'session',
-      secret: 'secretKeyWooo',
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-    })
-  );*/
-
 // Rutas
 App.get('/', (request, response) => {
     response.send('Welcome to GALAXY NIGHTCLUB API REST FULL');

@@ -56,7 +56,8 @@ clubController.updateClub = async (request, response) => {
             visitas,
             ingresos_hoy,
             caja_fuerte,
-            productos_vendidos
+            productos_vendidos,
+            productos_acumulados
         } = request.body;
 
         await Club.findByIdAndUpdate(request.params.id, {
@@ -73,7 +74,8 @@ clubController.updateClub = async (request, response) => {
             visitas,
             ingresos_hoy,
             caja_fuerte,
-            productos_vendidos
+            productos_vendidos,
+            productos_acumulados
         });
 
         logger.info('\t> updateClub: Club actualizado (clubController.js)');
