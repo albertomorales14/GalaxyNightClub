@@ -13,7 +13,6 @@ App.set('port', process.env.PORT || 4000);
 const corsOptions = {
     optionsSuccessStatus: 200,
     credentials: true, // cookies
-    origin: 'http://localhost:3000'
 }
 
 App.use(cors(corsOptions));
