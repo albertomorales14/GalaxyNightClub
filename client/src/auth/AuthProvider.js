@@ -147,8 +147,8 @@ function AuthProvider({ children }) {
     const hasRole = (role) => user?.role === role;
 
     // getUserClub
-    const getClub = (page) => {
-        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user?.club}`)
+    const getClub = async (page) => {
+        await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setClub(data);

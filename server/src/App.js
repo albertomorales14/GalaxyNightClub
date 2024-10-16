@@ -13,7 +13,7 @@ App.set('port', process.env.PORT || 4000);
 const corsOptions = {
     optionsSuccessStatus: 200,
     credentials: true, // cookies
-    origin: process.env.VERCEL_APP_URL
+    origin: process.env.REACT_APP_LOCALHOST
 }
 
 App.use(cors(corsOptions));

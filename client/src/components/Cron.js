@@ -47,7 +47,7 @@ function Cron() {
                 actualizarClub(user?.club, fame, club);
 
                 // Vuelve a empezar la cuenta atras
-                setCountdown(60 * 5);
+                setCountdown(20);
             }
         }
 
@@ -264,7 +264,7 @@ function Cron() {
         }
     }
 
-    return (<></>);
+    return (<>Cron: {countdown} s</>);
 }
 
 export default Cron;

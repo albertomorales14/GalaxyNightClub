@@ -8,6 +8,7 @@
     "dev": "nodemon node ./src/index.js",
     "start": "node ./src/index.js"
   },
+  "proxy": "http://localhost:3000",
   "engines": {
     "node": "16.x"
   },
