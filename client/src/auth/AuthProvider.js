@@ -23,7 +23,7 @@ function AuthProvider({ children }) {
             history.push(fromLocation);
         }
 
-        fetch(`${process.env.REACT_APP_LOCALHOST}/login`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/login`, {
             method: 'POST',
             credentials: "include", // Incluir cookies en la solicitud
             headers: {
@@ -65,7 +65,7 @@ function AuthProvider({ children }) {
     // Cerrar sesión
     const logout = async () => {
         try {
-            fetch(`${process.env.REACT_APP_LOCALHOST}/logout`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/logout`, {
                 method: 'POST',
                 credentials: "include", // Incluir cookies en la solicitud
                 headers: {
@@ -84,7 +84,7 @@ function AuthProvider({ children }) {
     const createUser = (e, user, psswd) => {
         e.preventDefault();
         try {
-            fetch(`${process.env.REACT_APP_LOCALHOST}/preparacionDelClub`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/preparacionDelClub`, {
                 method: 'POST',
                 headers: {
                     Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
@@ -125,7 +125,7 @@ function AuthProvider({ children }) {
     // Eliminar usuario y club
     const deleteUserAndClub = (user) => {
         try {
-            fetch(`${process.env.REACT_APP_LOCALHOST}/eliminarCuenta`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/eliminarCuenta`, {
                 method: 'POST',
                 headers: {
                     Accept: "application/json, text/plain, */*", "Content-Type": "application/json",
@@ -148,7 +148,7 @@ function AuthProvider({ children }) {
 
     // getUserClub
     const getClub = (page) => {
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${user?.club}`)
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setClub(data);
@@ -161,7 +161,7 @@ function AuthProvider({ children }) {
 
     const changePassword = (e, password) => {
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/${user._id}`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Usuarios/${user._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 password: password,
@@ -187,7 +187,7 @@ function AuthProvider({ children }) {
     const compareAndChangePassword = (e, password, newPassword) => {
         e.preventDefault();
         try {
-            fetch(`${process.env.REACT_APP_LOCALHOST}/comparePassword`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/comparePassword`, {
                 method: 'POST',
                 credentials: "include", // Incluir cookies en la solicitud
                 headers: {
@@ -216,7 +216,7 @@ function AuthProvider({ children }) {
 
     const getUser = (user) => {
         if (user) {
-            fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/${user._id}`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/api/Usuarios/${user._id}`, {
                 method: 'GET',
                 headers: { "Content-type": "application/json; charset=UTF-8", },
             })
@@ -233,7 +233,7 @@ function AuthProvider({ children }) {
 
     const updateUser = async (data) => {
         if (user) {
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Usuarios/upload/${user._id}`, {
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Usuarios/upload/${user._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     ...data

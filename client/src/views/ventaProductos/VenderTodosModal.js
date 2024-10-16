@@ -15,7 +15,7 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
             if (item.existencias !== 0) {
                 num_ventas++;
                 num_productos += item.existencias;
-                fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/${item._id}`, {
+                fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/${item._id}`, {
                     method: 'PUT',
                     body: JSON.stringify({
                         name: item.name,
@@ -36,7 +36,7 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
         }
 
         // Actualizar el Club despues de la venta
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${user.club}`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user.club}`, {
             method: 'PUT',
             body: JSON.stringify({
                 ganancias_almacen: club?.ganancias_almacen + Math.floor(total),

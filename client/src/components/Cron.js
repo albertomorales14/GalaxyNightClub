@@ -56,7 +56,7 @@ function Cron() {
 
     const getIngresos = async () => {
         if (user) {
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Ingresos/Club/${user?.club}`)
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Ingresos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setListaIngresos(data);
@@ -73,7 +73,7 @@ function Cron() {
             for (let i = listaIngresos.length - 1; i >= 0; i--) {
                 if (i > 0) {
                     try {
-                        const response = await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Ingresos/${listaIngresos[i - 1]?._id}`, {
+                        const response = await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Ingresos/${listaIngresos[i - 1]?._id}`, {
                             method: 'PUT',
                             body: JSON.stringify({
                                 value: listaIngresos[i]?.value
@@ -93,7 +93,7 @@ function Cron() {
                 } else {
                     try {
                         // Espera a que la solicitud PUT se complete antes de continuar con la siguiente
-                        const response = await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Ingresos/${listaIngresos[listaIngresos.length - 1]?._id}`, {
+                        const response = await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Ingresos/${listaIngresos[listaIngresos.length - 1]?._id}`, {
                             method: 'PUT',
                             body: JSON.stringify({
                                 value: ingresosDiariosActualizados
@@ -117,7 +117,7 @@ function Cron() {
 
     async function actualizarClub(id, fame, club) {
         if (user) {
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${id}`, {
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     fama: fame,
@@ -150,7 +150,7 @@ function Cron() {
 
     async function getTecnicos() {
         if (user) {
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/Club/${user?.club}`)
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Tecnicos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setTecnicos(data);
@@ -164,7 +164,7 @@ function Cron() {
 
     async function getProductos() {
         if (user) {
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/Club/${user?.club}`)
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/Club/${user?.club}`)
                 .then(response => response.json())
                 .then(data => {
                     setProductos(data);
@@ -238,7 +238,7 @@ function Cron() {
                             
                             if (producto_id.length !== 0 || producto_id) {
                                 if (productos[num_producto]?.capacidadMax !== productos[num_producto]?.existencias) {
-                                    await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/${producto_id}`, {
+                                    await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/${producto_id}`, {
                                         method: 'PUT',
                                         body: JSON.stringify({
                                             existencias: existencias,

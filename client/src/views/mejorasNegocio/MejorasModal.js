@@ -5,7 +5,7 @@ function MejorasModal(props) {
 
     const handleMejora = async () => {
 
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Mejoras/${props.mejora._id}`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Mejoras/${props.mejora._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: props.mejora.name,

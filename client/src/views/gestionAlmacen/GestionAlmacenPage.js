@@ -27,7 +27,7 @@ function GestionAlmacenPage() {
 
     useEffect(() => {
         getClub('GestionAlmacenPage.js');
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/Club/${user?.club}`)
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Tecnicos/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setTecnicos(data);

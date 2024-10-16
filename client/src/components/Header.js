@@ -4,10 +4,10 @@ import useAuth from "../auth/useAuth";
 function Header({ showSettings, layoutRef }) {
 
     const { user } = useAuth();
-    const [src, setSrc] = useState(user ? `${process.env.REACT_APP_LOCALHOST}/uploads/img/${user.imagen}` : '/img/user/profile-default.png');
+    const [src, setSrc] = useState(user ? `${process.env.REACT_APP_RENDER_URL}/uploads/img/${user.imagen}` : '/img/user/profile-default.png');
 
     useEffect(() => {
-        setSrc(`${process.env.REACT_APP_LOCALHOST}/uploads/img/${user.imagen}`);
+        setSrc(`${process.env.REACT_APP_RENDER_URL}/uploads/img/${user.imagen}`);
     }, [user]);
 
     return (

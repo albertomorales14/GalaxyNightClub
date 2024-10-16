@@ -1,6 +1,6 @@
 const logService = {
     sendLog: (level, message) => {
-        fetch(`${process.env.REACT_APP_LOCALHOST}/log`, {  // Esto irá al backend, gracias al proxy del package.json
+        fetch(`${process.env.REACT_APP_RENDER_URL}/log`, {  // Esto irá al backend, gracias al proxy del package.json
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

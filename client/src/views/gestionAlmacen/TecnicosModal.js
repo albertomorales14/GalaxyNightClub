@@ -7,7 +7,7 @@ function TecnicosModal({ isOpen, close, tecnico, producto, siguiente }) {
     const accion = async () => {
         if (tecnico?.estado === 'NO CONTRATADO') {
             // Contratar tecnico
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/${tecnico._id}`, {
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Tecnicos/${tecnico._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     estado: 'CONTRATADO',
@@ -25,7 +25,7 @@ function TecnicosModal({ isOpen, close, tecnico, producto, siguiente }) {
 
             // Desbloquear el siguiente
             if (tecnico !== siguiente) {
-                await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/${siguiente._id}`, {
+                await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Tecnicos/${siguiente._id}`, {
                     method: 'PUT',
                     body: JSON.stringify({
                         estado: 'NO CONTRATADO',
@@ -43,7 +43,7 @@ function TecnicosModal({ isOpen, close, tecnico, producto, siguiente }) {
             }
         } else {
             // Asignar tecnico
-            await fetch(`${process.env.REACT_APP_LOCALHOST}/api/Tecnicos/${tecnico._id}`, {
+            await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Tecnicos/${tecnico._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     estado: 'ASIGNADO',

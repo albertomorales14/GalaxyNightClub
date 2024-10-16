@@ -7,7 +7,7 @@ function FameModal(props) {
 
         let fame = (props.club?.fama + 25) >= 100 ? 100 : props.club?.fama + 25;
 
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${props.club._id}`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${props.club._id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 fama: fame,

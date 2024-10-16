@@ -30,7 +30,7 @@ function VenderColeccionModal(props) {
 
     const venderProductos = () => {
         props.grupo.map((numero) => (
-            fetch(`${process.env.REACT_APP_LOCALHOST}/api/Productos/${props.productos[numero]._id}`, {
+            fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/${props.productos[numero]._id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     existencias: props.productos[numero].existencias - getExistencias(numero),
@@ -48,7 +48,7 @@ function VenderColeccionModal(props) {
                 })
         ))
 
-        fetch(`${process.env.REACT_APP_LOCALHOST}/api/Club/${user.club}`, {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user.club}`, {
             method: 'PUT',
             body: JSON.stringify({
                 ganancias_almacen: (props.club?.ganancias_almacen + props.precioColeccion),
