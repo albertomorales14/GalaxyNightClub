@@ -23,23 +23,23 @@ function VentaProductosPage() {
     const { user, club, getClub } = useAuth();
 
     useEffect(() => {
-        // Obtener todos los productos
-        const getProductos = async () => {
-            fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/Club/${user?.club}`)
-                .then(response => response.json())
-                .then(data => {
-                    setLista(data);
-                    setActualizarLista(false);
-                    logService.sendLog('info', '[GET Request] getProductos: Lista de Productos (VentaProductosPage.js)');
-                })
-                .catch(error => {
-                    logService.sendLog('error', 'Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): ' + error);
-                });
-        }
         getProductos(); // llamada lista de productos
-        // Datos del club
-        getClub('VentaProductosPage.js');
+        getClub('VentaProductosPage.js'); // Datos del club
     }, [actualizarLista]) // dependencia variable de estado lista
+
+    // Obtener todos los productos
+    const getProductos = async () => {
+        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/Club/${user?.club}`)
+            .then(response => response.json())
+            .then(data => {
+                setLista(data);
+                setActualizarLista(false);
+                logService.sendLog('info', '[GET Request] getProductos: Lista de Productos (VentaProductosPage.js)');
+            })
+            .catch(error => {
+                logService.sendLog('error', 'Error: [GET Request] getProductos: Lista de Productos (VentaProductosPage.js): ' + error);
+            });
+    }
 
     let totalValue = lista?.reduce((a, b) => a + (b['existencias'] / b['capacidadMax'] * b['totalValue'] || 0), 0);
 

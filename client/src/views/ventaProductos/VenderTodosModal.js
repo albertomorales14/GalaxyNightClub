@@ -9,7 +9,7 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
     var num_ventas = 0;
     var num_productos = 0;
 
-    const venderProductos = (total) => {
+    const venderProductos = () => {
         // Actualizar cada producto
         for (let item of productos) {
             if (item.existencias !== 0) {
@@ -18,10 +18,7 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
                 fetch(`${process.env.REACT_APP_RENDER_URL}/api/Productos/${item._id}`, {
                     method: 'PUT',
                     body: JSON.stringify({
-                        name: item.name,
-                        capacidadMax: item.capacidadMax,
                         existencias: 0,
-                        totalValue: item.totalValue,
                         diferencia: item.capacidadMax
                     }),
                     headers: { "Content-type": "application/json; charset=UTF-8", },
@@ -72,7 +69,7 @@ function VenderTodosModal({ isOpen, close, productos, club, total }) {
                 <Button onClick={close} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
-                <Button onClick={() => { venderProductos(total); close() }} style={{ width: '50%', textAlign: 'center !important' }}>
+                <Button onClick={() => { venderProductos(); close() }} style={{ width: '50%', textAlign: 'center !important' }}>
                     Vender todo
                 </Button>
             </Modal.Footer>

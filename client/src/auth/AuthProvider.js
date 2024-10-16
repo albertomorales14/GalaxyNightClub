@@ -134,10 +134,10 @@ function AuthProvider({ children }) {
                     clubId: user?.club
                 }),
             })
-            .then(response => response.json())
-            .catch(error => {
-                logService.sendLog('error', 'Error [POST Request] deleteUserAndClub (AuthProvider.js) : ', error);
-            });
+                .then(response => response.json())
+                .catch(error => {
+                    logService.sendLog('error', 'Error [POST Request] deleteUserAndClub (AuthProvider.js) : ', error);
+                });
         } catch (error) {
             logService.sendLog('error', 'Error: [POST Request] Eliminar usuario (AuthProvider.js): ', error);
         }
@@ -147,8 +147,8 @@ function AuthProvider({ children }) {
     const hasRole = (role) => user?.role === role;
 
     // getUserClub
-    const getClub = (page) => {
-        fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user?.club}`)
+    const getClub = async (page) => {
+        await fetch(`${process.env.REACT_APP_RENDER_URL}/api/Club/${user?.club}`)
             .then(response => response.json())
             .then(data => {
                 setClub(data);
