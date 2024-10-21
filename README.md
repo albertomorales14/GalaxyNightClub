@@ -2,8 +2,8 @@
 
 MERN STACK PROJECT (MongoDB | Express.js | React.js | Node.js)
 
-Gestiona un club nocturno con un almacén de productos, contrata DJ's, técnicos de almacén, gestiona y vende mercancías y mantén la fama del club por lo alto.
-El objetivo de este proyecto es aprender y practicar conocimientos y poner a prueba mis habilidades con diferentes tecnologías, en este caso aquellas que conforman la arquitectura de este proyecto, <b>MongoDB</b>, <b>Express.js</b>, <b>React.js</b> y <b>Node.js</b> principalmente, además de otras como HTML, CSS y JS, uso de API REST, integración de diferentes librerías, gestión de archivos, audios, gráficos, rutas y más.
+Gestiona un club nocturno con un almacén de productos, contrata DJ's, técnicos de almacén, vende mercancías y mantén la fama del club por todo lo alto.<br>
+El objetivo de este proyecto es aprender, practicar conocimientos y poner a prueba mis habilidades con diferentes tecnologías, en este caso aquellas que conforman la arquitectura de este proyecto, <b>MongoDB</b>, <b>Express.js</b>, <b>React.js</b> y <b>Node.js</b> principalmente, además de otras como HTML, CSS y JS, uso de API REST, integración de diferentes librerías, gestión de archivos, audios, gráficos, rutas y más.
 
 ## Instalación
 
