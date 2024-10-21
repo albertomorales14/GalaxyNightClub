@@ -41,6 +41,9 @@ npm run dev<br>
 cd client<br>
 npm start<br>
 
+## Manual de usuario
+Puedes consultar el [Manual de Usuario](ENLACE_AL_PDF) en formato PDF para más detalles sobre el uso de la aplicación y su funcionalidad.
+
 ## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE.md) para más detalles.
