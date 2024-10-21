@@ -42,7 +42,7 @@ cd client<br>
 npm start<br>
 
 ## Manual de usuario
-Puedes consultar el [Manual de Usuario](ENLACE_AL_PDF) en formato PDF para más detalles sobre el uso de la aplicación y su funcionalidad.
+Puedes consultar el <a href='https://github.com/albertomorales14/GalaxyNightClub/releases/download/version1/Manual.de.usuario.Galaxy.NightClub.pdf' target="_blank">Manual de Usuario</a> en formato PDF para más detalles sobre el uso de la aplicación y su funcionalidad.
 
 ## Licencia
 
