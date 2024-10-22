@@ -1,3 +1,139 @@
+@media screen and (max-width: 500px) {
+
+    body {
+        font-size: 0.75em !important;
+        padding: 0 !important;
+        background-size: auto !important;
+    }
+
+    #root {
+        margin: 0 !important;
+    }
+
+    .fameBar-Container > h1 {
+        font-size: calc(0.40rem + 0.70vw) !important;
+    }
+
+    .dj-btn-size {
+        font-size: 12px !important;
+    }
+
+    img.dj-img.dj-0 {
+        object-position: 70% 2% !important;
+    }
+
+    img.dj-img.dj-1 {
+        object-position: 30% 2% !important;
+    }
+
+    img.dj-img.dj-2 {
+        object-position: 35% 2% !important;
+    }
+
+    img.dj-img.dj-3 {
+        object-position: 70% 25% !important;
+    }
+
+    .setting-container {
+        width: 50% !important;
+        right: 1% !important;
+    }
+
+    .venta-personalizada-flex {
+        flex: 2 1 !important;
+    }
+
+    .list-products {
+        flex: 3 1 !important;
+    }
+
+    h1 {
+        font-size: calc(0.75rem + 1vw) !important;
+    }
+
+    .homeInfo {
+        font-size: 1em !important;
+    }
+
+    .aside-menu > a {
+        font-size: 1em !important;
+    }
+
+    .line-chart-container > div {
+        height: 25vh !important;
+    }
+
+    .modal-content {
+        width: 90% !important;
+    }
+
+    .club-sumary > .col-9 {
+        flex: 5 !important;
+    }
+
+    .club-sumary > .col-3 {
+        flex: 2 !important;
+    }
+
+    .container {
+        margin-top: 1% !important;
+    }
+
+    progress {
+        width: 67% !important;
+        margin: 0 0 0 5% !important;
+    }
+
+    .login-body {
+        margin: 15% 10% 0% 10% !important;
+    }
+
+    .login-container > form > div > svg.password-eye {
+        left: 92% !important;
+    }
+
+    input[type=text], input[type=password] {
+        padding-left: 8% !important;
+    }
+
+    .header-img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .mejoras-grid-container > div > .col-3 {
+        width: 25% !important;
+    }
+
+    .tecnico-img {
+        height: 12vh;
+    }
+
+    .mejoras-grid-container>div>.col-3, .mejoras-grid-container>div>.col-9 {
+        height: 29vh;
+    }
+
+    .mejoras-grid-container img {
+        height: 29vh;
+        object-fit: cover;
+    }
+
+    .txt-mejoras {
+        font-size: 0.85em !important;
+        font-weight: var(--bs-nav-link-font-weight) !important;
+        margin-bottom: 5%;
+    }
+    
+    .mejoras-col-3 {
+        flex: 3;
+    }
+
+    .mejoras-col-9 {
+        flex: 5;
+    }
+
+}
+
 @media screen and (max-width: 650px) {
 
     body {
@@ -90,6 +226,61 @@
 
     .tecnico-img {
         height: 12vh;
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+    
+    body {
+        background-size: cover !important;
+    }
+
+    img.dj-img.dj-0 {
+        object-position: 70% 2% !important;
+    }
+
+    img.dj-img.dj-1 {
+        object-position: 30% 2% !important;
+    }
+
+    img.dj-img.dj-2 {
+        object-position: 35% 2% !important;
+    }
+
+    img.dj-img.dj-3 {
+        object-position: 70% 25% !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    body {
+        background-size: auto !important;
+    }
+
+    .mejoras-grid-container > div > .col-3, .mejoras-grid-container > div > .col-9 {
+        height: 25vh;
+    }
+
+    .txt-mejoras {
+        font-size: 0.85em !important;
+    }
+
+    img.dj-img.dj-0 {
+        object-position: 70% 2% !important;
+    }
+
+    img.dj-img.dj-1 {
+        object-position: 30% 2% !important;
+    }
+
+    img.dj-img.dj-2 {
+        object-position: 35% 2% !important;
+    }
+
+    img.dj-img.dj-3 {
+        object-position: 70% 25% !important;
     }
 
 }

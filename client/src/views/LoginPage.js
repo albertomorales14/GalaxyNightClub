@@ -8,6 +8,7 @@ import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
 import { FaLinkedin } from "react-icons/fa6"; // LinkedIn icon
 import { IoLogoGithub } from "react-icons/io"; // GitHub icon
+import { ring } from 'ldrs'; // loader
 import RegisterPage from "./RegisterPage";
 import ALERT from '../Utils/alertMessages';
 
@@ -20,6 +21,7 @@ function LoginPage() {
     useEffect(() => {
         if (error !== null) {
             open();
+            setShowLoader(false);
         }
     }, [error]) // dependencia de error
 
@@ -32,7 +34,11 @@ function LoginPage() {
     const close = () => {
         setCloseAlert(true);
         setError(null);
+        setShowLoader(false);
     }
+
+    ring.register('login-ldr');
+    const [showLoader, setShowLoader] = useState(false);
 
     // Ocultar-Mostrar contraseña (eye icon)
     const [psswdVisible, setPsswdVisible] = useState(false);
@@ -77,7 +83,7 @@ function LoginPage() {
                             <button className="login-alert-closebtn" onClick={close}>&times;</button>
                         </div>) : <></>
                     }
-                    <Form onSubmit={(e) => login(e, username, password, location.state?.from)}>
+                    <Form onSubmit={(e) => {login(e, username, password, location.state?.from); setShowLoader(true)} }>
 
                         <Form.Group className="mb-3" controlId="controlId.User">
                             <FaUser />
@@ -102,7 +108,14 @@ function LoginPage() {
 
                         <div className="text-center">
                             <Button className="login-btn" variant="primary" type="submit">
-                                Iniciar sesión
+                                {
+                                    showLoader && !error ? (
+                                        <div hidden={!showLoader} className='login-loader-div'>
+                                            <login-ldr color="var(--purple-dark)" size='15' stroke='3'></login-ldr>
+                                            &nbsp;Cargando... por favor, espere.
+                                        </div>
+                                    ) : (<div>Iniciar sesión</div>)
+                                }
                             </Button>
                             <Button id="register-btn" onClick={openRegisterModal}>
                                 Crear cuenta

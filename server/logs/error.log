@@ -1,1 +1,2 @@
 2024-10-16T07:02:58.244Z [error]: Error [POST Request] Login (AuthProvider.js) : 
+2024-10-22T09:23:25.823Z [error]: 	> Error: getAudio: Obtener audio de DJ (djController.js): ReferenceError: res is not defined

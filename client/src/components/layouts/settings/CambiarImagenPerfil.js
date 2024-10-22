@@ -6,6 +6,16 @@ import logService from '../../../Utils/logService';
 function CambiarImagenPerfil({ isOpen, close }) {
 
     const { user, updateUser } = useAuth();
+    const [src, setSrc] = useState();
+
+    useEffect(() => {
+        const getImage = async () => {
+            const response = await fetch(`${process.env.REACT_APP_RENDER_URL}/api/cloudinary/image/${user?.imagen}`);
+            const data = await response.json();
+            setSrc(data.url);
+        }
+        getImage();
+    }, []);
 
     const IMAGE_SIZE = 50 * 1024 * 1024; // 50MB
     const IMAGE_EXT_REGEX = /.(jpe?g|png)$/i; // JPG / JPEG / PNG
@@ -109,7 +119,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
         <Modal show={isOpen} onHide={() => { cleanComponent(); document.getElementById('img-header').click() }} animation={false}>
             <Modal.Header className='modal-header-img-page change-img-header'>
                 <Modal.Title>
-                    <img id="img-header" className="header-img" src={`${process.env.REACT_APP_RENDER_URL}/uploads/img/${user.imagen}`} style={{ cursor: 'default' }} alt="user-photo" />
+                    <img id="img-header" className="header-img" src={src} style={{ cursor: 'default' }} alt="user-photo" />
                     &nbsp;<span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
                 </Modal.Title>
             </Modal.Header>
