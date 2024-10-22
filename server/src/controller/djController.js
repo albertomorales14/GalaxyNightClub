@@ -56,4 +56,18 @@ djController.updateDJ = async (request, response) => {
     }
 }
 
+// Obtener audio desde Cloudinary
+djController.getAudio = async (request, response) => {
+    try {
+        let audioId = request.params.id;
+        audioId = audioId.replace(' ', '/');
+        const audioUrl = `https://res.cloudinary.com/djxewugx1/video/upload/${audioId}.mp3`;
+        logger.info('\t> getAudio: Audio de DJ obtenido (djController.js)');
+        response.json({ url: audioUrl });
+    } catch (error) {
+        logger.error('\t> Error: getAudio: Obtener audio de DJ (djController.js): ' + error);
+        response.status(500).json({ message: 'Error al obtener audio de un DJ' });
+    }
+}
+
 module.exports = djController;

@@ -53,6 +53,7 @@ App.use('/api/Ingresos/:id', require('./routes/ingreso'));
 App.use('/api/DJs', require('./routes/dj'));
 App.use('/api/DJs/Club/:id', require('./routes/dj'));
 App.post('/api/DJs/:id', require('./routes/dj'));
+App.use('/api/DJs/Audio/:id', require('./routes/dj'));
 
 // Tecnicos
 App.use('/api/Tecnicos', require('./routes/tecnico'));
@@ -90,5 +91,6 @@ App.use((error, request, response, next) => {
 App.use('/api', uploadRoutes);
 // Carpeta estática para servir imágenes subidas
 App.use('/uploads', express.static('src/uploads'));
+App.use('/cloudinary/image/:id', require('./routes/upload'));
 
 module.exports = App;
