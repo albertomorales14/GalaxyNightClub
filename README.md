@@ -31,6 +31,7 @@ npm install express-validator<br>
 npm install argon2<br>
 npm install cookie-parser<br>
 npm install winston<br>
+npm install cloudinary<br>
 <br>
 ## Inicio del proyecto local<br>
 ### Ejecutar el servidor en entorno local (localhost:5050):<br>
