@@ -11,6 +11,7 @@ function Cron() {
     const [listaIngresos, setListaIngresos] = useState([]);
     const [tecnicos, setTecnicos] = useState([]);
     const [productos, setProductos] = useState([]);
+    const [acumulados, setAcumulados] = useState(0);
 
     // Contador infinito: Decrementa la fama del club
     useEffect(() => {
@@ -125,7 +126,7 @@ function Cron() {
                     celebridades: club?.celebridades + Math.floor(Math.random() * fame === 100 ? 5 : fame >= 70 ? 3 : fame >= 50 ? 2 : fame >= 25 ? 25 : 0),
                     caja_fuerte: (club?.ingresos_hoy + club?.caja_fuerte) > 250000 ? 250000 : club?.ingresos_hoy + club?.caja_fuerte,
                     ganancias_club: club?.ganancias_club + club?.ingresos_hoy,
-                    productos_acumulados: club?.productos_acumulados + productos?.reduce((a, b) => a + (b['existencias'] || 0), 0),
+                    productos_acumulados: club?.productos_acumulados + acumulados,
                     publico: fame === 100 ? 'Hasta los topes'
                         : fame >= 75 ? 'Abarrotado'
                             : fame >= 50 ? 'Lleno'
@@ -235,6 +236,9 @@ function Cron() {
                                 existencias = productos[num_producto]?.capacidadMax;
                             }
                             let diff = (productos[num_producto]?.capacidadMax - existencias) < 0 ? 0 : productos[num_producto]?.capacidadMax - existencias;
+
+                            let prodAcum = acumulados;
+                            setAcumulados(prodAcum + (Math.abs(existencias - productos[num_producto]?.existencias)));
                             
                             if (producto_id.length !== 0 || producto_id) {
                                 if (productos[num_producto]?.capacidadMax !== productos[num_producto]?.existencias) {

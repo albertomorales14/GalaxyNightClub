@@ -4,10 +4,14 @@ import useAuth from '../../../auth/useAuth';
 import { FaLock } from "react-icons/fa6"; // password icon
 import { BsFillEyeFill } from "react-icons/bs"; // open eye icon
 import { BsFillEyeSlashFill } from "react-icons/bs"; // close eye icon
+import { ring } from 'ldrs'; // loader
 
 function CambiarPassword({ isOpen, close }) {
 
     const { compareAndChangePassword, success, setSuccess, error, setError } = useAuth();
+
+    ring.register('login-ldr');
+    const [showLoader, setShowLoader] = useState(false);
 
     // Error Alert
     const [closeAlert, setCloseAlert] = useState(true);
@@ -15,6 +19,7 @@ function CambiarPassword({ isOpen, close }) {
     const closeErrorAlert = () => {
         setCloseAlert(true);
         setError(null);
+        setShowLoader(false);
     }
 
     // Carga el error cada vez que lo detecte
@@ -22,6 +27,7 @@ function CambiarPassword({ isOpen, close }) {
         if (error !== null) {
             openErrorAlert();
             setSuccess(false);
+            setShowLoader(false);
         }
     }, [error]); // dependencia de error
 
@@ -64,6 +70,7 @@ function CambiarPassword({ isOpen, close }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setShowLoader(true);
 
         if (!oldPassword || !password) {
             setError('Las contraseñas son obligatorias');
@@ -78,6 +85,7 @@ function CambiarPassword({ isOpen, close }) {
         setOldPassword(null);
         closeErrorAlert();
         setSuccess(false);
+        setShowLoader(false);
     }
 
     return (
@@ -130,8 +138,15 @@ function CambiarPassword({ isOpen, close }) {
                 <Button onClick={() => { close(); cleanForm() }} style={{ width: '50%', textAlign: 'center !important' }}>
                     Cancelar
                 </Button>
-                <Button onClick={() => { document.getElementById('submit-password').click() }} style={{ width: '50%', textAlign: 'center !important' }}>
-                    Confirmar
+                <Button onClick={() => { document.getElementById('submit-password').click(); closeErrorAlert(); setShowLoader(true) }} style={{ width: '50%', textAlign: 'center !important' }}>
+                    {
+                        showLoader && !error ? (
+                            <div hidden={!showLoader} className='login-loader-div'>
+                                <login-ldr color="var(--purple-dark)" size='15' stroke='3'></login-ldr>
+                                &nbsp;Cargando...
+                            </div>
+                        ) : (<div>Confirmar</div>)
+                    }
                 </Button>
             </Modal.Footer>
         </Modal>

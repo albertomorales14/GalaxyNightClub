@@ -28,7 +28,7 @@ function Header({ showSettings, layoutRef }) {
             }}>
                 Sesión iniciada como: <span style={{ color: 'var(--purple-light)' }}>{user.username}</span>
             </h3>
-            <img id="img-header" ref={layoutRef} className="header-img" src={src} alt="user-photo" onClick={showSettings} />
+            <img id="img-header" ref={layoutRef} className="header-img" src={src} loading="lazy" alt="user-photo" onClick={showSettings} />
         </div>
     )
 }

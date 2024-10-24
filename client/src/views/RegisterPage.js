@@ -143,7 +143,7 @@ function RegisterPage(props) {
                         Cancelar
                     </Button>
                     <Button onClick={() => { document.getElementById('submit-registro').click() }} style={{ width: '50%', textAlign: 'center !important' }}>
-                        Crear cuenta
+                        {showLoader ? (<>Creando cuenta...</>) : (<>Crear cuenta</>)}
                     </Button>
                 </Modal.Footer>
             </Modal>

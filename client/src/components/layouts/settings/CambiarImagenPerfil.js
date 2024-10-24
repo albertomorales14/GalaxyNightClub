@@ -15,7 +15,7 @@ function CambiarImagenPerfil({ isOpen, close }) {
             setSrc(data.url);
         }
         getImage();
-    }, []);
+    }, [user]);
 
     const IMAGE_SIZE = 50 * 1024 * 1024; // 50MB
     const IMAGE_EXT_REGEX = /.(jpe?g|png)$/i; // JPG / JPEG / PNG
