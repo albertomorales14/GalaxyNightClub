@@ -10,8 +10,8 @@
     "ag-charts-react": "^10.1.0",
     "bootstrap": "^5.3.3",
     "ldrs": "^1.0.2",
-    "nth-check": "^2.1.1",
-    "postcss": "^8.4.47",
+    "nth-check": ">=2.0.1",
+    "postcss": ">=8.4.31",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
@@ -50,6 +50,8 @@
     ]
   },
   "devDependencies": {
-    "npm-force-resolutions": "^0.0.10"
+    "npm-force-resolutions": "^0.0.10",
+    "postcss": ">=8.4.31",
+    "nth-check": ">=2.0.1"
   }
 }
