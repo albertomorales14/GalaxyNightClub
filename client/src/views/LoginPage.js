@@ -109,7 +109,12 @@ function LoginPage() {
                         <div className="text-center">
                             <Button className="login-btn" variant="primary" type="submit">
                                 {
-                                    showLoader && !error ? (
+                                    showLoader && error === ALERT.SUCCESS ? (
+                                        <div hidden={!showLoader} className='login-loader-div'>
+                                            <login-ldr color="var(--purple-dark)" size='15' stroke='3'></login-ldr>
+                                            &nbsp;Cargando... por favor, espere.
+                                        </div>
+                                    ) : showLoader && !error ? (
                                         <div hidden={!showLoader} className='login-loader-div'>
                                             <login-ldr color="var(--purple-dark)" size='15' stroke='3'></login-ldr>
                                             &nbsp;Cargando... por favor, espere.
@@ -127,8 +132,8 @@ function LoginPage() {
             <div className='login-footer'>
                 <p style={{ textShadow: '2px 2px 1px black' }}>Desarrollado por Alberto Morales</p>
                 <div className='login-icons'>
-                    <a href='https://github.com/albertomorales14' target="_blank"><IoLogoGithub /></a>
-                    <a href='https://www.linkedin.com/in/alberto-morales-serrano-284056238/' target="_blank"><FaLinkedin /></a>
+                    <a target="_blank" rel="noopener noreferrer" href='https://github.com/albertomorales14'><IoLogoGithub /></a>
+                    <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/alberto-morales-serrano-284056238/'><FaLinkedin /></a>
                 </div>
             </div>
             <RegisterPage isOpen={isOpenRegisterModal} close={closeRegisterModal} setUser={setUsername} setPsswd={setPassword} />
