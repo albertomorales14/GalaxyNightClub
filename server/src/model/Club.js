@@ -1,28 +1,27 @@
 const { Schema, model } = require('mongoose');
+const { PUBLICO } = require('../constants');
+
+const contador = { type: Number, default: 0, min: 0 };
 
 const clubSchema = new Schema({
-    fama: Number,
-    propietario: String,
-    ubicacion: String,
-    ganancias_almacen: Number,
-    ganancias_club: Number,
-    ganancias_totales: Number,
-    trabajos: Number,
-    ventas_almacen: Number,
-    celebridades: Number,
-    publico: String,
-    visitas: Number,
-    ingresos_hoy: Number,
-    caja_fuerte: Number,
-    productos_vendidos: Number,
-    productos_acumulados: Number
-},
-    {
-        collection: 'clubs'
-    },
-    {
-        timestamps: true
-    }
-);
+    fama: { type: Number, default: 0, min: 0, max: 100 },
+    propietario: { type: String, required: true, trim: true },
+    ubicacion: { type: String, default: 'Del Perro Beach' },
+    ganancias_almacen: contador,
+    ganancias_club: contador,
+    ganancias_totales: contador,
+    trabajos: contador,
+    ventas_almacen: contador,
+    celebridades: contador,
+    publico: { type: String, enum: PUBLICO, default: 'Vacío' },
+    visitas: contador,
+    ingresos_hoy: contador,
+    caja_fuerte: contador,
+    productos_vendidos: contador,
+    productos_acumulados: contador
+}, {
+    collection: 'clubs',
+    timestamps: true
+});
 
 module.exports = model('Club', clubSchema);

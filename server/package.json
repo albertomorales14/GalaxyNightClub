@@ -1,33 +1,34 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "galaxy-nightclub-server",
+  "version": "2.0.0",
+  "description": "API REST de Galaxy NightClub (Express + MongoDB)",
+  "main": "src/index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon node ./src/index.js",
-    "start": "node ./src/index.js"
+    "dev": "node --watch --env-file-if-exists=.env src/index.js",
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.js\""
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=22.12"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "albertomorales14",
+  "license": "MIT",
   "dependencies": {
-    "argon2": "^0.41.1",
-    "cloudinary": "^2.5.1",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "express-validator": "^7.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.2",
-    "multer": "^1.4.5-lts.1",
-    "winston": "^3.14.2"
+    "argon2": "^0.45.1",
+    "cloudinary": "^2.11.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.1",
+    "multer": "^2.4.0",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "supertest": "^7.3.1"
   }
 }

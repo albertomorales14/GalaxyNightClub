@@ -4,7 +4,7 @@ const djSchema = new Schema({
     name: {
         type: String,
         required: [true, 'El nombre es obligatorio'],
-        trim: true // Remueve espacios en blanco al inicio y al final
+        trim: true
     },
     residente: {
         type: Boolean,
@@ -17,15 +17,12 @@ const djSchema = new Schema({
     club: {
         type: Schema.Types.ObjectId,
         ref: 'Club',
-        required: [true, 'El DJ debe estar asignado a un club']
+        required: [true, 'El DJ debe estar asignado a un club'],
+        index: true
     }
-},
-    {
-        collection: 'djs'
-    },
-    {
-        timestamps: true // Añade auditoría createdAt y updatedAt
-    }
-);
+}, {
+    collection: 'djs',
+    timestamps: true
+});
 
 module.exports = model('DJ', djSchema);
