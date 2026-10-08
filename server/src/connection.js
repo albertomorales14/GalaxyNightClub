@@ -1,13 +1,18 @@
-const mongoose = require("mongoose");
-const logger = require('./utils/logger'); // winston log
+const mongoose = require('mongoose');
+const { config } = require('./config');
+const logger = require('./utils/logger');
 
-// Cadena de conexion
-const URI = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost/dbtest';
+// Elimina operadores de MongoDB ($ne, $gt...) que lleguen en los filtros: evita inyección NoSQL
+mongoose.set('sanitizeFilter', true);
 
-mongoose.connect(URI);
+async function connectDB(uri = config.mongoUri) {
+    await mongoose.connect(uri);
+    // No se registra la URI: puede contener credenciales
+    logger.info(`MongoDB conectado (base de datos: ${mongoose.connection.name})`);
+}
 
-const connection = mongoose.connection;
+async function disconnectDB() {
+    await mongoose.disconnect();
+}
 
-connection.once('open', () => {
-    logger.info('La base de datos MongoDB Atlas ha sido conectada: ' + URI);
-})
+module.exports = { connectDB, disconnectDB };

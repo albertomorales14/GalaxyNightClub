@@ -2,7 +2,7 @@
     --purple-light: #9479A6;
     --purple-dark: #533274;
     --full-height: -webkit-fill-available;
-    --gtav-cursor: url('/src/styles/cursor.cur');
+    --gtav-cursor: url('./styles/cursor.cur');
 }
 
 #root {
@@ -24,7 +24,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     padding: 0 2.5%;
     margin: 0 1% 0 1%;
-    background-image: url("/public/img/background/bg13.jpg") !important;
+    background-image: url("/img/background/bg13.jpg") !important;
     background-size: cover;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100% 1fr;

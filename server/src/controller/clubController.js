@@ -1,102 +1,27 @@
+const { matchedData } = require('express-validator');
+const Club = require('../model/Club');
+const HttpError = require('../utils/httpError');
+
 const clubController = {};
 
-const mongoose = require("mongoose");
-const Club = require('../model/Club');
-const logger = require('../utils/logger'); // winston log
-
-// Obtener TODOS los Clubes
-clubController.getClub = async (request, response) => {
-    try {
-        const club = await Club.find()
-        logger.info('\t> getClub: Todos los Clubes obtenidos (clubController.js)');
-        response.json(club)
-    } catch (error) {
-        logger.error('\t> Error: getClub: obtener todos los Clubs (clubController.js): ' + error);
-        response.status(500).json({ message: 'Error al obtener todos los Clubes' });
-    }
-}
-
-// Obtener Club del usuario
+// Club del usuario de la sesión
 clubController.getMyClub = async (request, response) => {
-    try {
-        const userId = request.params.id;
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            logger.error('\t> Error: getMyClub: Invalid club ID (clubController.js)');
-            return response.status(400).json({ message: 'Invalid user ID' });
-        }
-    
-        const club = await Club.findById(userId);
-        if (!club || club.length === 0) {
-            logger.error('\t> Error: getMyClub: No se encontraron Clubes para este usuario (clubController.js)');
-            return response.status(404).json({ message: 'No se encontraron Clubes para este usuario' });
-        }
-    
-        logger.info('\t> getMyClub: Club obtenido (clubController.js)');
-        response.json(club);
-    } catch (error) {
-        logger.error('\t> Error: getMyClub: Obtener club de un usuario (clubController.js): ' + error);
-        response.status(500).json({ message: 'Error al obtener club del usuario' });
-    }
-}
+    const club = await Club.findById(request.user.club);
+    if (!club) throw new HttpError(404, 'No se ha encontrado el club');
+    response.json(club);
+};
 
-// Actualizar club
-clubController.updateClub = async (request, response) => {
-    try {
-        const {
-            fama,
-            propietario,
-            ubicacion,
-            ganancias_almacen,
-            ganancias_club,
-            ganancias_totales,
-            trabajos,
-            ventas_almacen,
-            celebridades,
-            publico,
-            visitas,
-            ingresos_hoy,
-            caja_fuerte,
-            productos_vendidos,
-            productos_acumulados
-        } = request.body;
-
-        await Club.findByIdAndUpdate(request.params.id, {
-            fama,
-            propietario,
-            ubicacion,
-            ganancias_almacen,
-            ganancias_club,
-            ganancias_totales,
-            trabajos,
-            ventas_almacen,
-            celebridades,
-            publico,
-            visitas,
-            ingresos_hoy,
-            caja_fuerte,
-            productos_vendidos,
-            productos_acumulados
-        });
-
-        logger.info('\t> updateClub: Club actualizado (clubController.js)');
-        response.json({ message: 'Club actualizado' });
-    } catch (error) {
-        logger.error('\t> Error: updateClub: Actualizar Club (clubController.js): ' + error);
-        response.status(500).json({ message: 'Error al actualizar club' });
-    }
-}
-
-// Actualizar la fama del club
-clubController.updateFameClub = async (request, response) => {
-    try {
-        const { fama, trabajos } = request.body;
-        await Club.findByIdAndUpdate(request.params.id, { fama, trabajos });
-        logger.info('\t> updateFameClub: Fama del club actualizada (clubController.js)');
-        response.json({ message: 'Fama del club actualizada' });
-    } catch (error) {
-        logger.error('\t> Error: updateFameClub: Actualizar fama del club (clubController.js): ' + error);
-        response.status(500).json({ message: 'Error al actualizar fama del club' });
-    }
-}
+// Actualiza solo los campos validados en la ruta
+clubController.updateMyClub = async (request, response) => {
+    const changes = matchedData(request, { locations: ['body'] });
+    if (Object.keys(changes).length === 0) throw new HttpError(400, 'No hay campos que actualizar');
+    const club = await Club.findByIdAndUpdate(
+        request.user.club,
+        { $set: changes },
+        { returnDocument: 'after', runValidators: true }
+    );
+    if (!club) throw new HttpError(404, 'No se ha encontrado el club');
+    response.json(club);
+};
 
 module.exports = clubController;

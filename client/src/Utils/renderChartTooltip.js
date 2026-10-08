@@ -1,21 +1,20 @@
 import formatCurrency from "./formatCurrency";
 
-export const renderer1 = (props) => {
-    return {
-        title: props.datum[props.xKey].toUpperCase(),
-        content: props.datum[props.yKey].toFixed(0) + ' Unidades en el almacén',
-    };
-}
+// Renderizadores de tooltips para AG Charts (devuelven título y filas de datos)
 
-export const renderer2 = (props) => {
-    return {
-        content: '$' + formatCurrency(Math.floor(props.datum[props.yKey].toFixed(0)))
-    };
-}
+// Existencias de un producto
+export const renderer1 = ({ datum, xKey, yKey }) => ({
+    title: String(datum[xKey]).toUpperCase(),
+    data: [{ label: 'Unidades en el almacén', value: datum[yKey].toFixed(0) }]
+});
 
-export const renderer3 = (props) => {
-    return {
-        title: props.datum[props.xKey].toUpperCase(),
-        content: 'Capacidad restante en el almacén: ' + props.datum[props.yKey].toFixed(0),
-    };
-}
+// Ingresos de un día
+export const renderer2 = ({ datum, yKey }) => ({
+    data: [{ label: 'Ingresos', value: '$' + formatCurrency(Math.floor(datum[yKey])) }]
+});
+
+// Capacidad restante de un producto
+export const renderer3 = ({ datum, xKey, yKey }) => ({
+    title: String(datum[xKey]).toUpperCase(),
+    data: [{ label: 'Capacidad restante en el almacén', value: datum[yKey].toFixed(0) }]
+});

@@ -13,14 +13,13 @@ hr {
     padding-right: 1% !important;
 }
 
-.custom-chart-tooltip .ag-chart-tooltip-content {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: 2px solid var(--purple-light)
-}
-
-.ag-chart-tooltip::after {
-    border-top-color: rgb(0, 0, 0);
+/* Tooltips de AG Charts con los colores del club */
+.ag-charts-tooltip {
+    --ag-charts-tooltip-background-color: rgb(0, 0, 0);
+    --ag-charts-tooltip-text-color: white;
+    --ag-charts-tooltip-subtle-text-color: var(--purple-light);
+    --ag-charts-tooltip-border-color: var(--purple-light);
+    --ag-charts-tooltip-border-width: 2px;
 }
 
 /* Big Screen */
