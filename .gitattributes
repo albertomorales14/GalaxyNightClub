@@ -1,0 +1,7 @@
+# Finales de línea LF en el repositorio para todos los archivos de texto
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.avif binary
+*.cur binary
