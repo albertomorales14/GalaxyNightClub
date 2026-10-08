@@ -1,24 +1,18 @@
+import { logsApi } from '../api';
+
+// Los mensajes informativos solo se muestran en la consola durante el desarrollo;
+// los avisos y errores también se envían al servidor. Nunca lanza excepciones.
 const logService = {
     sendLog: (level, message) => {
-        fetch(`${process.env.REACT_APP_RENDER_URL}/log`, {  // Esto irá al backend, gracias al proxy del package.json
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ level, message })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error en la respuesta: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Log enviado al servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error al enviar el log:', error);
-            });
+        const text = String(message).slice(0, 2000);
+
+        if (level === 'info') {
+            if (import.meta.env.DEV) console.info(text);
+            return;
+        }
+
+        (level === 'error' ? console.error : console.warn)(text);
+        logsApi.send(level === 'error' ? 'error' : 'warn', text).catch(() => {});
     }
 };
 
