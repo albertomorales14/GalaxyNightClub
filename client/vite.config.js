@@ -6,6 +6,15 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [react()],
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    // Bootstrap 5 aún usa @import y funciones globales de Sass que están obsoletas
+                    quietDeps: true,
+                    silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function']
+                }
+            }
+        },
         server: {
             port: 5173,
             // En desarrollo, /api se redirige al servidor local: cliente y API comparten origen

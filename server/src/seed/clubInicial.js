@@ -11,19 +11,19 @@ const mejoras = [
     {
         name: 'Equipo',
         precio: 1425000,
-        imagen: '/img/mejoras/mejora1-equipo.jpg',
+        imagen: '/img/mejoras/mejora1-equipo.webp',
         descripcion: 'Compra esta mejora para instalar equipo de mayor calidad. Esto aumentará la productividad de los técnicos del almacén y les permitirá acumular productos más rápidamente.'
     },
     {
         name: 'Personal',
         precio: 475000,
-        imagen: '/img/mejoras/mejora2-personal.jpg',
+        imagen: '/img/mejoras/mejora2-personal.webp',
         descripcion: 'Compra esta mejora para contratar más bármanes y gorilas. Esto reducirá la pérdida de fama diaria del club nocturno.'
     },
     {
         name: 'Seguridad',
         precio: 695000,
-        imagen: '/img/mejoras/mejora3-security.jpg',
+        imagen: '/img/mejoras/mejora3-security.webp',
         descripcion: 'Compra esta mejora para colocar guardias de seguridad y equipo de vigilancia. Esto reducirá las posibilidades de que los enemigos ataquen el club nocturno.'
     }
 ];
@@ -48,7 +48,7 @@ const tecnicos = [
 ].map((tecnico, index) => ({
     ...tecnico,
     name: `tecnico${index + 1}`,
-    imagen: `/img/tecnicos/tecnico${index + 1}.png`,
+    imagen: `/img/tecnicos/tecnico${index + 1}.webp`,
     producto: ''
 }));
 

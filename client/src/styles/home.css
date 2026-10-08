@@ -13,13 +13,96 @@ hr {
     padding-right: 1% !important;
 }
 
-/* Tooltips de AG Charts con los colores del club */
-.ag-charts-tooltip {
-    --ag-charts-tooltip-background-color: rgb(0, 0, 0);
-    --ag-charts-tooltip-text-color: white;
-    --ag-charts-tooltip-subtle-text-color: var(--purple-light);
-    --ag-charts-tooltip-border-color: var(--purple-light);
-    --ag-charts-tooltip-border-width: 2px;
+/* Gráficas SVG */
+.chart {
+    position: relative;
+    height: 300px;
+}
+
+.chart svg {
+    display: block;
+}
+
+.chart-grid {
+    stroke: rgba(148, 121, 166, 0.25);
+    stroke-width: 1;
+}
+
+.chart-axis {
+    stroke: var(--purple-light);
+    stroke-width: 1;
+}
+
+.chart-axis-label {
+    fill: white;
+    font-size: 12px;
+}
+
+.chart-bar {
+    fill: #461E5C;
+    transition: fill 0.15s;
+}
+
+.chart-bar.is-active {
+    fill: #5c2a78;
+}
+
+.chart-bar-resto {
+    fill: #100616;
+    transition: fill 0.15s;
+}
+
+.chart-bar-resto.is-active {
+    fill: #251032;
+}
+
+.chart-area {
+    fill: #251032;
+    opacity: 0.9;
+}
+
+.chart-line {
+    fill: none;
+    stroke: var(--purple-light);
+    stroke-width: 2;
+}
+
+.chart-marker {
+    fill: #251032;
+    stroke: var(--purple-light);
+    stroke-width: 3;
+    transition: fill 0.15s;
+}
+
+.chart-marker.is-active {
+    fill: var(--purple-dark);
+}
+
+.chart-bar, .chart-bar-resto, .chart-marker {
+    cursor: var(--gtav-cursor), auto;
+}
+
+.chart-tooltip {
+    position: absolute;
+    transform: translate(-50%, calc(-100% - 12px));
+    pointer-events: none;
+    background-color: black;
+    color: white;
+    border: 2px solid var(--purple-light);
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.chart-tooltip-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.chart-tooltip-label {
+    color: var(--purple-light);
+    margin-right: 8px;
 }
 
 /* Big Screen */

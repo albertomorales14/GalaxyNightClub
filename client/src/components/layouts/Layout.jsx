@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
-import { ring } from 'ldrs';
+import AppLoading from '../AppLoading';
 import Cron from '../Cron';
 import Header from '../Header';
 import Settings from './settings/Settings';
 import Navigation from '../Navigation';
 import LoginPage from '../../views/LoginPage';
 import useAuth from '../../auth/useAuth';
-
-ring.register('layout-ldr');
 
 function Layout({ children }) {
 
@@ -38,13 +36,7 @@ function Layout({ children }) {
     }
 
     // Mientras se comprueba si hay una sesión abierta
-    if (loading) {
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '30vh' }}>
-                <layout-ldr color="var(--purple-light)" size="60" stroke="6"></layout-ldr>
-            </div>
-        );
-    }
+    if (loading) return <AppLoading />;
 
     if (!isLogged) return <LoginPage />;
 

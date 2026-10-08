@@ -11,8 +11,9 @@ import './styles/mejoras.css';
 import './styles/modal.css';
 import './styles/settings.css';
 import './styles/mobile.css';
+import './styles/skeleton.css';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/bootstrap.scss';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>

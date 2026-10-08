@@ -5,16 +5,20 @@ import MejorasModal from './MejorasModal';
 import formatCurrency from '../../Utils/formatCurrency';
 import { mejorasApi } from '../../api';
 import useApiData from '../../hooks/useApiData';
+import { imagenLocal } from '../../Utils/imagenes';
+import SuspenseMejorasPage from './SuspenseMejorasPage';
 
 function LazyMejorasNegocioPage() {
 
-    const { data: lista, reload } = useApiData(mejorasApi.list, []);
+    const { data: lista, loading, reload } = useApiData(mejorasApi.list, []);
     const [mejora, setMejora] = useState(null); // mejora seleccionada en la modal
 
     const closeMejorasModal = () => {
         setMejora(null);
         reload();
     }
+
+    if (loading) return <SuspenseMejorasPage />;
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
@@ -23,7 +27,7 @@ function LazyMejorasNegocioPage() {
                     <Row key={item._id} onClick={() => setMejora(item)}>
                         <Col xs={3} className='col-3-mejoras'>
                             <div className="mejoras-img-box-content">
-                                <img className="mejoras-img" style={{ width: '100%' }} src={item.imagen} alt={item.name} />
+                                <img className="mejoras-img" style={{ width: '100%' }} src={imagenLocal(item.imagen)} alt={item.name} loading="lazy" decoding="async" />
                                 <div className="mejoras-icon-content" hidden={!item.comprada}>
                                     <FaRegCircleCheck />
                                 </div>

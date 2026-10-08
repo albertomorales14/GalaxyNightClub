@@ -1,18 +1,15 @@
 import { Row, Col } from 'react-bootstrap';
-import { ring } from 'ldrs';
-
-ring.register('tecnic-img-ldr');
+import Skeleton from '../../components/skeleton/Skeleton';
 
 const NUM_TECNICOS = 5;
 
+// Skeleton de las fotos de los técnicos mientras se cargan
 function TecnicosLoaders() {
     return (
-        <Row className='tecnico-img-row'>
+        <Row className='tecnico-img-row' aria-busy="true">
             {Array.from({ length: NUM_TECNICOS }, (_, i) => (
                 <Col key={i} className="tecnico-img-col">
-                    <div style={{ textAlign: 'center', padding: '20%' }} className="tecnico-img-box-content">
-                        <tecnic-img-ldr color="var(--purple-dark)" size='50'></tecnic-img-ldr>
-                    </div>
+                    <Skeleton height={null} style={{ aspectRatio: '1 / 1' }} />
                 </Col>
             ))}
         </Row>

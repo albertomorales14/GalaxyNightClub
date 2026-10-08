@@ -1,0 +1,43 @@
+/* Placeholders animados mientras se carga el contenido */
+.skeleton {
+    display: block;
+    border-radius: 4px;
+    background: linear-gradient(90deg,
+        rgba(83, 50, 116, 0.4) 0%,
+        rgba(148, 121, 166, 0.55) 50%,
+        rgba(83, 50, 116, 0.4) 100%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton {
+        animation: none;
+    }
+}
+
+/* Mensaje mientras el servidor gratuito de Render arranca */
+.app-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 30vh;
+    text-align: center;
+    text-shadow: 2px 2px 1px black;
+}
+
+.app-loading p {
+    max-width: 28rem;
+    margin: 0;
+}

@@ -6,13 +6,15 @@ import VenderTodosModal from './VenderTodosModal';
 import useAuth from '../../auth/useAuth';
 import { productosApi } from '../../api';
 import useApiData from '../../hooks/useApiData';
+import Skeleton from '../../components/skeleton/Skeleton';
+import Valor from '../../components/skeleton/Valor';
 import formatCurrency from '../../Utils/formatCurrency';
 import { valorProducto } from '../../game/reglas';
 
 function VentaProductosPage() {
 
     const { club, refreshClub } = useAuth();
-    const { data: lista, reload } = useApiData(productosApi.list, []);
+    const { data: lista, loading, reload } = useApiData(productosApi.list, []);
     const [isOpenVentaTodosModal, setIsOpenVentaTodosModal] = useState(false);
 
     useEffect(() => {
@@ -35,7 +37,7 @@ function VentaProductosPage() {
 
     return (
         <div className="main-common-container" style={{ margin: '8px', marginLeft: '0' }}>
-            <Productos lista={lista} club={club} actualizarLista={cargarDatos} />
+            <Productos lista={lista} club={club} actualizarLista={cargarDatos} cargando={loading} />
             <Container>
                 <Row>
                     <div className="ventas-title">
@@ -49,7 +51,9 @@ function VentaProductosPage() {
                     </div>
                 </Row>
             </Container>
-            <Ventas lista={lista} club={club} actualizarLista={cargarDatos} />
+            {loading
+                ? <Container>{[0, 1, 2].map(i => <Skeleton key={i} height="5.5rem" style={{ margin: '0.5rem 0' }} />)}</Container>
+                : <Ventas lista={lista} club={club} actualizarLista={cargarDatos} />}
             <Container>
                 <Row>
                     <button className={`btn-primary ${hayProductos ? 'venta-btn' : 'venta-btn-empty'}`}
@@ -62,7 +66,7 @@ function VentaProductosPage() {
                                 <Col xs={6} style={{ textAlign: 'end' }}>
                                     <div>
                                         <span className='venta-all-price'>
-                                            <b>${formatCurrency(totalValue)}</b>
+                                            <b><Valor cargando={loading} width="6rem">${formatCurrency(totalValue)}</Valor></b>
                                         </span>
                                     </div>
                                 </Col>

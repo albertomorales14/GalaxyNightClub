@@ -4,6 +4,7 @@ import VentaProductoModal from './VentaProductoModal';
 import formatCurrency from '../../Utils/formatCurrency';
 import PRODUCTO from '../../Utils/namesProductos';
 import { valorProducto } from '../../game/reglas';
+import Valor from '../../components/skeleton/Valor';
 
 // Clase CSS de cada casilla según su posición en la cuadrícula de 2 columnas
 const CLASES_CASILLA = [
@@ -25,7 +26,7 @@ const enFilas = (lista) => lista.reduce((filas, item, i) => {
     return filas;
 }, []);
 
-function Productos({ lista, club, actualizarLista }) {
+function Productos({ lista, club, actualizarLista, cargando }) {
 
     const [producto, setProducto] = useState(null); // producto que se va a vender
 
@@ -42,7 +43,7 @@ function Productos({ lista, club, actualizarLista }) {
                 <Row key={numFila} className='row-productos'>
                     {fila.map(({ nombre, index }) => {
                         const item = lista[index];
-                        const conExistencias = item?.existencias !== 0;
+                        const conExistencias = cargando || item?.existencias !== 0;
                         return (
                             <Col key={nombre} xs={6} onClick={() => conExistencias && item && setProducto(item)}>
                                 <div className={`${conExistencias ? 'box-ventas-col-6' : 'box-ventas-col-6-no-products'} ${claseCasilla(index)}`}>
@@ -51,12 +52,14 @@ function Productos({ lista, club, actualizarLista }) {
                                         {conExistencias ? (
                                             <>
                                                 Vender por:
-                                                <span className='venta-all-price'>&nbsp;${formatCurrency(valorProducto(item))}</span>
+                                                <span className='venta-all-price'>&nbsp;
+                                                    <Valor cargando={cargando} width="5rem">${formatCurrency(valorProducto(item))}</Valor>
+                                                </span>
                                             </>
                                         ) : <br />}
                                     </div>
                                     <div>
-                                        {item?.existencias}/{item?.capacidadMax}
+                                        <Valor cargando={cargando} width="3rem">{item?.existencias}/{item?.capacidadMax}</Valor>
                                     </div>
                                 </div>
                             </Col>

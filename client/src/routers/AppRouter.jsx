@@ -6,6 +6,7 @@ import LoginPage from '../views/LoginPage';
 import NotFoundPage from '../views/NotFoundPage';
 import routes from '../Utils/routes';
 import useAuth from '../auth/useAuth';
+import PageSkeleton from '../components/skeleton/PageSkeleton';
 
 // Cada página se descarga solo cuando se visita
 const HomePage = lazy(() => import('../views/homePage/HomePage'));
@@ -15,15 +16,13 @@ const GestionAlmacenPage = lazy(() => import('../views/gestionAlmacen/GestionAlm
 const MejorasNegocioPage = lazy(() => import('../views/mejorasNegocio/MejorasNegocioPage'));
 const VentaProductosPage = lazy(() => import('../views/ventaProductos/VentaProductosPage'));
 
-const PageFallback = () => <div className="main-common-container" style={{ margin: '8px', marginLeft: '0', minHeight: '50vh' }} />;
-
 function AppRouter() {
 
     const { club } = useAuth();
     const fama = club?.fama;
 
     return (
-        <Suspense fallback={<PageFallback />}>
+        <Suspense fallback={<PageSkeleton />}>
             <Routes>
                 <Route element={<PublicRoute />}>
                     <Route path={routes.login} element={<LoginPage />} />

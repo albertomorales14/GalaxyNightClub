@@ -7,11 +7,12 @@ import FameModal from './FameModal';
 import useAuth from '../../auth/useAuth';
 import { ingresosApi } from '../../api';
 import useApiData from '../../hooks/useApiData';
+import Skeleton from '../../components/skeleton/Skeleton';
 
 function GestionClubPage({ fama }) {
 
     const { club, refreshClub } = useAuth();
-    const { data: ingresos, reload } = useApiData(ingresosApi.list, []);
+    const { data: ingresos, loading, reload } = useApiData(ingresosApi.list, []);
     const [isOpenFameModal, setIsOpenFameModal] = useState(false);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ function GestionClubPage({ fama }) {
         <div className="main-common-container promo-container" style={{ margin: '8px', marginLeft: '0' }}>
             <FameBar fama={fama} />
             <ClubSummary
+                cargando={!club?._id}
                 visitasJugadores={club?.visitas}
                 publico={club?.publico}
                 ingresosDiariosActuales={club?.ingresos_hoy}
@@ -49,7 +51,9 @@ function GestionClubPage({ fama }) {
                     <Col xs={12} style={{ paddingBottom: '2%' }}>Ingresos diarios</Col>
                 </Row>
             </Container>
-            <IngresosChart lista={ingresos} />
+            {loading
+                ? <div className="line-chart-container"><Skeleton className="chart" height={null} /></div>
+                : <IngresosChart lista={ingresos} />}
             <FameModal isOpen={isOpenFameModal} close={closeFameModal} club={club} />
         </div>
     );

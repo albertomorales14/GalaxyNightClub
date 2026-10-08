@@ -4,6 +4,7 @@ import { FaRegCircleCheck } from "react-icons/fa6"; // Check
 import { RiLock2Fill } from "react-icons/ri"; // Lock
 import { GiPerson } from "react-icons/gi"; // Person
 import TecnicosModal from './TecnicosModal';
+import { imagenLocal } from '../../Utils/imagenes';
 
 function Tecnicos({ tecnicos, focus, handleClick, actualizarLista }) {
 
@@ -31,7 +32,7 @@ function Tecnicos({ tecnicos, focus, handleClick, actualizarLista }) {
             {tecnicos.map((tecnico, index) => (
                 <Col key={tecnico._id} onClick={() => onClickTecnico(tecnico, index)} className={colClass(index)}>
                     <div className="tecnico-img-box-content">
-                        <img className='tecnico-img' src={tecnico.imagen} alt={tecnico.name}
+                        <img className='tecnico-img' src={imagenLocal(tecnico.imagen)} alt={tecnico.name} decoding="async"
                             style={{ filter: `brightness(${tecnico.estado === 'BLOQUEADO' || tecnico.estado === 'NO CONTRATADO' ? 0.5 : 1})` }} />
                         <div className="tecnico-check-icon-content" hidden={tecnico.estado !== 'ASIGNADO' || focus === tecnico.name}>
                             <FaRegCircleCheck />

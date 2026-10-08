@@ -5,6 +5,7 @@ import PlayAudio from "./PlayAudio";
 import DJModal from "./DJModal";
 import { djsApi } from '../../api';
 import useApiData from '../../hooks/useApiData';
+import Valor from '../../components/skeleton/Valor';
 import { DJS } from "../../Utils/namesDJ";
 
 const textoBoton = (dj) =>
@@ -21,7 +22,7 @@ const enParejas = (lista) => lista.reduce((filas, item, i) => {
 
 function DJResidentePage({ fama }) {
 
-    const { data: lista, reload } = useApiData(djsApi.list, []); // DJs del club
+    const { data: lista, loading, reload } = useApiData(djsApi.list, []); // DJs del club
     const [dj, setDJ] = useState(null); // DJ seleccionado en la modal
     const [currentAudio, setCurrentAudio] = useState(null); // índice del audio que suena
 
@@ -51,7 +52,8 @@ function DJResidentePage({ fama }) {
                                     style={{ border: '1px solid var(--purple-light)', borderTop: 'none' }}>
                                     <div className="dj-img-box">
                                         <div className="dj-img-box-content">
-                                            <img className={`dj-img dj-${index}`} src={imagen} alt={name} style={{ objectPosition }} />
+                                            <img className={`dj-img dj-${index}`} src={imagen} alt={name} style={{ objectPosition }}
+                                                loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
                                             <PlayAudio
                                                 name={name}
                                                 audioSrc={audio}
@@ -68,7 +70,9 @@ function DJResidentePage({ fama }) {
                             {fila.map(({ name, index }) => (
                                 <Col key={name} className={`dj-col ${index % 2 === 0 ? 'dj-left' : 'dj-right'}`}>
                                     <button className="btn-primary dj-btn" onClick={() => setDJ(lista[index])} disabled={!lista[index]}>
-                                        <span className="dj-btn-size">{textoBoton(lista[index])}</span>
+                                        <span className="dj-btn-size">
+                                            <Valor cargando={loading} width="10rem">{textoBoton(lista[index])}</Valor>
+                                        </span>
                                     </button>
                                 </Col>
                             ))}
