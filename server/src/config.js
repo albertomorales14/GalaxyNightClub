@@ -15,7 +15,7 @@ const config = {
     jwtSecret: process.env.JWT_SECRET,
     jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1h',
     // Orígenes permitidos para CORS (separados por comas). VERCEL_APP_URL se mantiene por compatibilidad
-    corsOrigins: splitList(process.env.CORS_ORIGINS || process.env.VERCEL_APP_URL || 'http://localhost:3000,http://localhost:5173'),
+    corsOrigins: splitList(process.env.CORS_ORIGINS || process.env.VERCEL_APP_URL || 'http://localhost:5173,http://localhost:4173'),
     // Cliente y API en dominios distintos (Vercel + Render) necesitan SameSite=None en producción
     cookieSameSite: (process.env.COOKIE_SAMESITE || (isProduction ? 'none' : 'lax')).toLowerCase(),
     // Número de proxies delante del servidor (Render usa 1), necesario para el rate limit por IP
